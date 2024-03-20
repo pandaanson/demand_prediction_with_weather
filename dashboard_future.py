@@ -7,10 +7,19 @@ import pandas as pd
 import plotly.express as px
 import json
 import numpy as np
+import os
 # Process the 'reeds_ba_list' column to expand the sets into individual rows, keeping 'state' intact
 from ast import literal_eval
-polygons_df = pd.read_csv('/Users/ansonkong/Downloads/NYU_work_repo/resources/US_CAN_MEX_PCA_polygons.csv')
-state_to_ba_df = pd.read_csv('/Users/ansonkong/Downloads/NYU_work_repo/resources/state_to_ba_mapping.csv')
+# Get the current directory where your script is running
+current_directory = os.getcwd()
+
+# Construct the path to your resources folder dynamically
+resources_path = os.path.join(current_directory, 'resources')
+
+# Now, build the full path to your CSV files
+polygons_csv_path = os.path.join(resources_path, 'US_CAN_MEX_PCA_polygons.csv')
+state_to_ba_csv_path = os.path.join(resources_path, 'state_to_ba_mapping.csv')
+
 
 # Filter polygons
 polygons_df = polygons_df[polygons_df['rb'].isin([f'p{i}' for i in range(1, 135)])]
