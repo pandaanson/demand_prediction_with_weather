@@ -20,10 +20,6 @@ resources_path = os.path.join(current_directory, 'resources')
 polygons_csv_path = os.path.join(resources_path, 'US_CAN_MEX_PCA_polygons.csv')
 state_to_ba_csv_path = os.path.join(resources_path, 'state_to_ba_mapping.csv')
 
-# Finally, use pandas to read the CSV files
-polygons_df = pd.read_csv(polygons_csv_path)
-state_to_ba_df = pd.read_csv(state_to_ba_csv_path)
-
 # Filter polygons
 polygons_df = polygons_df[polygons_df['rb'].isin([f'p{i}' for i in range(1, 135)])]
 
@@ -57,7 +53,6 @@ geojson_state = json.loads(gdf_state.to_json())
 geojson_subregion = json.loads(gdf_subregion.to_json())
 # Initialize the Dash app
 app = dash.Dash(__name__)
-server=app.server
 
 app.layout = html.Div([
     html.Div([
@@ -73,7 +68,7 @@ app.layout = html.Div([
                 value='country',  # Default value
                 style={'padding': 20}
             ),
-            dcc.Dropdown(id='graph-toggle', multi=True)
+            dcc.Dropdown(id='graph-toggle',value='USA',  multi=True)
         ], style={'display': 'inline-block', 'width': '30%', 'verticalAlign': 'top'}),
     ]),
     html.Div([
@@ -127,26 +122,28 @@ def update_map(toggle_value):
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, title=f"Map by {toggle_value.title()}")
 
     return fig
-
 @app.callback(
-    Output('graph-toggle', 'options'),
+    [Output('graph-toggle', 'options'),
+     Output('graph-toggle', 'value')],
     [Input('map-toggle', 'value')]
 )
 def set_graph_toggle_options(selected_map_view):
+    #print(f"Selected map view: {selected_map_view}")
     if selected_map_view == 'country':
         # Explicitly return 'USA' as the option
         options = [{'label': 'USA', 'value': 'USA'}]
+        value='USA'
     elif selected_map_view == 'state':
         # Example state list; replace with your actual data or method to retrieve states
         state_list = ['California', 'New York', 'Texas', 'Florida', 'Illinois']
         options = [{'label': state, 'value': state} for state in state_list]
-    elif selected_map_view == 'rb':
+        value='New York'
+    elif selected_map_view == 'subregion':
         # Generate subregion options from 'p1' to 'p134'
         options = [{'label': f'p{i}', 'value': f'p{i}'} for i in range(1, 135)]
-    else:
-        options = []
+        value='p1'
 
-    return options
+    return options,value
 
 if __name__ == '__main__':
     app.run_server(debug=True)
