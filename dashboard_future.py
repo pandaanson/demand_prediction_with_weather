@@ -19,9 +19,6 @@ current_directory = os.getcwd()
 # Construct the path to your resources folder dynamically
 data_path = os.path.join(current_directory, 'web_page_data')
 
-geojson_country_path = os.path.join(data_path, 'geojson_country.json')
-geojson_state_path = os.path.join(data_path, 'geojson_state.json')
-geojson_subregion_path = os.path.join(data_path, 'geojson_subregion.json')
 
 # Define file paths for saving
 gdf_country_path = os.path.join(data_path, 'gdf_country.gpkg')
@@ -39,10 +36,6 @@ def read_geojson(file_path):
     with open(file_path) as f:
         return json.load(f)
 
-# Read the GeoJSON data
-geojson_country = read_geojson(geojson_country_path)
-geojson_state = read_geojson(geojson_state_path)
-geojson_subregion = read_geojson(geojson_subregion_path)
 
 # Read the GeoDataFrames
 gdf_country = gpd.read_file(gdf_country_path)
@@ -142,8 +135,6 @@ def update_map(toggle_value):
         data = gdf_subregion
         geojson = geojson_subregion
         color_column = 'rb'
-    # Convert GeoDataFrame to GeoJSON
-    #geojson = data.__geo_interface__
 
     # Use Plotly Express to create the choropleth map with a Mapbox base map
     fig = px.choropleth_mapbox(data, geojson=geojson, 
