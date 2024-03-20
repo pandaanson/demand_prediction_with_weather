@@ -20,6 +20,9 @@ resources_path = os.path.join(current_directory, 'resources')
 polygons_csv_path = os.path.join(resources_path, 'US_CAN_MEX_PCA_polygons.csv')
 state_to_ba_csv_path = os.path.join(resources_path, 'state_to_ba_mapping.csv')
 
+# Finally, use pandas to read the CSV files
+polygons_df = pd.read_csv(polygons_csv_path)
+state_to_ba_df = pd.read_csv(state_to_ba_csv_path)
 
 # Filter polygons
 polygons_df = polygons_df[polygons_df['rb'].isin([f'p{i}' for i in range(1, 135)])]
