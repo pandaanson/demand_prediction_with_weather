@@ -1,10 +1,7 @@
-adtk==0.6.2
 affine==2.4.0
-aiohttp @ file:///opt/concourse/worker/volumes/live/ba252660-e2b9-4a6d-6906-9be4ed7deda4/volume/aiohttp_1646806382603/work
 aiohttp-cors==0.7.0
 aiosignal @ file:///tmp/build/80754af9/aiosignal_1637843061372/work
 alabaster @ file:///home/ktietz/src/ci/alabaster_1611921544520/work
-anaconda-client @ file:///opt/concourse/worker/volumes/live/866d4dd0-ff5b-4d0b-718d-0267a3b10e06/volume/anaconda-client_1635342573767/work
 anaconda-navigator==2.2.0
 anaconda-project @ file:///tmp/build/80754af9/anaconda-project_1637161053845/work
 anyio @ file:///opt/concourse/worker/volumes/live/485b0f52-1188-482a-6285-65a36c8fa8a6/volume/anyio_1644481714856/work/dist
