@@ -108,18 +108,18 @@ def update_map(toggle_value):
                                zoom=3, center={"lat": 37.0902, "lon": -95.7129},
                                opacity=0.5)
 
-    # Add USGS Imagery base map
-    fig.update_layout(
-        mapbox_layers=[
-            {
-                "below": 'traces',
-                "sourcetype": "raster",
-                "source": [
-                    "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
-                ]
-            }
-        ]
-    )
+    # # Add USGS Imagery base map
+    # fig.update_layout(
+    #     mapbox_layers=[
+    #         {
+    #             "below": 'traces',
+    #             "sourcetype": "raster",
+    #             "source": [
+    #                 "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
+    #             ]
+    #         }
+    #     ]
+    # )
 
     # Update layout for no margin and title
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, title=f"Map by {toggle_value.title()}")
