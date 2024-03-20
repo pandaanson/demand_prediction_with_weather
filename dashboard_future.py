@@ -45,6 +45,7 @@ geojson_state = json.loads(gdf_state.to_json())
 geojson_subregion = json.loads(gdf_subregion.to_json())
 # Initialize the Dash app
 app = dash.Dash(__name__)
+server=app.sesrver
 
 app.layout = html.Div([
     html.Div([
