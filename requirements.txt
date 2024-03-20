@@ -4,3 +4,4 @@ geopandas
 pandas
 numpy
 gunicorn
+Flask==2.2
