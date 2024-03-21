@@ -122,9 +122,92 @@ app.layout = html.Div([
             html.Div([dcc.Dropdown(id='graph-toggle',value='USA',  multi=False)]),
         ], style={'display': 'inline-block', 'width': '20%', 'verticalAlign': 'top'}),
     ]),
+    # Div for line graph
     html.Div([
         dcc.Graph(id='line-graph'),  # Placeholder for the line graph
-    ], style={'paddingTop': 20})
+    ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
+
+    html.Div([
+        # Div for comparison graph and dropdowns
+        html.Div([
+            dcc.Graph(id='compare-graph'),  # Placeholder for the comparison graph
+        ], style={'width': '50%', 'display': 'inline-block'}),  # Use 100% of the parent div width
+
+        html.Div([
+            # Div for Year dropdowns
+            html.Div([
+                html.H4("Choose Year Left:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.Dropdown(
+                    id='year-dropdown-left',
+                    options=[{'label': year, 'value': year} for year in range(2020, 2100)],
+                    value=2020  # Default value
+                ),
+                html.H4("Choose Year Right:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.Dropdown(
+                    id='year-dropdown-right',
+                    options=[{'label': year, 'value': year} for year in range(2020, 2100)],
+                    value=2021  # Default value
+                ),
+            ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
+
+            # Div for Day Type dropdowns
+            html.Div([
+                html.H4("Choose Day Type Left:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.Dropdown(
+                    id='daytype-dropdown-left',
+                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'holiday', 'weekend']],
+                    value='workday'  # Default value
+                ),
+                html.H4("Choose Day Type Right:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.Dropdown(
+                    id='daytype-dropdown-right',
+                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'holiday', 'weekend']],
+                    value='holiday'  # Default value
+                ),
+            ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
+
+            # Div for Day Type dropdowns
+            html.Div([
+                html.H4("Choose Scenario Type Left:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.RadioItems(
+                    id='scenario-toggle-left',
+                    options=[
+                        {'label': 'Most extreme', 'value': 'rcp85hotter'},
+                        {'label': 'Extreme', 'value': 'rcp85cooler'},
+                        {'label': 'Mini extreme', 'value': 'rcp45hotter'},
+                        {'label': 'Least extreme', 'value': 'rcp45cooler'},
+                        {'label': 'Stable(unimplement)','value': 'stable'}
+                    ],
+                    value='rcp85hotter',  # Default value
+                    style={'padding': 20},
+                    inline=True
+                ),
+                html.H4("Choose Scenario Type Right:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.RadioItems(
+                    id='scenario-toggle-right',
+                    options=[
+                        {'label': 'Most extreme', 'value': 'rcp85hotter'},
+                        {'label': 'Extreme', 'value': 'rcp85cooler'},
+                        {'label': 'Mini extreme', 'value': 'rcp45hotter'},
+                        {'label': 'Least extreme', 'value': 'rcp45cooler'},
+                        {'label': 'Stable(unimplement)','value': 'stable'}
+                    ],
+                    value='rcp85hotter',  # Default value
+                    style={'padding': 20},
+                    inline=True
+                ),
+            ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
+
+            # Div for Region dropdowns
+            html.Div([
+                html.H4("Choose Region Left:"),
+                dcc.Dropdown(id='region-left', value='USA', multi=False),
+                html.H4("Choose Region Right:", style={'marginBottom': 0, 'marginTop': 0}),
+                dcc.Dropdown(id='region-right', value='USA', multi=False),
+            ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
+        ], style={'display': 'inline-block', 'width': '50%'}),  # Adjust width to 50% to share space equally
+    ], style={'display': 'flex', 'flex-direction': 'row'})  # Use flexbox for side-by-side layout
+
 ])
 
 @app.callback(
@@ -237,6 +320,31 @@ def set_graph_toggle_options(selected_map_view):
         value='p1'
 
     return options,value
+@app.callback(
+    [
+        Output('region-left', 'options'),
+        Output('region-right', 'options'),
+        Output('region-left', 'value'),
+        Output('region-right', 'value')
+    ],
+    [
+        Input('map-toggle', 'value')
+    ]
+)
+def set_region_options(selected_map_view):
+    if selected_map_view == 'country':
+        # Explicitly return 'USA' as the option
+        options = [{'label': 'USA', 'value': 'USA'}]
+        value='USA'
+    elif selected_map_view == 'state':
+        # Example state list; replace with your actual data or method to retrieve states
+        options =[{'label': i, 'value': i} for i in state_centroids_df['state'].unique()]
+        value='New York'
+    elif selected_map_view == 'subregion':
+        # Generate subregion options from 'p1' to 'p134'
+        options = [{'label': f'p{i}', 'value': f'p{i}'} for i in range(1, 135)]
+        value='p1'
+    return options, options ,value , value
 
 @app.callback(
     Output('line-graph', 'figure'),
