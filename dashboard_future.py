@@ -12,6 +12,7 @@ import os
 from shapely.geometry import Point
 from shapely import wkt
 from datetime import date
+import ast  # Import the ast module
 # Process the 'reeds_ba_list' column to expand the sets into individual rows, keeping 'state' intact
 from ast import literal_eval
 # Get the current directory where your script is running
@@ -31,6 +32,11 @@ country_geojson_path = os.path.join(data_path, 'country_centroids.csv')
 state_geojson_path = os.path.join(data_path, 'state_centroids.csv')
 rb_geojson_path = os.path.join(data_path, 'rb_centroids.csv')
 
+compare_df_path= os.path.join(data_path, 'day_sample.csv')
+compare_df = pd.read_csv(compare_df_path)
+
+compare_weekly_df_path= os.path.join(data_path, 'week_sample.csv')
+compare_weekly_df = pd.read_csv(compare_weekly_df_path)
 
 # Function to read GeoJSON from a file
 def read_geojson(file_path):
@@ -131,7 +137,7 @@ app.layout = html.Div([
         # Div for comparison graph and dropdowns
         html.Div([
             dcc.Graph(id='compare-graph'),  # Placeholder for the comparison graph
-        ], style={'width': '50%', 'display': 'inline-block'}),  # Use 100% of the parent div width
+        ], style={'width': '55%', 'display': 'inline-block'}),  # Use 100% of the parent div width
 
         html.Div([
             # Div for Year dropdowns
@@ -168,7 +174,7 @@ app.layout = html.Div([
 
             # Div for Day Type dropdowns
             html.Div([
-                html.H4("Choose Scenario Type Left:", style={'marginBottom': 0, 'marginTop': 0}),
+                html.H4("Choose Scenario Type Left:", style={'marginBottom': -20, 'marginTop': 0}),
                 dcc.RadioItems(
                     id='scenario-toggle-left',
                     options=[
@@ -182,7 +188,7 @@ app.layout = html.Div([
                     style={'padding': 20},
                     inline=True
                 ),
-                html.H4("Choose Scenario Type Right:", style={'marginBottom': 0, 'marginTop': 0}),
+                html.H4("Choose Scenario Type Right:", style={'marginBottom': -20, 'marginTop': 0}),
                 dcc.RadioItems(
                     id='scenario-toggle-right',
                     options=[
@@ -200,12 +206,18 @@ app.layout = html.Div([
 
             # Div for Region dropdowns
             html.Div([
-                html.H4("Choose Region Left:"),
+                html.H4("Choose Region Left:", style={'marginBottom': 0, 'marginTop': 0}),
                 dcc.Dropdown(id='region-left', value='USA', multi=False),
                 html.H4("Choose Region Right:", style={'marginBottom': 0, 'marginTop': 0}),
                 dcc.Dropdown(id='region-right', value='USA', multi=False),
             ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
-        ], style={'display': 'inline-block', 'width': '50%'}),  # Adjust width to 50% to share space equally
+        ], style={'display': 'inline-block', 'width': '45%'}),  # Adjust width to 50% to share space equally
+    ], style={'display': 'flex', 'flex-direction': 'row'}),  # Use flexbox for side-by-side layout
+    html.Div([
+        # Div for comparison graph and dropdowns
+        html.Div([
+            dcc.Graph(id='compare-graph-week'),  # Placeholder for the comparison graph
+        ], style={'width': '55%', 'display': 'inline-block'}),  # Use 100% of the parent div width
     ], style={'display': 'flex', 'flex-direction': 'row'})  # Use flexbox for side-by-side layout
 
 ])
@@ -248,7 +260,8 @@ def update_map(scenario_value,toggle_value,start_date,end_date):
         columns_to_read = ['time'] + [f'p{i}' for i in range(1, 135)]
     resources_path=os.path.join(current_directory, 'resources')
     file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
-    
+
+
     
     # Read only the selected columns from the CSV file
     df = pd.read_csv(file_path, usecols=columns_to_read)
@@ -345,6 +358,134 @@ def set_region_options(selected_map_view):
         options = [{'label': f'p{i}', 'value': f'p{i}'} for i in range(1, 135)]
         value='p1'
     return options, options ,value , value
+@app.callback(
+    Output('compare-graph', 'figure'),
+    [
+        Input('year-dropdown-left', 'value'),
+        Input('daytype-dropdown-left', 'value'),
+        Input('scenario-toggle-left', 'value'),
+        Input('region-left', 'value'),
+        Input('year-dropdown-right', 'value'),
+        Input('daytype-dropdown-right', 'value'),
+        Input('scenario-toggle-right', 'value'),
+        Input('region-right', 'value'),
+    ]
+)
+
+def update_graph(year_left, daytype_left, scenario_left, region_left,
+                 year_right, daytype_right, scenario_right, region_right):
+    # Create the figure
+    fig = go.Figure()
+
+    # Hours array to use as x-axis
+    hours = list(range(24))
+    ## Left
+    # Construct column names for mean, upper, and lower
+    column_name_left_mean = f"{region_left}_{daytype_left}_mean"
+    column_name_left_upper = f"{region_left}_{daytype_left}_upper"
+    column_name_left_lower = f"{region_left}_{daytype_left}_lower"
+
+    # Assuming compare_df structure and that the row for the selected year and region exists
+    row_left = compare_df[(compare_df['Year'] == year_left)]
+    if not row_left.empty:
+        left_mean = literal_eval(row_left.iloc[0][column_name_left_mean])
+        left_upper = literal_eval(row_left.iloc[0][column_name_left_upper])
+        left_lower = literal_eval(row_left.iloc[0][column_name_left_lower])
+
+        # Plot mean
+        fig.add_trace(go.Scatter(x=hours, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
+        # Plot upper and lower with fill
+        fig.add_trace(go.Scatter(x=hours, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
+        fig.add_trace(go.Scatter(x=hours, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
+
+    ## Right
+    # Construct column names for mean, upper, and lower
+    column_name_right_mean = f"{region_right}_{daytype_right}_mean"
+    column_name_right_upper = f"{region_right}_{daytype_right}_upper"
+    column_name_right_lower = f"{region_right}_{daytype_right}_lower"
+
+    # Assuming compare_df structure and that the row for the selected year and region exists
+    row_right = compare_df[(compare_df['Year'] == year_right)]
+    if not row_right.empty:
+        right_mean = literal_eval(row_right.iloc[0][column_name_right_mean])
+        right_upper = literal_eval(row_right.iloc[0][column_name_right_upper])
+        right_lower = literal_eval(row_right.iloc[0][column_name_right_lower])
+
+        # Plot mean
+        fig.add_trace(go.Scatter(x=hours, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
+        # Plot upper and lower with fill
+        fig.add_trace(go.Scatter(x=hours, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
+        fig.add_trace(go.Scatter(x=hours, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
+
+    fig.update_layout(title='Comparison Graph', xaxis_title='Hour of Day', yaxis_title='Value', xaxis=dict(range=[0, 23]))
+
+    return fig
+
+
+@app.callback(
+    Output('compare-graph-week', 'figure'),
+    [
+        Input('year-dropdown-left', 'value'),
+        Input('daytype-dropdown-left', 'value'),
+        Input('scenario-toggle-left', 'value'),
+        Input('region-left', 'value'),
+        Input('year-dropdown-right', 'value'),
+        Input('daytype-dropdown-right', 'value'),
+        Input('scenario-toggle-right', 'value'),
+        Input('region-right', 'value'),
+    ]
+)
+
+def update_graph(year_left, daytype_left, scenario_left, region_left,
+                 year_right, daytype_right, scenario_right, region_right):
+    # Create the figure
+    fig = go.Figure()
+
+    # Hours array to use as x-axis
+    hours = list(range(7))
+    ## Left
+    try:
+        # Construct column names for mean, upper, and lower
+        column_name_left_mean = f"{region_left}_mean"
+        column_name_left_upper = f"{region_left}_upper"
+        column_name_left_lower = f"{region_left}_lower"
+
+        # Assuming compare_df structure and that the row for the selected year and region exists
+        row_left = compare_weekly_df[(compare_weekly_df['Year'] == year_left)]
+        if not row_left.empty:
+            left_mean = literal_eval(row_left.iloc[0][column_name_left_mean])
+            left_upper = literal_eval(row_left.iloc[0][column_name_left_upper])
+            left_lower = literal_eval(row_left.iloc[0][column_name_left_lower])
+
+            # Plot mean
+            fig.add_trace(go.Scatter(x=hours, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
+            # Plot upper and lower with fill
+            fig.add_trace(go.Scatter(x=hours, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
+            fig.add_trace(go.Scatter(x=hours, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
+
+        ## Right
+        # Construct column names for mean, upper, and lower
+        column_name_right_mean = f"{region_right}_mean"
+        column_name_right_upper = f"{region_right}_upper"
+        column_name_right_lower = f"{region_right}_lower"
+
+        # Assuming compare_df structure and that the row for the selected year and region exists
+        row_right = compare_weekly_df[(compare_weekly_df['Year'] == year_right)]
+        if not row_right.empty:
+            right_mean = literal_eval(row_right.iloc[0][column_name_right_mean])
+            right_upper = literal_eval(row_right.iloc[0][column_name_right_upper])
+            right_lower = literal_eval(row_right.iloc[0][column_name_right_lower])
+
+            # Plot mean
+            fig.add_trace(go.Scatter(x=hours, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
+            # Plot upper and lower with fill
+            fig.add_trace(go.Scatter(x=hours, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
+            fig.add_trace(go.Scatter(x=hours, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
+    except Exception as e:
+        print(e)
+    fig.update_layout(title='Graph', xaxis_title='Week Day', yaxis_title='Value', xaxis=dict(range=[0, 6]))
+
+    return fig
 
 @app.callback(
     Output('line-graph', 'figure'),
@@ -356,38 +497,42 @@ def set_region_options(selected_map_view):
     ]
 )
 def update_line_graph(scenario_value, graph_value, start_date, end_date):
-    # Construct the file path for the selected scenario
-    resources_path=os.path.join(current_directory, 'resources')
-    file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
-    
-    # Define the columns to read from the CSV file
-    columns_to_read = ['time', graph_value]
-    
-    # Read only the selected columns from the CSV file
-    df = pd.read_csv(file_path, usecols=columns_to_read)
-    
-    # Ensure 'time' column is datetime type for proper plotting
-    df['time'] = pd.to_datetime(df['time'])
-    
-    
-    # Filter the data based on the selected date range
-    mask = (df['time'] >= start_date) & (df['time'] <= end_date)
-    filtered_df = df.loc[mask]
-    
-    # Extract the data for plotting
-    x_data = filtered_df['time']
-    y_data = filtered_df[graph_value]
-    
-    # Create the figure
+
+    scenarios = ['rcp85hotter', 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
+    resources_path = os.path.join(current_directory, 'resources')
+
+    # Create the figure outside of the loop, so all lines are on the same graph
     fig = go.Figure()
-    
-    # Add the line trace
-    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines'))
-    
-    # Dynamically set the title based on the toggle selections
-    title_text = f"Scenario: {scenario_value}, Graph: {graph_value}"
+
+    for scenario_value in scenarios:
+        # Construct the file path for the current scenario
+        file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
+        
+        # Define the columns to read from the CSV file
+        columns_to_read = ['time', graph_value]
+        
+        # Read only the selected columns from the CSV file
+        df = pd.read_csv(file_path, usecols=columns_to_read)
+        
+        # Ensure 'time' column is datetime type for proper plotting
+        df['time'] = pd.to_datetime(df['time'])
+        
+        # Filter the data based on the selected date range
+        mask = (df['time'] >= start_date) & (df['time'] <= end_date)
+        filtered_df = df.loc[mask]
+        
+        # Extract the data for plotting
+        x_data = filtered_df['time']
+        y_data = filtered_df[graph_value]
+        
+        # Add the line trace for the current scenario
+        fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+
+    # Dynamically set the title to indicate a comparison
+    title_text = f"Comparison of Scenarios for {graph_value}"
     fig.update_layout(title=title_text)
-    
+
+    # Display the figure
     return fig
 
 
