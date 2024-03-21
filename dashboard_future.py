@@ -11,6 +11,7 @@ import numpy as np
 import os
 from shapely.geometry import Point
 from shapely import wkt
+from datetime import date
 # Process the 'reeds_ba_list' column to expand the sets into individual rows, keeping 'state' intact
 from ast import literal_eval
 # Get the current directory where your script is running
@@ -77,7 +78,7 @@ app.layout = html.Div([
     html.Div([
         dcc.Graph(
             id='usa-map', 
-            config={'scrollZoom': False,'editable': False,'modeBarButtonsToRemove': ['zoom', 'zoomIn', 'zoomOut', 'pan']},
+            config={'scrollZoom': False,'modeBarButtonsToRemove': ['zoom', 'zoomIn', 'zoomOut', 'pan']},
             style={'display': 'inline-block', 'width': '80%'}
         ),
         html.Div([
@@ -93,21 +94,32 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
-            html.H4("Choose region to inspect:", style={'marginBottom': 0, 'marginTop': 0}), 
-            dcc.Dropdown(id='graph-toggle',value='USA',  multi=True),
             html.H4("Select Scenario:", style={'marginBottom': -20, 'marginTop': 0}),
             dcc.RadioItems(
                 id='scenario-toggle',
                 options=[
-                    {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
-                    {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                    {'label': 'rcp85hotter', 'value': 'rcp85hotter'},
-                    {'label': 'rcp85cooler', 'value': 'rcp85cooler'}
+                    {'label': 'Most extreme', 'value': 'rcp85hotter'},
+                    {'label': 'Extreme', 'value': 'rcp85cooler'},
+                    {'label': 'Mini extreme', 'value': 'rcp45hotter'},
+                    {'label': 'Least extreme', 'value': 'rcp45cooler'},
+                    {'label': 'Stable(unimplement)','value': 'stable'}
                 ],
                 value='rcp85hotter',  # Default value
                 style={'padding': 20},
                 inline=True
+            ),
+            html.H4("Select Time for the map:", style={'marginBottom': 0, 'marginTop': 0}),
+            html.Div([
+            dcc.DatePickerRange(
+                id='date-picker-range',
+                min_date_allowed=date(2020, 1, 1),
+                max_date_allowed=date(2100, 12, 31),
+                start_date=date(2020, 1, 1),
+                end_date=date(2100, 12, 31)
             )
+            ]),
+            html.H4("Choose region to inspect:", style={'marginBottom': 0, 'marginTop': 0}), 
+            html.Div([dcc.Dropdown(id='graph-toggle',value='USA',  multi=False)]),
         ], style={'display': 'inline-block', 'width': '20%', 'verticalAlign': 'top'}),
     ]),
     html.Div([
@@ -117,30 +129,69 @@ app.layout = html.Div([
 
 @app.callback(
     Output('usa-map', 'figure'),
-    Input('map-toggle', 'value')
+    [
+        Input('scenario-toggle', 'value'),
+        Input('map-toggle', 'value'),
+        Input('date-picker-range', 'start_date'),
+        Input('date-picker-range', 'end_date')
+    ]
 )
 
 
-def update_map(toggle_value):
+def update_map(scenario_value,toggle_value,start_date,end_date):
     # Choose the correct DataFrame and title based on toggle_value
     if toggle_value == 'country':
         data = gdf_country
         geojson = geojson_country
         color_column = 'country'
+        df_centroids=gdf_country_centroids
+        # Define the columns to read from the CSV file
+        columns_to_read = ['time', 'USA']
     elif toggle_value == 'state':
         data = gdf_state
         geojson = geojson_state
         color_column = 'state'
+        df_centroids=gdf_state_centroids
+        columns_to_read = ['time', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+          'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+          'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
     else:  # Assuming 'subregion'
         data = gdf_subregion
         geojson = geojson_subregion
         color_column = 'rb'
+        df_centroids=gdf_rb_centroids
+        columns_to_read = ['time'] + [f'p{i}' for i in range(1, 135)]
+    resources_path=os.path.join(current_directory, 'resources')
+    file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
+    
+    
+    # Read only the selected columns from the CSV file
+    df = pd.read_csv(file_path, usecols=columns_to_read)
+    
+    # Ensure 'time' column is datetime type for proper plotting
+    df['time'] = pd.to_datetime(df['time'])
+    
+    
+    # Filter the data based on the selected date range
+    mask = (df['time'] >= start_date) & (df['time'] <= end_date)
+    df = df.loc[mask]
+    # Sum df vertically by column
+    df_summed = df.drop('time', axis=1).sum().reset_index()
+    df_summed.columns = ['region', 'demand']
 
+    # Create a mapping from region to demand
+    demand_mapping = df_summed.set_index('region')['demand'].to_dict()
+
+    # Apply the mapping to create a new 'demand' column in 'data'
+    data['demand'] = data[color_column].map(demand_mapping)
     # Use Plotly Express to create the choropleth map with a Mapbox base map
     fig = px.choropleth_mapbox(data, geojson=geojson, 
                                locations=data.index, 
-                               color=color_column,
+                               color='demand',
                                mapbox_style="carto-positron",
+                               hover_data=[color_column,'demand'],
                                zoom=3, center={"lat": 37.0902, "lon": -95.7129},
                                opacity=0.5)
 
@@ -154,11 +205,16 @@ def update_map(toggle_value):
         margin={"r":0,"t":0,"l":0,"b":0},
         title=f"Map by {toggle_value.title()}",
     )
-    #fig.update_layout(dragmode=False)
+    fig.add_trace(go.Scattergeo(
+        lon=data["geometry"].centroid.x,
+        lat=data["geometry"].centroid.y,
+        mode='text',
+        text=df_centroids[color_column].str.title(),
+        textfont={'color': 'Green'},
+        name='',
+    ))
 
-    # This disables interactive features such as zooming and panning.
-    # It should be used in conjunction with the dcc.Graph component where you return this figure.
-    return fig#, {'staticPlot': True}
+    return fig
 
 @app.callback(
     [Output('graph-toggle', 'options'),
@@ -181,6 +237,51 @@ def set_graph_toggle_options(selected_map_view):
         value='p1'
 
     return options,value
+
+@app.callback(
+    Output('line-graph', 'figure'),
+    [
+        Input('scenario-toggle', 'value'),
+        Input('graph-toggle', 'value'),
+        Input('date-picker-range', 'start_date'),
+        Input('date-picker-range', 'end_date')
+    ]
+)
+def update_line_graph(scenario_value, graph_value, start_date, end_date):
+    # Construct the file path for the selected scenario
+    resources_path=os.path.join(current_directory, 'resources')
+    file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
+    
+    # Define the columns to read from the CSV file
+    columns_to_read = ['time', graph_value]
+    
+    # Read only the selected columns from the CSV file
+    df = pd.read_csv(file_path, usecols=columns_to_read)
+    
+    # Ensure 'time' column is datetime type for proper plotting
+    df['time'] = pd.to_datetime(df['time'])
+    
+    
+    # Filter the data based on the selected date range
+    mask = (df['time'] >= start_date) & (df['time'] <= end_date)
+    filtered_df = df.loc[mask]
+    
+    # Extract the data for plotting
+    x_data = filtered_df['time']
+    y_data = filtered_df[graph_value]
+    
+    # Create the figure
+    fig = go.Figure()
+    
+    # Add the line trace
+    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines'))
+    
+    # Dynamically set the title based on the toggle selections
+    title_text = f"Scenario: {scenario_value}, Graph: {graph_value}"
+    fig.update_layout(title=title_text)
+    
+    return fig
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
