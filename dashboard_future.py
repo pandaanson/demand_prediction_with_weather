@@ -13,8 +13,8 @@ from shapely.geometry import Point
 from shapely import wkt
 from datetime import date
 import ast  # Import the ast module
-# Process the 'reeds_ba_list' column to expand the sets into individual rows, keeping 'state' intact
 from ast import literal_eval
+
 # Get the current directory where your script is running
 current_directory = os.getcwd()
 
@@ -32,11 +32,6 @@ country_geojson_path = os.path.join(data_path, 'country_centroids.csv')
 state_geojson_path = os.path.join(data_path, 'state_centroids.csv')
 rb_geojson_path = os.path.join(data_path, 'rb_centroids.csv')
 
-compare_df_path= os.path.join(data_path, 'day_sample.csv')
-compare_df = pd.read_csv(compare_df_path)
-
-compare_weekly_df_path= os.path.join(data_path, 'week_sample.csv')
-compare_weekly_df = pd.read_csv(compare_weekly_df_path)
 
 # Function to read GeoJSON from a file
 def read_geojson(file_path):
@@ -374,6 +369,10 @@ def set_region_options(selected_map_view):
 
 def update_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right):
+    #Sample dr
+    compare_df_path= os.path.join(data_path, 'day_sample.csv')
+    compare_df = pd.read_csv(compare_df_path)
+
     # Create the figure
     fig = go.Figure()
 
@@ -438,6 +437,10 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
 
 def update_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right):
+    #Sample dr
+
+    compare_weekly_df_path= os.path.join(data_path, 'week_sample.csv')
+    compare_weekly_df = pd.read_csv(compare_weekly_df_path)
     # Create the figure
     fig = go.Figure()
 
