@@ -119,6 +119,37 @@ app.layout = html.Div([
                 end_date=date(2100, 12, 31)
             )
             ]),
+            html.Div([
+                html.Div([
+                    html.H4("Start Month:", style={'marginBottom': 0, 'marginTop': 0}),
+                    dcc.Dropdown(
+                        id='start-month-dropdown',
+                        options=[{'label': month, 'value': month} for month in range(1, 13)],
+                        value=1  # Default to January
+                    ),
+                    html.H4("Start Year:", style={'marginBottom': 0, 'marginTop': 0}),
+                    dcc.Dropdown(
+                        id='start-year-dropdown',
+                        options=[{'label': year, 'value': year} for year in range(2020, 2101)],
+                        value=2020  # Default to 2020
+                    )
+                ], style={'width': '48%', 'display': 'inline-block'}),
+                
+                html.Div([
+                    html.H4("End Month:", style={'marginBottom': 0, 'marginTop': 0}),
+                    dcc.Dropdown(
+                        id='end-month-dropdown',
+                        options=[{'label': month, 'value': month} for month in range(1, 13)],
+                        value=12  # Default to December
+                    ),
+                    html.H4("End Year:", style={'marginBottom': 0, 'marginTop': 0}),
+                    dcc.Dropdown(
+                        id='end-year-dropdown',
+                        options=[{'label': year, 'value': year} for year in range(2020, 2101)],
+                        value=2100  # Default to 2100
+                    )
+                ], style={'width': '48%', 'display': 'inline-block', 'marginLeft': '4%'})
+            ]),
             html.H4("Choose region to inspect:", style={'marginBottom': 0, 'marginTop': 0}), 
             html.Div([dcc.Dropdown(id='graph-toggle',value='USA',  multi=False)]),
         ], style={'display': 'inline-block', 'width': '20%', 'verticalAlign': 'top'}),
@@ -416,7 +447,7 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
         fig.add_trace(go.Scatter(x=hours, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
         fig.add_trace(go.Scatter(x=hours, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
 
-    fig.update_layout(title='Comparison Graph', xaxis_title='Hour of Day', yaxis_title='Value', xaxis=dict(range=[0, 23]))
+    fig.update_layout(title=f'{daytype_left} of {region_left} in {year_left} base on {scenario_left} <br>vs {daytype_right} of {region_right} in {year_right} base on {scenario_right}', xaxis_title='Hour of Day', yaxis_title='Demand(Mwh)', xaxis=dict(range=[0, 23]))
 
     return fig
 
@@ -486,7 +517,7 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
             fig.add_trace(go.Scatter(x=hours, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
     except Exception as e:
         print(e)
-    fig.update_layout(title='Graph', xaxis_title='Week Day', yaxis_title='Value', xaxis=dict(range=[0, 6]))
+    fig.update_layout(title=f'Week of {region_left} in {year_left} base on {scenario_left} <br>vs Week of {region_right} in {year_right} base on {scenario_right}',xaxis_title='Week Day', yaxis_title='Value', xaxis=dict(range=[0, 6]))
 
     return fig
 
