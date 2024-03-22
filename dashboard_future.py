@@ -187,13 +187,13 @@ app.layout = html.Div([
                 html.H4("Choose Day Type Left:", style={'marginBottom': 0, 'marginTop': 0}),
                 dcc.Dropdown(
                     id='daytype-dropdown-left',
-                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'holiday', 'weekend']],
+                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'weekend']],
                     value='workday'  # Default value
                 ),
                 html.H4("Choose Day Type Right:", style={'marginBottom': 0, 'marginTop': 0}),
                 dcc.Dropdown(
                     id='daytype-dropdown-right',
-                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'holiday', 'weekend']],
+                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'weekend']],
                     value='holiday'  # Default value
                 ),
             ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
@@ -253,13 +253,15 @@ app.layout = html.Div([
     [
         Input('scenario-toggle', 'value'),
         Input('map-toggle', 'value'),
-        Input('date-picker-range', 'start_date'),
-        Input('date-picker-range', 'end_date')
+        Input('start-month-dropdown', 'value'),
+        Input('start-year-dropdown', 'value'),
+        Input('end-month-dropdown', 'value'),
+        Input('end-year-dropdown', 'value')
     ]
 )
 
 
-def update_map(scenario_value,toggle_value,start_date,end_date):
+def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_year):
     # Choose the correct DataFrame and title based on toggle_value
     if toggle_value == 'country':
         data = gdf_country
@@ -267,14 +269,14 @@ def update_map(scenario_value,toggle_value,start_date,end_date):
         color_column = 'country'
         df_centroids=gdf_country_centroids
         # Define the columns to read from the CSV file
-        columns_to_read = ['time', 'USA']
+        columns_to_read = ['Year','Month', 'USA']
     elif toggle_value == 'state':
         data = gdf_state
         geojson = geojson_state
         color_column = 'state'
         df_centroids=gdf_state_centroids
-        columns_to_read = ['time', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
-          'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+        columns_to_read = ['Year','Month', 'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+           'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
           'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
           'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
           'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
@@ -283,7 +285,7 @@ def update_map(scenario_value,toggle_value,start_date,end_date):
         geojson = geojson_subregion
         color_column = 'rb'
         df_centroids=gdf_rb_centroids
-        columns_to_read = ['time'] + [f'p{i}' for i in range(1, 135)]
+        columns_to_read = ['Year','Month'] + [f'p{i}' for i in range(1, 135)]
     resources_path=os.path.join(current_directory, 'resources')
     file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
 
@@ -292,15 +294,16 @@ def update_map(scenario_value,toggle_value,start_date,end_date):
     # Read only the selected columns from the CSV file
     df = pd.read_csv(file_path, usecols=columns_to_read)
     
-    # Ensure 'time' column is datetime type for proper plotting
-    df['time'] = pd.to_datetime(df['time'])
+    start_date = pd.Timestamp(year=start_year, month=start_month, day=1)
+    end_date = pd.Timestamp(year=end_year, month=end_month, day=30)
     
-    
-    # Filter the data based on the selected date range
-    mask = (df['time'] >= start_date) & (df['time'] <= end_date)
-    df = df.loc[mask]
+    # Create a mask for the date range
+    mask = (df['Year'] > start_year) | \
+           ((df['Year'] == start_year) & (df['Month'] >= start_month)) & \
+           (df['Year'] < end_year) | \
+           ((df['Year'] == end_year) & (df['Month'] <= end_month))
     # Sum df vertically by column
-    df_summed = df.drop('time', axis=1).sum().reset_index()
+    df_summed = df.drop(['Year', 'Month'], axis=1).sum().reset_index()
     df_summed.columns = ['region', 'demand']
 
     # Create a mapping from region to demand
@@ -327,14 +330,14 @@ def update_map(scenario_value,toggle_value,start_date,end_date):
         margin={"r":0,"t":0,"l":0,"b":0},
         title=f"Map by {toggle_value.title()}",
     )
-    fig.add_trace(go.Scattergeo(
-        lon=data["geometry"].centroid.x,
-        lat=data["geometry"].centroid.y,
-        mode='text',
-        text=df_centroids[color_column].str.title(),
-        textfont={'color': 'Green'},
-        name='',
-    ))
+    # fig.add_trace(go.Scattergeo(
+    #     lon=data["geometry"].centroid.x,
+    #     lat=data["geometry"].centroid.y,
+    #     mode='text',
+    #     text=df_centroids[color_column].str.title(),
+    #     textfont={'color': 'Green'},
+    #     name='',
+    # ))
 
     return fig
 
@@ -398,7 +401,7 @@ def set_region_options(selected_map_view):
     ]
 )
 
-def update_graph(year_left, daytype_left, scenario_left, region_left,
+def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right):
     #Sample dr
     compare_df_path= os.path.join(data_path, 'day_sample.csv')
@@ -466,11 +469,11 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
     ]
 )
 
-def update_graph(year_left, daytype_left, scenario_left, region_left,
+def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right):
     #Sample dr
 
-    compare_weekly_df_path= os.path.join(data_path, 'week_sample.csv')
+    compare_weekly_df_path= os.path.join(data_path, 'mock_rcp85hotter_weekly.csv')
     compare_weekly_df = pd.read_csv(compare_weekly_df_path)
     # Create the figure
     fig = go.Figure()
@@ -487,15 +490,16 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
         # Assuming compare_df structure and that the row for the selected year and region exists
         row_left = compare_weekly_df[(compare_weekly_df['Year'] == year_left)]
         if not row_left.empty:
-            left_mean = literal_eval(row_left.iloc[0][column_name_left_mean])
-            left_upper = literal_eval(row_left.iloc[0][column_name_left_upper])
-            left_lower = literal_eval(row_left.iloc[0][column_name_left_lower])
+            left_mean = row_left[column_name_left_mean].values
+            left_upper = row_left[column_name_left_upper].values
+            left_lower = row_left[column_name_left_lower].values
+            weekdays_left = row_left['weekday'].values
 
             # Plot mean
-            fig.add_trace(go.Scatter(x=hours, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
+            fig.add_trace(go.Scatter(x=weekdays_left , y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
             # Plot upper and lower with fill
-            fig.add_trace(go.Scatter(x=hours, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
-            fig.add_trace(go.Scatter(x=hours, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
+            fig.add_trace(go.Scatter(x=weekdays_left , y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
+            fig.add_trace(go.Scatter(x=weekdays_left , y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
 
         ## Right
         # Construct column names for mean, upper, and lower
@@ -506,18 +510,20 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
         # Assuming compare_df structure and that the row for the selected year and region exists
         row_right = compare_weekly_df[(compare_weekly_df['Year'] == year_right)]
         if not row_right.empty:
-            right_mean = literal_eval(row_right.iloc[0][column_name_right_mean])
-            right_upper = literal_eval(row_right.iloc[0][column_name_right_upper])
-            right_lower = literal_eval(row_right.iloc[0][column_name_right_lower])
+            right_mean = row_right[column_name_right_mean].values
+            right_upper = row_right[column_name_right_upper].values
+            right_lower = row_right[column_name_right_lower].values
+            weekdays_right = row_left['weekday'].values
+
 
             # Plot mean
-            fig.add_trace(go.Scatter(x=hours, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
+            fig.add_trace(go.Scatter(x=weekdays_right, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
             # Plot upper and lower with fill
-            fig.add_trace(go.Scatter(x=hours, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
-            fig.add_trace(go.Scatter(x=hours, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
+            fig.add_trace(go.Scatter(x=weekdays_right, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
+            fig.add_trace(go.Scatter(x=weekdays_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
     except Exception as e:
         print(e)
-    fig.update_layout(title=f'Week of {region_left} in {year_left} base on {scenario_left} <br>vs Week of {region_right} in {year_right} base on {scenario_right}',xaxis_title='Week Day', yaxis_title='Value', xaxis=dict(range=[0, 6]))
+    fig.update_layout(title=f'Week of {region_left} in {year_left} base on {scenario_left} <br>vs Week of {region_right} in {year_right} base on {scenario_right}',xaxis_title='Week Day', yaxis_title='Daily demand(Mwh)', xaxis=dict(range=[0, 6]))
 
     return fig
 
@@ -526,13 +532,15 @@ def update_graph(year_left, daytype_left, scenario_left, region_left,
     [
         Input('scenario-toggle', 'value'),
         Input('graph-toggle', 'value'),
-        Input('date-picker-range', 'start_date'),
-        Input('date-picker-range', 'end_date')
+        Input('start-month-dropdown', 'value'),
+        Input('start-year-dropdown', 'value'),
+        Input('end-month-dropdown', 'value'),
+        Input('end-year-dropdown', 'value')
     ]
 )
-def update_line_graph(scenario_value, graph_value, start_date, end_date):
+def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year):
 
-    scenarios = ['rcp85hotter', 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
+    scenarios = ['rcp85hotter']#, 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
     resources_path = os.path.join(current_directory, 'resources')
 
     # Create the figure outside of the loop, so all lines are on the same graph
@@ -541,15 +549,19 @@ def update_line_graph(scenario_value, graph_value, start_date, end_date):
     for scenario_value in scenarios:
         # Construct the file path for the current scenario
         file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
-        
+
         # Define the columns to read from the CSV file
-        columns_to_read = ['time', graph_value]
-        
+        columns_to_read = ['Year', 'Month', graph_value]
+
         # Read only the selected columns from the CSV file
         df = pd.read_csv(file_path, usecols=columns_to_read)
+
+        # Create a datetime column from 'Year' and 'Month' for filtering
+        df['time'] = pd.to_datetime(df.assign(Day=1)[['Year', 'Month', 'Day']])
         
-        # Ensure 'time' column is datetime type for proper plotting
-        df['time'] = pd.to_datetime(df['time'])
+        # Create start and end date Timestamps
+        start_date = pd.Timestamp(year=start_year, month=start_month, day=1)
+        end_date = pd.Timestamp(year=end_year, month=end_month, day=1)
         
         # Filter the data based on the selected date range
         mask = (df['time'] >= start_date) & (df['time'] <= end_date)
@@ -558,7 +570,7 @@ def update_line_graph(scenario_value, graph_value, start_date, end_date):
         # Extract the data for plotting
         x_data = filtered_df['time']
         y_data = filtered_df[graph_value]
-        
+
         # Add the line trace for the current scenario
         fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
 
