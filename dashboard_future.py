@@ -69,7 +69,15 @@ def df_to_gdf(df):
 gdf_country_centroids = df_to_gdf(country_centroids_df)
 gdf_state_centroids = df_to_gdf(state_centroids_df)
 gdf_rb_centroids = df_to_gdf(rb_centroids_df)
-
+weekday_map = {
+    0: 'Monday',
+    1: 'Tuesday',
+    2: 'Wednesday',
+    3: 'Thursday',
+    4: 'Friday',
+    5: 'Saturday',
+    6: 'Sunday'
+}
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
@@ -109,16 +117,16 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
-            html.H4("Select Time for the map:", style={'marginBottom': 0, 'marginTop': 0}),
-            html.Div([
-            dcc.DatePickerRange(
-                id='date-picker-range',
-                min_date_allowed=date(2020, 1, 1),
-                max_date_allowed=date(2100, 12, 31),
-                start_date=date(2020, 1, 1),
-                end_date=date(2100, 12, 31)
-            )
-            ]),
+            # html.H4("Select Time for the map:", style={'marginBottom': 0, 'marginTop': 0}),
+            # html.Div([
+            # dcc.DatePickerRange(
+            #     id='date-picker-range',
+            #     min_date_allowed=date(2020, 1, 1),
+            #     max_date_allowed=date(2100, 12, 31),
+            #     start_date=date(2020, 1, 1),
+            #     end_date=date(2100, 12, 31)
+            # )
+            # ]),
             html.Div([
                 html.Div([
                     html.H4("Start Month:", style={'marginBottom': 0, 'marginTop': 0}),
@@ -187,14 +195,14 @@ app.layout = html.Div([
                 html.H4("Choose Day Type Left:", style={'marginBottom': 0, 'marginTop': 0}),
                 dcc.Dropdown(
                     id='daytype-dropdown-left',
-                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'weekend']],
-                    value='workday'  # Default value
+                    options=[{'label': daytype, 'value': daytype} for daytype in ['Weekday', 'Weekend']],
+                    value='Weekday'  # Default value
                 ),
                 html.H4("Choose Day Type Right:", style={'marginBottom': 0, 'marginTop': 0}),
                 dcc.Dropdown(
                     id='daytype-dropdown-right',
-                    options=[{'label': daytype, 'value': daytype} for daytype in ['workday', 'weekend']],
-                    value='holiday'  # Default value
+                    options=[{'label': daytype, 'value': daytype} for daytype in ['Weekday', 'Weekend']],
+                    value='Weekday'  # Default value
                 ),
             ], style={'width': '100%', 'display': 'inline-block'}),  # Use 100% of the parent div width
 
@@ -404,7 +412,7 @@ def set_region_options(selected_map_view):
 def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right):
     #Sample dr
-    compare_df_path= os.path.join(data_path, 'day_sample.csv')
+    compare_df_path= os.path.join(data_path, 'mock_rcp85hotter_yearly_aggregated.csv')
     compare_df = pd.read_csv(compare_df_path)
 
     # Create the figure
@@ -414,43 +422,46 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
     hours = list(range(24))
     ## Left
     # Construct column names for mean, upper, and lower
-    column_name_left_mean = f"{region_left}_{daytype_left}_mean"
-    column_name_left_upper = f"{region_left}_{daytype_left}_upper"
-    column_name_left_lower = f"{region_left}_{daytype_left}_lower"
+    column_name_left_mean = f"{region_left}_mean"
+    column_name_left_upper = f"{region_left}_upper"
+    column_name_left_lower = f"{region_left}_lower"
+    daytype_left
 
     # Assuming compare_df structure and that the row for the selected year and region exists
-    row_left = compare_df[(compare_df['Year'] == year_left)]
+    row_left = compare_df[(compare_df['Year'] == year_left) & (compare_df['Weekend_or_Weekday']== daytype_left)]
     if not row_left.empty:
-        left_mean = literal_eval(row_left.iloc[0][column_name_left_mean])
-        left_upper = literal_eval(row_left.iloc[0][column_name_left_upper])
-        left_lower = literal_eval(row_left.iloc[0][column_name_left_lower])
+        left_mean = row_left[column_name_left_mean].values
+        left_upper = row_left[column_name_left_upper].values
+        left_lower = row_left[column_name_left_lower].values
+        hours_left = row_left['Hour'].values
 
         # Plot mean
-        fig.add_trace(go.Scatter(x=hours, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
+        fig.add_trace(go.Scatter(x=hours_left, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
         # Plot upper and lower with fill
-        fig.add_trace(go.Scatter(x=hours, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
-        fig.add_trace(go.Scatter(x=hours, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
+        fig.add_trace(go.Scatter(x=hours_left, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
+        fig.add_trace(go.Scatter(x=hours_left, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
 
     ## Right
     # Construct column names for mean, upper, and lower
-    column_name_right_mean = f"{region_right}_{daytype_right}_mean"
-    column_name_right_upper = f"{region_right}_{daytype_right}_upper"
-    column_name_right_lower = f"{region_right}_{daytype_right}_lower"
+    column_name_right_mean = f"{region_right}_mean"
+    column_name_right_upper = f"{region_right}_upper"
+    column_name_right_lower = f"{region_right}_lower"
 
     # Assuming compare_df structure and that the row for the selected year and region exists
-    row_right = compare_df[(compare_df['Year'] == year_right)]
+    row_right = compare_df[(compare_df['Year'] == year_right) & (compare_df['Weekend_or_Weekday']== daytype_right)]
     if not row_right.empty:
-        right_mean = literal_eval(row_right.iloc[0][column_name_right_mean])
-        right_upper = literal_eval(row_right.iloc[0][column_name_right_upper])
-        right_lower = literal_eval(row_right.iloc[0][column_name_right_lower])
+        right_mean = row_right[column_name_right_mean].values
+        right_upper = row_right[column_name_right_upper].values
+        right_lower = row_right[column_name_right_lower].values
+        hours_right = row_right['Hour'].values
 
         # Plot mean
-        fig.add_trace(go.Scatter(x=hours, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
+        fig.add_trace(go.Scatter(x=hours_right, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
         # Plot upper and lower with fill
-        fig.add_trace(go.Scatter(x=hours, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
-        fig.add_trace(go.Scatter(x=hours, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
+        fig.add_trace(go.Scatter(x=hours_right, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
+        fig.add_trace(go.Scatter(x=hours_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
 
-    fig.update_layout(title=f'{daytype_left} of {region_left} in {year_left} base on {scenario_left} <br>vs {daytype_right} of {region_right} in {year_right} base on {scenario_right}', xaxis_title='Hour of Day', yaxis_title='Demand(Mwh)', xaxis=dict(range=[0, 23]))
+    fig.update_layout(title=f'{daytype_left} of {region_left} in {year_left} base on {scenario_left} <br>vs {daytype_right} of {region_right} in {year_right} base on {scenario_right}', xaxis_title='Hour of Day', yaxis_title='Hourly Demand(Mwh)', xaxis=dict(range=[0, 23]))
 
     return fig
 
@@ -493,7 +504,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
             left_mean = row_left[column_name_left_mean].values
             left_upper = row_left[column_name_left_upper].values
             left_lower = row_left[column_name_left_lower].values
-            weekdays_left = row_left['weekday'].values
+            weekdays_left = row_left['weekday'].map(weekday_map).values
 
             # Plot mean
             fig.add_trace(go.Scatter(x=weekdays_left , y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
@@ -513,7 +524,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
             right_mean = row_right[column_name_right_mean].values
             right_upper = row_right[column_name_right_upper].values
             right_lower = row_right[column_name_right_lower].values
-            weekdays_right = row_left['weekday'].values
+            weekdays_right = row_left['weekday'].map(weekday_map).values
 
 
             # Plot mean
@@ -523,7 +534,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
             fig.add_trace(go.Scatter(x=weekdays_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
     except Exception as e:
         print(e)
-    fig.update_layout(title=f'Week of {region_left} in {year_left} base on {scenario_left} <br>vs Week of {region_right} in {year_right} base on {scenario_right}',xaxis_title='Week Day', yaxis_title='Daily demand(Mwh)', xaxis=dict(range=[0, 6]))
+    fig.update_layout(title=f'Week of {region_left} in {year_left} base on {scenario_left} <br>vs Week of {region_right} in {year_right} base on {scenario_right}',xaxis_title='Week Day', yaxis_title='Daily Average demand(Mwh)', xaxis=dict(range=[0, 6]))
 
     return fig
 
