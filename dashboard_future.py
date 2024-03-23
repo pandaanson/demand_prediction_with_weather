@@ -323,6 +323,7 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
     fig = px.choropleth_mapbox(data, geojson=geojson, 
                                locations=data.index, 
                                color='demand',
+                               color_continuous_scale=[(0, "green"), (1, "red")],
                                mapbox_style="carto-positron",
                                hover_data=[color_column,'demand'],
                                zoom=3, center={"lat": 37.0902, "lon": -95.7129},
@@ -338,14 +339,7 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
         margin={"r":0,"t":0,"l":0,"b":0},
         title=f"Map by {toggle_value.title()}",
     )
-    # fig.add_trace(go.Scattergeo(
-    #     lon=data["geometry"].centroid.x,
-    #     lat=data["geometry"].centroid.y,
-    #     mode='text',
-    #     text=df_centroids[color_column].str.title(),
-    #     textfont={'color': 'Green'},
-    #     name='',
-    # ))
+
 
     return fig
 
