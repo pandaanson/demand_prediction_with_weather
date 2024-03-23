@@ -1,4 +1,4 @@
-
+#import require package
 import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
@@ -18,10 +18,10 @@ from ast import literal_eval
 # Get the current directory where your script is running
 current_directory = os.getcwd()
 
-# Construct the path to your resources folder dynamically
+# Construct the path to your data folder dynamically
 data_path = os.path.join(current_directory, 'web_page_data')
 
-
+#adding mapping data
 # Define file paths for saving
 gdf_country_path = os.path.join(data_path, 'gdf_country.gpkg')
 gdf_state_path = os.path.join(data_path, 'gdf_state.gpkg')
@@ -69,6 +69,8 @@ def df_to_gdf(df):
 gdf_country_centroids = df_to_gdf(country_centroids_df)
 gdf_state_centroids = df_to_gdf(state_centroids_df)
 gdf_rb_centroids = df_to_gdf(rb_centroids_df)
+
+#include weekday date
 weekday_map = {
     0: 'Monday',
     1: 'Tuesday',
@@ -275,14 +277,12 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
         data = gdf_country
         geojson = geojson_country
         color_column = 'country'
-        df_centroids=gdf_country_centroids
         # Define the columns to read from the CSV file
         columns_to_read = ['Year','Month', 'USA']
     elif toggle_value == 'state':
         data = gdf_state
         geojson = geojson_state
         color_column = 'state'
-        df_centroids=gdf_state_centroids
         columns_to_read = ['Year','Month', 'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
           'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
@@ -292,10 +292,9 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
         data = gdf_subregion
         geojson = geojson_subregion
         color_column = 'rb'
-        df_centroids=gdf_rb_centroids
         columns_to_read = ['Year','Month'] + [f'p{i}' for i in range(1, 135)]
-    resources_path=os.path.join(current_directory, 'resources')
-    file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
+    data_path=os.path.join(current_directory, 'web_page_data')
+    file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
 
 
     
@@ -546,14 +545,14 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year):
 
     scenarios = ['rcp85hotter']#, 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
-    resources_path = os.path.join(current_directory, 'resources')
+    data_path = os.path.join(current_directory, 'web_page_data')
 
     # Create the figure outside of the loop, so all lines are on the same graph
     fig = go.Figure()
 
     for scenario_value in scenarios:
         # Construct the file path for the current scenario
-        file_path = os.path.join(resources_path, f'mock_{scenario_value}.csv')
+        file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
 
         # Define the columns to read from the CSV file
         columns_to_read = ['Year', 'Month', graph_value]
