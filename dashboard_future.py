@@ -86,6 +86,8 @@ app = dash.Dash(__name__)
 server=app.server
 
 app.layout = html.Div([
+    html.H2("Demand Prediction model:", style={'marginBottom': 0, 'marginTop': 0}),
+    html.P('The following map part can be customise by selecting paramter on your right, add it will sum all the demand for that period for each region', style={'textAlign': 'justify'}),
     html.Div([
         dcc.Graph(
             id='usa-map', 
@@ -130,6 +132,7 @@ app.layout = html.Div([
             # )
             # ]),
             html.Div([
+                html.H4("Choose the range for data to view on map and the trend comparsion below:", style={'marginBottom': 0, 'marginTop': 0}),
                 html.Div([
                     html.H4("Start Month:", style={'marginBottom': 0, 'marginTop': 0}),
                     dcc.Dropdown(
@@ -160,14 +163,16 @@ app.layout = html.Div([
                     )
                 ], style={'width': '48%', 'display': 'inline-block', 'marginLeft': '4%'})
             ]),
-            html.H4("Choose region to inspect:", style={'marginBottom': 0, 'marginTop': 0}), 
-            html.Div([dcc.Dropdown(id='graph-toggle',value='USA',  multi=False)]),
         ], style={'display': 'inline-block', 'width': '20%', 'verticalAlign': 'top'}),
     ]),
     # Div for line graph
     html.Div([
+        html.H4("Choose region to inspect in the line graph:", style={'marginBottom': 0, 'marginTop': 0}), 
+        html.Div([dcc.Dropdown(id='graph-toggle',value='USA',  multi=False)]),
         dcc.Graph(id='line-graph'),  # Placeholder for the line graph
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
+    html.H3("Comparing two region:", style={'marginBottom': 0, 'marginTop': 0}),
+    html.P('After choosing a break down above, the map below compare tow region for you, the daily graph caculated average demand by hour in a day, and there is option of weekday and weekend. The weekly graph show the average by weekdays. The shadow area is the 95% and 5% quantile', style={'textAlign': 'justify'}),
 
     html.Div([
         # Div for comparison graph and dropdowns
