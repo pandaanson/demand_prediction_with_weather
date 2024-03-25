@@ -121,16 +121,7 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
-            # html.H4("Select Time for the map:", style={'marginBottom': 0, 'marginTop': 0}),
-            # html.Div([
-            # dcc.DatePickerRange(
-            #     id='date-picker-range',
-            #     min_date_allowed=date(2020, 1, 1),
-            #     max_date_allowed=date(2100, 12, 31),
-            #     start_date=date(2020, 1, 1),
-            #     end_date=date(2100, 12, 31)
-            # )
-            # ]),
+
             html.Div([
                 html.H4("Choose the range for data to view on map and the trend comparsion below:", style={'marginBottom': 0, 'marginTop': 0}),
                 html.Div([
@@ -169,10 +160,14 @@ app.layout = html.Div([
     html.Div([
         html.H4("Choose region to inspect in the line graph:", style={'marginBottom': 0, 'marginTop': 0}), 
         html.Div([dcc.Dropdown(id='graph-toggle',value='USA',  multi=False)]),
+        html.H4("Group by year?:", style={'marginBottom': 0, 'marginTop': 0}),
+        html.Div([dcc.Dropdown(id='group-by-year-toggle',options=[
+                    {'label': 'True', 'value': True},
+                    {'label': 'False', 'value': False}],value=True,  multi=False)]),
         dcc.Graph(id='line-graph'),  # Placeholder for the line graph
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
     html.H3("Comparing two region:", style={'marginBottom': 0, 'marginTop': 0}),
-    html.P('After choosing a break down above, the map below compare tow region for you, the daily graph caculated average demand by hour in a day, and there is option of weekday and weekend. The weekly graph show the average by weekdays. The shadow area is the 95% and 5% quantile', style={'textAlign': 'justify'}),
+    html.P('After choosing a break down above, the map below compare two region for you, the daily graph caculated average demand by hour in a day, and there is option of weekday and weekend. The weekly graph show the average by weekdays. The shadow area is the 95% and 5% quantile', style={'textAlign': 'justify'}),
 
     html.Div([
         # Div for comparison graph and dropdowns
@@ -544,10 +539,11 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
         Input('start-month-dropdown', 'value'),
         Input('start-year-dropdown', 'value'),
         Input('end-month-dropdown', 'value'),
-        Input('end-year-dropdown', 'value')
+        Input('end-year-dropdown', 'value'),
+        Input('group-by-year-toggle','value')
     ]
 )
-def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year):
+def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year):
 
     scenarios = ['rcp85hotter']#, 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
     data_path = os.path.join(current_directory, 'web_page_data')
@@ -566,7 +562,15 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
         df = pd.read_csv(file_path, usecols=columns_to_read)
 
         # Create a datetime column from 'Year' and 'Month' for filtering
-        df['time'] = pd.to_datetime(df.assign(Day=1)[['Year', 'Month', 'Day']])
+        if group_by_year:
+            # Group by 'Year' and sum the specified column
+            df = df.groupby('Year')[graph_value].sum().reset_index()
+            
+            # Create a 'time' column combining 'Year', 'Month', and 'Day', with 'Month'=1, 'Day'=1
+            # Since 'Month' and 'Day' are constants, you can directly assign them
+            df['time'] = pd.to_datetime(df.assign(Month=1, Day=1)[['Year', 'Month', 'Day']])
+        else:
+            df['time'] = pd.to_datetime(df.assign(Day=1)[['Year', 'Month', 'Day']])
         
         # Create start and end date Timestamps
         start_date = pd.Timestamp(year=start_year, month=start_month, day=1)
