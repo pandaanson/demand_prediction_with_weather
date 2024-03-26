@@ -424,10 +424,6 @@ def set_region_options(selected_map_view):
 
 def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right,max_bool):
-    #Sample dr
-    compare_df_path= os.path.join(data_path, 'mock_rcp85hotter_yearly_aggregated.csv')
-    compare_df = pd.read_csv(compare_df_path)
-
     # Create the figure
     fig = go.Figure()
 
@@ -442,7 +438,9 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
 
 
     # Assuming compare_df structure and that the row for the selected year and region exists
-    row_left = compare_df[(compare_df['Year'] == year_left) & (compare_df['Weekend_or_Weekday']== daytype_left)]
+    compare_df_path_left= os.path.join(data_path, f'mock_{scenario_left}_yearly_aggregated.csv')
+    compare_df_left = pd.read_csv(compare_df_path_left)
+    row_left = compare_df_left[(compare_df_left['Year'] == year_left) & (compare_df_left['Weekend_or_Weekday']== daytype_left)]
     if not row_left.empty:
         left_mean = row_left[column_name_left_mean].values
         left_upper = row_left[column_name_left_upper].values
@@ -467,7 +465,9 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
     column_name_right_max = f"{region_right}_max"
 
     # Assuming compare_df structure and that the row for the selected year and region exists
-    row_right = compare_df[(compare_df['Year'] == year_right) & (compare_df['Weekend_or_Weekday']== daytype_right)]
+    compare_df_path_right= os.path.join(data_path, f'mock_{scenario_right}_yearly_aggregated.csv')
+    compare_df_right = pd.read_csv(compare_df_path_right)
+    row_right = compare_df_right[(compare_df_right['Year'] == year_right) & (compare_df_right['Weekend_or_Weekday']== daytype_right)]
     if not row_right.empty:
         right_mean = row_right[column_name_right_mean].values
         right_upper = row_right[column_name_right_upper].values
@@ -507,10 +507,6 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
 
 def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_left,
                  year_right, daytype_right, scenario_right, region_right,max_bool):
-    #Sample dr
-
-    compare_weekly_df_path= os.path.join(data_path, 'mock_rcp85hotter_weekly.csv')
-    compare_weekly_df = pd.read_csv(compare_weekly_df_path)
     # Create the figure
     fig = go.Figure()
 
@@ -519,13 +515,15 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
     ## Left
     try:
         # Construct column names for mean, upper, and lower
+        compare_weekly_df_path_left= os.path.join(data_path, f'mock_{scenario_left}_weekly.csv')
+        compare_weekly_df_left = pd.read_csv(compare_weekly_df_path_left)
         column_name_left_mean = f"{region_left}_mean"
         column_name_left_upper = f"{region_left}_upper"
         column_name_left_lower = f"{region_left}_lower"
         column_name_left_max = f"{region_left}_max"
 
         # Assuming compare_df structure and that the row for the selected year and region exists
-        row_left = compare_weekly_df[(compare_weekly_df['Year'] == year_left)]
+        row_left = compare_weekly_df_left[(compare_weekly_df_left['Year'] == year_left)]
         if not row_left.empty:
             left_mean = row_left[column_name_left_mean].values
             left_upper = row_left[column_name_left_upper].values
@@ -544,13 +542,15 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 
         ## Right
         # Construct column names for mean, upper, and lower
+        compare_weekly_df_path_right= os.path.join(data_path, f'mock_{scenario_right}_weekly.csv')
+        compare_weekly_df_right = pd.read_csv(compare_weekly_df_path_right)
         column_name_right_mean = f"{region_right}_mean"
         column_name_right_upper = f"{region_right}_upper"
         column_name_right_lower = f"{region_right}_lower"
         column_name_right_max = f"{region_right}_max"
 
         # Assuming compare_df structure and that the row for the selected year and region exists
-        row_right = compare_weekly_df[(compare_weekly_df['Year'] == year_right)]
+        row_right = compare_weekly_df_right[(compare_weekly_df_right['Year'] == year_right)]
         if not row_right.empty:
             right_mean = row_right[column_name_right_mean].values
             right_upper = row_right[column_name_right_upper].values
@@ -589,7 +589,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 )
 def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool):
 
-    scenarios = ['rcp85hotter']#, 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
+    scenarios = ['rcp85hotter', 'rcp45cooler']#, 'rcp85cooler', 'rcp45hotter']
     data_path = os.path.join(current_directory, 'web_page_data')
 
     # Create the figure outside of the loop, so all lines are on the same graph
