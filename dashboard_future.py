@@ -121,6 +121,17 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
+            html.H4("Show the maxium of each period:", style={'marginBottom': 0, 'marginTop': 0}),
+            dcc.RadioItems(
+                id='max-toggle',
+                options=[
+                    {'label': 'True', 'value': True},
+                    {'label': 'False','value': False}
+                ],
+                value=False,  # Default value
+                style={'padding': 20},
+                inline=True
+            ),
 
             html.Div([
                 html.H4("Choose the range for data to view on map and the trend comparsion below:", style={'marginBottom': 0, 'marginTop': 0}),
@@ -266,12 +277,13 @@ app.layout = html.Div([
         Input('start-month-dropdown', 'value'),
         Input('start-year-dropdown', 'value'),
         Input('end-month-dropdown', 'value'),
-        Input('end-year-dropdown', 'value')
+        Input('end-year-dropdown', 'value'),
+        Input('max-toggle','value')
     ]
 )
 
 
-def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_year):
+def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_year,max_bool):
     # Choose the correct DataFrame and title based on toggle_value
     if toggle_value == 'country':
         data = gdf_country
@@ -294,7 +306,10 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
         color_column = 'rb'
         columns_to_read = ['Year','Month'] + [f'p{i}' for i in range(1, 135)]
     data_path=os.path.join(current_directory, 'web_page_data')
-    file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
+    if max_bool:
+        file_path = os.path.join(data_path, f'max_{scenario_value}_monthlly.csv')
+    else:
+        file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
 
 
     
@@ -310,7 +325,11 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
            (df['Year'] < end_year) | \
            ((df['Year'] == end_year) & (df['Month'] <= end_month))
     # Sum df vertically by column
-    df_summed = df.drop(['Year', 'Month'], axis=1).sum().reset_index()
+    if max_bool:
+        df_summed = df.drop(['Year', 'Month'], axis=1).max().reset_index()
+    else:
+        df_summed = df.drop(['Year', 'Month'], axis=1).sum().reset_index()
+
     df_summed.columns = ['region', 'demand']
 
     # Create a mapping from region to demand
@@ -399,11 +418,12 @@ def set_region_options(selected_map_view):
         Input('daytype-dropdown-right', 'value'),
         Input('scenario-toggle-right', 'value'),
         Input('region-right', 'value'),
+        Input('max-toggle','value'),
     ]
 )
 
 def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_left,
-                 year_right, daytype_right, scenario_right, region_right):
+                 year_right, daytype_right, scenario_right, region_right,max_bool):
     #Sample dr
     compare_df_path= os.path.join(data_path, 'mock_rcp85hotter_yearly_aggregated.csv')
     compare_df = pd.read_csv(compare_df_path)
@@ -418,7 +438,8 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
     column_name_left_mean = f"{region_left}_mean"
     column_name_left_upper = f"{region_left}_upper"
     column_name_left_lower = f"{region_left}_lower"
-    daytype_left
+    column_name_left_max = f"{region_left}_max"
+
 
     # Assuming compare_df structure and that the row for the selected year and region exists
     row_left = compare_df[(compare_df['Year'] == year_left) & (compare_df['Weekend_or_Weekday']== daytype_left)]
@@ -426,19 +447,24 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
         left_mean = row_left[column_name_left_mean].values
         left_upper = row_left[column_name_left_upper].values
         left_lower = row_left[column_name_left_lower].values
+        left_max = row_left[column_name_left_max].values
         hours_left = row_left['Hour'].values
 
         # Plot mean
-        fig.add_trace(go.Scatter(x=hours_left, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
-        # Plot upper and lower with fill
-        fig.add_trace(go.Scatter(x=hours_left, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
-        fig.add_trace(go.Scatter(x=hours_left, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
+        if max_bool:
+            fig.add_trace(go.Scatter(x=hours_left, y=left_max, mode='lines', name='Left Max', line=dict(color='aqua')))
+        else:
+            fig.add_trace(go.Scatter(x=hours_left, y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
+            # Plot upper and lower with fill
+            fig.add_trace(go.Scatter(x=hours_left, y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
+            fig.add_trace(go.Scatter(x=hours_left, y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
 
     ## Right
     # Construct column names for mean, upper, and lower
     column_name_right_mean = f"{region_right}_mean"
     column_name_right_upper = f"{region_right}_upper"
     column_name_right_lower = f"{region_right}_lower"
+    column_name_right_max = f"{region_right}_max"
 
     # Assuming compare_df structure and that the row for the selected year and region exists
     row_right = compare_df[(compare_df['Year'] == year_right) & (compare_df['Weekend_or_Weekday']== daytype_right)]
@@ -446,13 +472,18 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
         right_mean = row_right[column_name_right_mean].values
         right_upper = row_right[column_name_right_upper].values
         right_lower = row_right[column_name_right_lower].values
+        right_max = row_right[column_name_right_max].values
         hours_right = row_right['Hour'].values
 
+
         # Plot mean
-        fig.add_trace(go.Scatter(x=hours_right, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
-        # Plot upper and lower with fill
-        fig.add_trace(go.Scatter(x=hours_right, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
-        fig.add_trace(go.Scatter(x=hours_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
+        if max_bool:
+            fig.add_trace(go.Scatter(x=hours_right, y=right_max, mode='lines', name='Right Mean', line=dict(color='pink')))
+        else:
+            fig.add_trace(go.Scatter(x=hours_right, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
+            # Plot upper and lower with fill
+            fig.add_trace(go.Scatter(x=hours_right, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
+            fig.add_trace(go.Scatter(x=hours_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
 
     fig.update_layout(title=f'{daytype_left} of {region_left} in {year_left} base on {scenario_left} <br>vs {daytype_right} of {region_right} in {year_right} base on {scenario_right}', xaxis_title='Hour of Day', yaxis_title='Hourly Demand(Mwh)', xaxis=dict(range=[0, 23]))
 
@@ -470,11 +501,12 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
         Input('daytype-dropdown-right', 'value'),
         Input('scenario-toggle-right', 'value'),
         Input('region-right', 'value'),
+        Input('max-toggle','value')
     ]
 )
 
 def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_left,
-                 year_right, daytype_right, scenario_right, region_right):
+                 year_right, daytype_right, scenario_right, region_right,max_bool):
     #Sample dr
 
     compare_weekly_df_path= os.path.join(data_path, 'mock_rcp85hotter_weekly.csv')
@@ -490,6 +522,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
         column_name_left_mean = f"{region_left}_mean"
         column_name_left_upper = f"{region_left}_upper"
         column_name_left_lower = f"{region_left}_lower"
+        column_name_left_max = f"{region_left}_max"
 
         # Assuming compare_df structure and that the row for the selected year and region exists
         row_left = compare_weekly_df[(compare_weekly_df['Year'] == year_left)]
@@ -497,19 +530,24 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
             left_mean = row_left[column_name_left_mean].values
             left_upper = row_left[column_name_left_upper].values
             left_lower = row_left[column_name_left_lower].values
+            left_max = row_left[column_name_left_max].values
             weekdays_left = row_left['weekday'].map(weekday_map).values
-
-            # Plot mean
-            fig.add_trace(go.Scatter(x=weekdays_left , y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
-            # Plot upper and lower with fill
-            fig.add_trace(go.Scatter(x=weekdays_left , y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
-            fig.add_trace(go.Scatter(x=weekdays_left , y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
+            if max_bool:
+                fig.add_trace(go.Scatter(x=weekdays_left , y=left_max, mode='lines', name='Left Max', line=dict(color='aqua')))
+            else:
+                # Plot mean
+                fig.add_trace(go.Scatter(x=weekdays_left , y=left_mean, mode='lines', name='Left Mean', line=dict(color='blue')))
+                
+                # Plot upper and lower with fill
+                fig.add_trace(go.Scatter(x=weekdays_left , y=left_upper, mode='lines', line=dict(width=0), showlegend=False))
+                fig.add_trace(go.Scatter(x=weekdays_left , y=left_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(0,0,255,0.2)', showlegend=False))
 
         ## Right
         # Construct column names for mean, upper, and lower
         column_name_right_mean = f"{region_right}_mean"
         column_name_right_upper = f"{region_right}_upper"
         column_name_right_lower = f"{region_right}_lower"
+        column_name_right_max = f"{region_right}_max"
 
         # Assuming compare_df structure and that the row for the selected year and region exists
         row_right = compare_weekly_df[(compare_weekly_df['Year'] == year_right)]
@@ -517,14 +555,19 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
             right_mean = row_right[column_name_right_mean].values
             right_upper = row_right[column_name_right_upper].values
             right_lower = row_right[column_name_right_lower].values
+            right_max = row_right[column_name_right_max].values
             weekdays_right = row_left['weekday'].map(weekday_map).values
 
+            if max_bool:
+                fig.add_trace(go.Scatter(x=weekdays_left , y=right_max, mode='lines', name='Right Max', line=dict(color='pink')))
 
-            # Plot mean
-            fig.add_trace(go.Scatter(x=weekdays_right, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
-            # Plot upper and lower with fill
-            fig.add_trace(go.Scatter(x=weekdays_right, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
-            fig.add_trace(go.Scatter(x=weekdays_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
+            else:
+                # Plot mean
+                fig.add_trace(go.Scatter(x=weekdays_right, y=right_mean, mode='lines', name='Right Mean', line=dict(color='red')))
+            
+                # Plot upper and lower with fill
+                fig.add_trace(go.Scatter(x=weekdays_right, y=right_upper, mode='lines', line=dict(width=0), showlegend=False))
+                fig.add_trace(go.Scatter(x=weekdays_right, y=right_lower, mode='lines', line=dict(width=0), fill='tonexty', fillcolor='rgba(255,0,0,0.2)', showlegend=False))
     except Exception as e:
         print(e)
     fig.update_layout(title=f'Week of {region_left} in {year_left} base on {scenario_left} <br>vs Week of {region_right} in {year_right} base on {scenario_right}',xaxis_title='Week Day', yaxis_title='Daily Average demand(Mwh)', xaxis=dict(range=[0, 6]))
@@ -540,10 +583,11 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
         Input('start-year-dropdown', 'value'),
         Input('end-month-dropdown', 'value'),
         Input('end-year-dropdown', 'value'),
-        Input('group-by-year-toggle','value')
+        Input('group-by-year-toggle','value'),
+        Input('max-toggle','value')
     ]
 )
-def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year):
+def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool):
 
     scenarios = ['rcp85hotter']#, 'rcp85cooler', 'rcp45hotter', 'rcp45cooler']
     data_path = os.path.join(current_directory, 'web_page_data')
@@ -553,7 +597,10 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 
     for scenario_value in scenarios:
         # Construct the file path for the current scenario
-        file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
+        if max_bool:
+            file_path = os.path.join(data_path, f'max_{scenario_value}_monthlly.csv')
+        else:
+            file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
 
         # Define the columns to read from the CSV file
         columns_to_read = ['Year', 'Month', graph_value]
@@ -564,7 +611,10 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
         # Create a datetime column from 'Year' and 'Month' for filtering
         if group_by_year:
             # Group by 'Year' and sum the specified column
-            df = df.groupby('Year')[graph_value].sum().reset_index()
+            if max_bool:
+                df = df.groupby('Year')[graph_value].max().reset_index()
+            else:
+                df = df.groupby('Year')[graph_value].sum().reset_index()
             
             # Create a 'time' column combining 'Year', 'Month', and 'Day', with 'Month'=1, 'Day'=1
             # Since 'Month' and 'Day' are constants, you can directly assign them
