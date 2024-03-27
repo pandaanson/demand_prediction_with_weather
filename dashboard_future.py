@@ -27,10 +27,7 @@ gdf_country_path = os.path.join(data_path, 'gdf_country.gpkg')
 gdf_state_path = os.path.join(data_path, 'gdf_state.gpkg')
 gdf_subregion_path = os.path.join(data_path, 'gdf_subregion.gpkg')
 
-# Define paths for the GeoJSON files
-country_geojson_path = os.path.join(data_path, 'country_centroids.csv')
-state_geojson_path = os.path.join(data_path, 'state_centroids.csv')
-rb_geojson_path = os.path.join(data_path, 'rb_centroids.csv')
+
 
 
 # Function to read GeoJSON from a file
@@ -53,10 +50,6 @@ geojson_state = gdf_state.__geo_interface__
 geojson_subregion = gdf_subregion.__geo_interface__
 
 
-# Use pandas to read the CSV files
-country_centroids_df = pd.read_csv(country_geojson_path)
-state_centroids_df = pd.read_csv(state_geojson_path)
-rb_centroids_df = pd.read_csv(rb_geojson_path)
 
 # Function to convert a DataFrame with 'lon' and 'lat' columns to a GeoDataFrame
 def df_to_gdf(df):
@@ -65,10 +58,7 @@ def df_to_gdf(df):
     gdf = gpd.GeoDataFrame(df, geometry=geometry, crs="EPSG:4326")
     return gdf
 
-# Convert the DataFrames to GeoDataFrames
-gdf_country_centroids = df_to_gdf(country_centroids_df)
-gdf_state_centroids = df_to_gdf(state_centroids_df)
-gdf_rb_centroids = df_to_gdf(rb_centroids_df)
+
 
 #include weekday date
 weekday_map = {
@@ -176,6 +166,17 @@ app.layout = html.Div([
                     {'label': 'True', 'value': True},
                     {'label': 'False', 'value': False}],value=True,  multi=False)]),
         dcc.Graph(id='line-graph'),  # Placeholder for the line graph
+    ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
+    html.Div([
+        html.H4("Reference for extreme weather:", style={'marginBottom': 0, 'marginTop': 0}), 
+        html.Div([dcc.Dropdown(id='heat/cold-toggle',value='Heat', options=[
+                    {'label': 'Heat', 'value': 'Heat'},
+                    {'label': 'Cold','value': 'Cold'}
+                ], multi=False)]),
+        html.Div([dcc.Dropdown(id='weather-to-show',options=[
+                    {'label': 'Average demand of extreme weather days', 'value': 'average_t2'},
+                    {'label': 'Number of days', 'value': 'Num_of_days'}],value='Num_of_days',  multi=False)]),
+        dcc.Graph(id='line-graph-for-weather'),  # Placeholder for the line graph
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
     html.H3("Comparing two region:", style={'marginBottom': 0, 'marginTop': 0}),
     html.P('After choosing a break down above, the map below compare two region for you, the daily graph caculated average demand by hour in a day, and there is option of weekday and weekend. The weekly graph show the average by weekdays. The shadow area is the 95% and 5% quantile', style={'textAlign': 'justify'}),
@@ -374,7 +375,11 @@ def set_graph_toggle_options(selected_map_view):
         value='USA'
     elif selected_map_view == 'state':
         # Example state list; replace with your actual data or method to retrieve states
-        options =[{'label': i, 'value': i} for i in state_centroids_df['state'].unique()]
+        options =[{'label': i, 'value': i} for i in ['Year','Month', 'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+           'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+          'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']]
         value='New York'
     elif selected_map_view == 'subregion':
         # Generate subregion options from 'p1' to 'p134'
@@ -400,7 +405,11 @@ def set_region_options(selected_map_view):
         value='USA'
     elif selected_map_view == 'state':
         # Example state list; replace with your actual data or method to retrieve states
-        options =[{'label': i, 'value': i} for i in state_centroids_df['state'].unique()]
+        options =[{'label': i, 'value': i} for i in ['Year','Month', 'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+           'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+          'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']]
         value='New York'
     elif selected_map_view == 'subregion':
         # Generate subregion options from 'p1' to 'p134'
@@ -589,7 +598,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 )
 def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool):
 
-    scenarios = ['rcp85hotter', 'rcp45cooler']#, 'rcp85cooler', 'rcp45hotter']
+    scenarios = ['rcp85hotter', 'rcp85cooler', 'rcp45cooler']#, 'rcp45hotter']
     data_path = os.path.join(current_directory, 'web_page_data')
 
     # Create the figure outside of the loop, so all lines are on the same graph
@@ -639,6 +648,66 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 
     # Dynamically set the title to indicate a comparison
     title_text = f"Comparison of Scenarios for {graph_value}"
+    fig.update_layout(title=title_text)
+
+    # Display the figure
+    return fig
+
+@app.callback(
+    Output('line-graph-for-weather', 'figure'),
+    [
+        Input('graph-toggle', 'value'),
+        Input('start-year-dropdown', 'value'),
+        Input('end-year-dropdown', 'value'),
+        Input('weather-to-show','value'),
+        Input('heat/cold-toggle','value')
+    ]
+)
+def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold):
+
+    scenarios = ['rcp45cooler','rcp85hotter', 'rcp85cooler']#, 'rcp45hotter', 'rcp45cooler']
+    data_path = os.path.join(current_directory, 'web_page_data')
+
+    # Create the figure outside of the loop, so all lines are on the same graph
+    fig = go.Figure()
+
+    for scenario_value in scenarios:
+        # Construct the file path for the current scenario
+        if heat_or_cold=='Heat':
+            file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
+        else:
+            file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
+        df=pd.read_csv(file_path)
+        # Convert the 'region' column to lowercase
+        df['region'] = df['region'].str.lower()
+
+        # Ensure graph_value is also in lowercase
+        graph_value = graph_value.lower()
+
+        # Filter the DataFrame based on the lowercase region matching the lowercase graph_value
+        df = df[df['region'] == graph_value]
+
+
+
+
+
+        
+        # Filter the data based on the selected date range
+        mask = (df['Year'] >= start_year) & (df['Year'] <= end_year)
+        if df.empty:
+            print(f"No data in file")
+            continue  # Skip further processing for this file
+        filtered_df = df.loc[mask]
+        
+        # Extract the data for plotting
+        x_data = filtered_df['Year']
+        y_data = filtered_df['number_of_days']
+
+        # Add the line trace for the current scenario
+        fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+
+    # Dynamically set the title to indicate a comparison
+    title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
     fig.update_layout(title=title_text)
 
     # Display the figure
