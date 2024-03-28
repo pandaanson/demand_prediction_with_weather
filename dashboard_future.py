@@ -165,6 +165,7 @@ app.layout = html.Div([
         html.Div([dcc.Dropdown(id='group-by-year-toggle',options=[
                     {'label': 'True', 'value': True},
                     {'label': 'False', 'value': False}],value=True,  multi=False)]),
+        html.P('Here , the plot show yearly/month sum/max of demand projection for different scenario', style={'textAlign': 'justify'}),
         dcc.Graph(id='line-graph'),  # Placeholder for the line graph
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
     html.Div([
@@ -176,6 +177,7 @@ app.layout = html.Div([
         html.Div([dcc.Dropdown(id='weather-to-show',options=[
                     {'label': 'Average demand of extreme weather days', 'value': 'average_t2'},
                     {'label': 'Number of days', 'value': 'Num_of_days'}],value='Num_of_days',  multi=False)]),
+        html.P('The following, give you an idea of the weather structure,the graph show number of extreme weather and average demand of electicty during extreme weather.', style={'textAlign': 'justify'}),
         dcc.Graph(id='line-graph-for-weather'),  # Placeholder for the line graph
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
     html.H3("Comparing two region:", style={'marginBottom': 0, 'marginTop': 0}),
