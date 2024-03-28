@@ -126,7 +126,7 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
-            html.H4("Show the maxium hourly xof each period:", style={'marginBottom': 0, 'marginTop': 0}),
+            html.H4("Show the maxium hourly of each period:", style={'marginBottom': 0, 'marginTop': 0}),
             dcc.RadioItems(
                 id='max-toggle',
                 options=[
