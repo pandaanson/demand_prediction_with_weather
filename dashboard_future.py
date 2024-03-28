@@ -101,10 +101,10 @@ app.layout = html.Div([
             dcc.RadioItems(
                 id='scenario-toggle',
                 options=[
-                    {'label': 'Most extreme', 'value': 'rcp85hotter'},
-                    {'label': 'Extreme', 'value': 'rcp85cooler'},
-                    {'label': 'Mini extreme', 'value': 'rcp45hotter'},
-                    {'label': 'Least extreme', 'value': 'rcp45cooler'},
+                    {'label': 'rcp85hotter', 'value': 'rcp85hotter'},
+                    {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
+                    {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
+                    {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
                     {'label': 'Stable(unimplement)','value': 'stable'}
                 ],
                 value='rcp85hotter',  # Default value
@@ -670,44 +670,44 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold)
 
     # Create the figure outside of the loop, so all lines are on the same graph
     fig = go.Figure()
-
     for scenario_value in scenarios:
-        # Construct the file path for the current scenario
-        if heat_or_cold=='Heat':
-            file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
-        else:
-            file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
-        df=pd.read_csv(file_path)
-        # Convert the 'region' column to lowercase
-        df['region'] = df['region'].str.lower()
-
-        # Ensure graph_value is also in lowercase
-        graph_value = graph_value.lower()
-
-        # Filter the DataFrame based on the lowercase region matching the lowercase graph_value
-        df = df[df['region'] == graph_value]
-
-
-
-
-
+        # Construct the file path based on the scenario and weather type
+        if weather == 'Num_of_days':
+            if heat_or_cold == 'Heat':
+                file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
+            else:
+                file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
+        else:  # For the average demand case
+            if heat_or_cold == 'Heat':
+                file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}.csv')
+            else:
+                file_path = os.path.join(data_path, f'all_min_outliers_demand_summary_{scenario_value}.csv')
         
-        # Filter the data based on the selected date range
+        df = pd.read_csv(file_path)
+        df['region'] = df['region'].str.lower()
+        graph_value = graph_value.lower()
+        df = df[df['region'] == graph_value]
+        
         mask = (df['Year'] >= start_year) & (df['Year'] <= end_year)
-        if df.empty:
-            print(f"No data in file")
-            continue  # Skip further processing for this file
         filtered_df = df.loc[mask]
         
-        # Extract the data for plotting
-        x_data = filtered_df['Year']
-        y_data = filtered_df['number_of_days']
+        if not filtered_df.empty:
+            x_data = filtered_df['Year'].values 
+            y_data = filtered_df['number_of_days'].values if weather == 'Num_of_days' else filtered_df['average_total_load'].values
+            
+            fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+        else:
+            print(f"No data for scenario {scenario_value} after filtering by {graph_value} from {start_year} to {end_year}")
 
-        # Add the line trace for the current scenario
-        fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+            
 
-    # Dynamically set the title to indicate a comparison
+
+
     title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
+    #title_text = f"Average demand for extreme {heat_or_cold} by year in {graph_value}"
+
+
+    
     fig.update_layout(title=title_text)
 
     # Display the figure
