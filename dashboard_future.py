@@ -615,7 +615,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 )
 def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool):
 
-    scenarios = ['rcp85hotter', 'rcp85cooler', 'rcp45cooler']#, 'rcp45hotter']
+    scenarios = ['rcp85hotter', 'rcp45hotter', 'rcp85cooler', 'rcp45cooler']#, 'rcp45hotter']
     data_path = os.path.join(current_directory, 'web_page_data')
 
     # Create the figure outside of the loop, so all lines are on the same graph
@@ -682,7 +682,7 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 )
 def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold):
 
-    scenarios = ['rcp45cooler','rcp85hotter', 'rcp85cooler']#, 'rcp45hotter', 'rcp45cooler']
+    scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler']#, 'rcp45hotter', 'rcp45cooler']
     data_path = os.path.join(current_directory, 'web_page_data')
 
     # Create the figure outside of the loop, so all lines are on the same graph
