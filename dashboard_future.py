@@ -137,6 +137,17 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
+            html.H4("Use projection:", style={'marginBottom': 0, 'marginTop': 0}),
+            dcc.RadioItems(
+                id='projection-toggle',
+                options=[
+                    {'label': 'True', 'value': True},
+                    {'label': 'False','value': False}
+                ],
+                value=False,  # Default value
+                style={'padding': 20},
+                inline=True
+            ),
 
             html.Div([
                 html.H4("Choose the range for data to view on map and the trend comparsion below:", style={'marginBottom': 0, 'marginTop': 0}),
@@ -296,12 +307,13 @@ app.layout = html.Div([
         Input('start-year-dropdown', 'value'),
         Input('end-month-dropdown', 'value'),
         Input('end-year-dropdown', 'value'),
-        Input('max-toggle','value')
+        Input('max-toggle','value'),
+        Input('projection-toggle','value'),
     ]
 )
 
 
-def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_year,max_bool):
+def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_year,max_bool,projection_bool):
     # Choose the correct DataFrame and title based on toggle_value
     if toggle_value == 'country':
         data = gdf_country
@@ -324,10 +336,17 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
         color_column = 'rb'
         columns_to_read = ['Year','Month'] + [f'p{i}' for i in range(1, 135)]
     data_path=os.path.join(current_directory, 'web_page_data')
-    if max_bool:
-        file_path = os.path.join(data_path, f'max_{scenario_value}_monthlly.csv')
+    if projection_bool:
+        if max_bool:
+            file_path = os.path.join(data_path, f'_project_max_{scenario_value}_monthlly.csv')
+        else:
+            file_path = os.path.join(data_path, f'_project_mock_{scenario_value}.csv')
+
     else:
-        file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
+        if max_bool:
+            file_path = os.path.join(data_path, f'max_{scenario_value}_monthlly.csv')
+        else:
+            file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
 
 
     
@@ -445,11 +464,12 @@ def set_region_options(selected_map_view):
         Input('scenario-toggle-right', 'value'),
         Input('region-right', 'value'),
         Input('max-toggle','value'),
+        Input('projection-toggle','value'),
     ]
 )
 
 def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_left,
-                 year_right, daytype_right, scenario_right, region_right,max_bool):
+                 year_right, daytype_right, scenario_right, region_right,max_bool,projection_bool):
     # Create the figure
     fig = go.Figure()
 
@@ -464,7 +484,12 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
 
 
     # Assuming compare_df structure and that the row for the selected year and region exists
-    compare_df_path_left= os.path.join(data_path, f'mock_{scenario_left}_yearly_aggregated.csv')
+    if projection_bool:
+        compare_df_path_left= os.path.join(data_path, f'_project_mock_{scenario_left}_yearly_aggregated.csv')
+        compare_df_path_right= os.path.join(data_path, f'_project_mock_{scenario_right}_yearly_aggregated.csv')
+    else:
+        compare_df_path_left= os.path.join(data_path, f'mock_{scenario_left}_yearly_aggregated.csv')
+        compare_df_path_right= os.path.join(data_path, f'mock_{scenario_right}_yearly_aggregated.csv')
     compare_df_left = pd.read_csv(compare_df_path_left)
     row_left = compare_df_left[(compare_df_left['Year'] == year_left) & (compare_df_left['Weekend_or_Weekday']== daytype_left)]
     if not row_left.empty:
@@ -491,7 +516,6 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
     column_name_right_max = f"{region_right}_max"
 
     # Assuming compare_df structure and that the row for the selected year and region exists
-    compare_df_path_right= os.path.join(data_path, f'mock_{scenario_right}_yearly_aggregated.csv')
     compare_df_right = pd.read_csv(compare_df_path_right)
     row_right = compare_df_right[(compare_df_right['Year'] == year_right) & (compare_df_right['Weekend_or_Weekday']== daytype_right)]
     if not row_right.empty:
@@ -527,12 +551,13 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
         Input('daytype-dropdown-right', 'value'),
         Input('scenario-toggle-right', 'value'),
         Input('region-right', 'value'),
-        Input('max-toggle','value')
+        Input('max-toggle','value'),
+        Input('projection-toggle','value'),
     ]
 )
 
 def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_left,
-                 year_right, daytype_right, scenario_right, region_right,max_bool):
+                 year_right, daytype_right, scenario_right, region_right,max_bool,projection_bool):
     # Create the figure
     fig = go.Figure()
 
@@ -541,7 +566,12 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
     ## Left
     try:
         # Construct column names for mean, upper, and lower
-        compare_weekly_df_path_left= os.path.join(data_path, f'mock_{scenario_left}_weekly.csv')
+        if projection_bool:
+            compare_weekly_df_path_left= os.path.join(data_path, f'_project_mock_{scenario_left}_weekly.csv')
+            compare_weekly_df_path_right= os.path.join(data_path, f'_project_mock_{scenario_right}_weekly.csv')
+        else:
+            compare_weekly_df_path_left= os.path.join(data_path, f'mock_{scenario_left}_weekly.csv')
+            compare_weekly_df_path_right= os.path.join(data_path, f'mock_{scenario_right}_weekly.csv')
         compare_weekly_df_left = pd.read_csv(compare_weekly_df_path_left)
         column_name_left_mean = f"{region_left}_mean"
         column_name_left_upper = f"{region_left}_upper"
@@ -568,7 +598,6 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 
         ## Right
         # Construct column names for mean, upper, and lower
-        compare_weekly_df_path_right= os.path.join(data_path, f'mock_{scenario_right}_weekly.csv')
         compare_weekly_df_right = pd.read_csv(compare_weekly_df_path_right)
         column_name_right_mean = f"{region_right}_mean"
         column_name_right_upper = f"{region_right}_upper"
@@ -610,10 +639,11 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
         Input('end-month-dropdown', 'value'),
         Input('end-year-dropdown', 'value'),
         Input('group-by-year-toggle','value'),
-        Input('max-toggle','value')
+        Input('max-toggle','value'),
+        Input('projection-toggle','value'),
     ]
 )
-def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool):
+def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool,projection_bool):
 
     scenarios = ['rcp85hotter', 'rcp45hotter', 'rcp85cooler', 'rcp45cooler']#, 'rcp45hotter']
     data_path = os.path.join(current_directory, 'web_page_data')
@@ -623,10 +653,16 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 
     for scenario_value in scenarios:
         # Construct the file path for the current scenario
-        if max_bool:
-            file_path = os.path.join(data_path, f'max_{scenario_value}_monthlly.csv')
+        if projection_bool:
+            if max_bool:
+                file_path = os.path.join(data_path, f'_project_max_{scenario_value}_monthlly.csv')
+            else:
+                file_path = os.path.join(data_path, f'_project_mock_{scenario_value}.csv')
         else:
-            file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
+            if max_bool:
+                file_path = os.path.join(data_path, f'max_{scenario_value}_monthlly.csv')
+            else:
+                file_path = os.path.join(data_path, f'mock_{scenario_value}.csv')
 
         # Define the columns to read from the CSV file
         columns_to_read = ['Year', 'Month', graph_value]
@@ -677,10 +713,11 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
         Input('start-year-dropdown', 'value'),
         Input('end-year-dropdown', 'value'),
         Input('weather-to-show','value'),
-        Input('heat/cold-toggle','value')
+        Input('heat/cold-toggle','value'),
+        Input('projection-toggle','value'),
     ]
 )
-def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold):
+def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,projection_bool):
 
     scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler']#, 'rcp45hotter', 'rcp45cooler']
     data_path = os.path.join(current_directory, 'web_page_data')
@@ -689,16 +726,28 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold)
     fig = go.Figure()
     for scenario_value in scenarios:
         # Construct the file path based on the scenario and weather type
-        if weather == 'Num_of_days':
-            if heat_or_cold == 'Heat':
-                file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
-            else:
-                file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
-        else:  # For the average demand case
-            if heat_or_cold == 'Heat':
-                file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}.csv')
-            else:
-                file_path = os.path.join(data_path, f'all_min_outliers_demand_summary_{scenario_value}.csv')
+        if projection_bool:
+            if weather == 'Num_of_days':
+                if heat_or_cold == 'Heat':
+                    file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}_project_.csv')
+                else:
+                    file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}_project_.csv')
+            else:  # For the average demand case
+                if heat_or_cold == 'Heat':
+                    file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}_project_.csv')
+                else:
+                    file_path = os.path.join(data_path, f'all_min_outliers_demand_summary_{scenario_value}_project_.csv')
+        else:
+            if weather == 'Num_of_days':
+                if heat_or_cold == 'Heat':
+                    file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
+                else:
+                    file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
+            else:  # For the average demand case
+                if heat_or_cold == 'Heat':
+                    file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}.csv')
+                else:
+                    file_path = os.path.join(data_path, f'all_min_outliers_demand_summary_{scenario_value}.csv')
         
         df = pd.read_csv(file_path)
         df['region'] = df['region'].str.lower()
