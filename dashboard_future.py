@@ -202,7 +202,11 @@ app.layout = html.Div([
                 ], multi=False)]),
         html.Div([dcc.Dropdown(id='weather-to-show',options=[
                     {'label': 'Average demand of extreme weather days', 'value': 'average_t2'},
-                    {'label': 'Number of days', 'value': 'Num_of_days'}],value='Num_of_days',  multi=False)]),
+                    {'label': 'Number of days', 'value': 'Num_of_days'},
+                    {'label': 'Heat/Cold degree day', 'value': 'degree_day'},
+                    ],value='Num_of_days',  multi=False)
+                    ]
+                ),
         html.P('The following, give you an idea of the weather structure,the graph show number of extreme weather and average demand of electicty during extreme weather.', style={'textAlign': 'justify'}),
         dcc.Graph(id='line-graph-for-weather'),  # Placeholder for the line graph
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
@@ -721,6 +725,38 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
 
     scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler']#, 'rcp45hotter', 'rcp45cooler']
     data_path = os.path.join(current_directory, 'web_page_data')
+    fig = go.Figure()
+    if weather =='degree_day':
+        for scenario_value in scenarios:
+            if heat_or_cold == 'Heat':
+                file_path = os.path.join(data_path, f'all_hdd_{scenario_value}.csv')
+            else:
+                file_path = os.path.join(data_path, f'all_cdd_{scenario_value}.csv')
+            df = pd.read_csv(file_path)
+            df['region'] = df['region'].str.lower()
+            graph_value = graph_value.lower()
+            df = df[df['region'] == graph_value]
+            
+            mask = (df['Year'] >= start_year) & (df['Year'] <= end_year)
+            filtered_df = df.loc[mask]
+            if not filtered_df.empty:
+                x_data = filtered_df['Year'].values 
+                y_data = filtered_df['hdd'].values if heat_or_cold == 'Heat' else filtered_df['cdd'].values
+                
+                fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+            else:
+                print(f"No data for scenario {scenario_value} after filtering by {graph_value} from {start_year} to {end_year}")
+            title_text = f"{heat_or_cold} degree days by year for {graph_value}"
+
+
+        
+        fig.update_layout(title=title_text)
+
+        # Display the figure
+        return fig
+
+            
+
 
     # Create the figure outside of the loop, so all lines are on the same graph
     fig = go.Figure()
@@ -732,22 +768,26 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
                     file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}_project_.csv')
                 else:
                     file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}_project_.csv')
+                title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
             else:  # For the average demand case
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}_project_.csv')
                 else:
                     file_path = os.path.join(data_path, f'all_min_outliers_demand_summary_{scenario_value}_project_.csv')
+                title_text = f"Average demand for extreme {heat_or_cold} by year in {graph_value}"
         else:
             if weather == 'Num_of_days':
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
                 else:
                     file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
+                title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
             else:  # For the average demand case
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}.csv')
                 else:
                     file_path = os.path.join(data_path, f'all_min_outliers_demand_summary_{scenario_value}.csv')
+                title_text = f"Average demand for extreme {heat_or_cold} by year in {graph_value}"
         
         df = pd.read_csv(file_path)
         df['region'] = df['region'].str.lower()
@@ -769,8 +809,8 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
 
 
 
-    title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
-    #title_text = f"Average demand for extreme {heat_or_cold} by year in {graph_value}"
+
+
 
 
     
