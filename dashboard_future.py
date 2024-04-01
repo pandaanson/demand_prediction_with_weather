@@ -120,7 +120,7 @@ app.layout = html.Div([
                     {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
                     {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
                     {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                    {'label': 'Stable(unimplement)','value': 'stable'}
+                    {'label': 'projection','value': 'projection'}
                 ],
                 value='rcp85hotter',  # Default value
                 style={'padding': 20},
@@ -262,7 +262,7 @@ app.layout = html.Div([
                         {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
                         {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
                         {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                        {'label': 'Stable(unimplement)','value': 'stable'}
+                        {'label': 'projection','value': 'projection'}
                     ],
                     value='rcp85hotter',  # Default value
                     style={'padding': 20},
@@ -276,7 +276,7 @@ app.layout = html.Div([
                         {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
                         {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
                         {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                        {'label': 'Stable(unimplement)','value': 'stable'}
+                        {'label': 'projection','value': 'projection'}
                     ],
                     value='rcp85hotter',  # Default value
                     style={'padding': 20},
@@ -329,7 +329,7 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
         data = gdf_state
         geojson = geojson_state
         color_column = 'state'
-        columns_to_read = ['Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+        columns_to_read = ['Year','Month','Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
           'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
           'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
@@ -359,6 +359,8 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
     
     start_date = pd.Timestamp(year=start_year, month=start_month, day=1)
     end_date = pd.Timestamp(year=end_year, month=end_month, day=30)
+
+    print(df.columns)
     
     # Create a mask for the date range
     mask = (df['Year'] > start_year) | \
@@ -415,7 +417,7 @@ def set_graph_toggle_options(selected_map_view):
         value='USA'
     elif selected_map_view == 'state':
         # Example state list; replace with your actual data or method to retrieve states
-        options =[{'label': i, 'value': i} for i in ['Year','Month', 'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+        options =[{'label': i, 'value': i} for i in [ 'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
           'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
           'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
@@ -649,7 +651,7 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 )
 def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool,projection_bool):
 
-    scenarios = ['rcp85hotter', 'rcp45hotter', 'rcp85cooler', 'rcp45cooler']#, 'rcp45hotter']
+    scenarios = ['rcp85hotter', 'rcp45hotter', 'rcp85cooler', 'rcp45cooler','projection']#, 'rcp45hotter']
     data_path = os.path.join(current_directory, 'web_page_data')
 
     # Create the figure outside of the loop, so all lines are on the same graph
@@ -723,7 +725,7 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 )
 def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,projection_bool):
 
-    scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler']#, 'rcp45hotter', 'rcp45cooler']
+    scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler','projection']
     data_path = os.path.join(current_directory, 'web_page_data')
     fig = go.Figure()
     if weather =='degree_day':

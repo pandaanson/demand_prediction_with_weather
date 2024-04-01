@@ -26,15 +26,16 @@ p4,2097,2
 Indiana,2021,1
 Indiana,2022,5
 Indiana,2023,3
-Indiana,2024,2
+Indiana,2024,3
 Indiana,2025,2
 Indiana,2029,2
 Indiana,2034,2
 Indiana,2037,1
 Indiana,2039,3
+Indiana,2049,1
 Indiana,2051,1
 Indiana,2054,5
-Indiana,2059,1
+Indiana,2059,2
 Indiana,2062,3
 Indiana,2063,2
 Indiana,2065,1
@@ -42,12 +43,13 @@ Indiana,2069,1
 Indiana,2074,2
 Indiana,2079,1
 Indiana,2094,3
+Indiana,2099,1
 North Dakota,2020,1
-North Dakota,2022,9
+North Dakota,2022,10
 North Dakota,2023,5
-North Dakota,2024,1
-North Dakota,2025,7
-North Dakota,2028,1
+North Dakota,2024,2
+North Dakota,2025,8
+North Dakota,2028,3
 North Dakota,2029,5
 North Dakota,2030,1
 North Dakota,2034,5
@@ -58,9 +60,8 @@ North Dakota,2054,1
 North Dakota,2059,2
 North Dakota,2062,4
 North Dakota,2063,1
-North Dakota,2065,2
+North Dakota,2065,3
 North Dakota,2069,1
-North Dakota,2070,1
 North Dakota,2074,2
 North Dakota,2076,4
 p42,2022,9
@@ -103,31 +104,20 @@ p55,2076,1
 p55,2091,1
 p55,2094,1
 Florida,2020,1
-Florida,2021,2
-Florida,2022,2
+Florida,2021,1
+Florida,2022,1
 Florida,2023,2
-Florida,2025,3
+Florida,2025,2
 Florida,2026,1
 Florida,2029,2
-Florida,2031,1
-Florida,2035,1
 Florida,2036,1
-Florida,2040,2
 Florida,2043,1
-Florida,2048,1
-Florida,2049,1
-Florida,2050,3
-Florida,2054,1
-Florida,2058,1
-Florida,2060,1
+Florida,2050,1
 Florida,2061,1
-Florida,2062,2
 Florida,2063,2
 Florida,2065,2
 Florida,2066,1
-Florida,2069,2
-Florida,2076,1
-Florida,2083,1
+Florida,2069,1
 Florida,2090,1
 p45,2021,1
 p45,2022,8
@@ -273,39 +263,35 @@ p72,2069,2
 p72,2074,2
 p72,2079,1
 p72,2094,2
-Idaho,2020,3
-Idaho,2022,4
+Idaho,2020,1
+Idaho,2022,3
 Idaho,2023,4
 Idaho,2024,1
 Idaho,2025,4
-Idaho,2029,5
+Idaho,2029,4
 Idaho,2030,7
-Idaho,2036,4
+Idaho,2036,3
 Idaho,2038,3
-Idaho,2044,2
-Idaho,2050,1
-Idaho,2057,1
-Idaho,2062,1
+Idaho,2044,1
+Idaho,2057,2
 Idaho,2063,2
 Idaho,2070,5
-Idaho,2076,1
 Idaho,2097,1
 Missouri,2021,1
 Missouri,2022,5
-Missouri,2023,6
-Missouri,2025,3
-Missouri,2026,1
-Missouri,2028,2
+Missouri,2023,5
+Missouri,2025,2
+Missouri,2028,1
 Missouri,2029,3
 Missouri,2034,2
 Missouri,2036,3
-Missouri,2037,1
+Missouri,2039,1
 Missouri,2040,1
-Missouri,2051,2
+Missouri,2051,1
 Missouri,2054,2
 Missouri,2059,1
-Missouri,2062,2
-Missouri,2063,3
+Missouri,2062,1
+Missouri,2063,2
 Missouri,2065,1
 Missouri,2069,2
 Missouri,2076,1
@@ -341,16 +327,19 @@ p15,2063,2
 p15,2069,1
 p15,2070,6
 p15,2097,2
-Arizona,2025,1
-Arizona,2027,1
-Arizona,2030,4
-Arizona,2047,1
+Arizona,2025,2
+Arizona,2027,3
+Arizona,2028,3
+Arizona,2030,8
+Arizona,2042,1
+Arizona,2047,2
 Arizona,2051,3
-Arizona,2053,2
+Arizona,2053,3
 Arizona,2065,1
-Arizona,2070,1
+Arizona,2070,2
+Arizona,2087,1
 Arizona,2091,2
-Arizona,2093,1
+Arizona,2093,2
 p32,2021,1
 p32,2022,8
 p32,2023,9
@@ -398,17 +387,18 @@ p25,2069,1
 p25,2070,2
 p25,2093,1
 Wisconsin,2022,6
-Wisconsin,2023,3
-Wisconsin,2024,3
+Wisconsin,2023,2
+Wisconsin,2024,2
 Wisconsin,2025,1
 Wisconsin,2034,2
-Wisconsin,2036,5
+Wisconsin,2036,4
 Wisconsin,2049,2
+Wisconsin,2051,1
 Wisconsin,2054,3
 Wisconsin,2059,2
 Wisconsin,2062,1
 Wisconsin,2074,2
-Wisconsin,2076,4
+Wisconsin,2076,2
 Wisconsin,2099,1
 p35,2020,3
 p35,2022,11
@@ -475,35 +465,40 @@ p22,2088,1
 p22,2093,1
 p22,2094,1
 p22,2096,1
-Wyoming,2020,2
+Wyoming,2020,3
 Wyoming,2021,2
 Wyoming,2022,3
 Wyoming,2023,7
 Wyoming,2024,3
-Wyoming,2025,6
-Wyoming,2029,6
+Wyoming,2025,5
+Wyoming,2029,7
 Wyoming,2030,6
-Wyoming,2033,1
+Wyoming,2031,1
+Wyoming,2033,2
 Wyoming,2036,2
 Wyoming,2037,2
 Wyoming,2038,1
+Wyoming,2043,1
 Wyoming,2046,2
+Wyoming,2049,2
 Wyoming,2051,2
-Wyoming,2053,1
-Wyoming,2054,3
+Wyoming,2053,2
+Wyoming,2054,4
 Wyoming,2056,1
-Wyoming,2059,1
+Wyoming,2057,2
+Wyoming,2060,1
 Wyoming,2062,2
-Wyoming,2063,6
+Wyoming,2063,7
 Wyoming,2064,1
-Wyoming,2065,2
+Wyoming,2065,3
 Wyoming,2069,4
 Wyoming,2070,6
 Wyoming,2076,2
-Wyoming,2077,1
+Wyoming,2077,2
+Wyoming,2078,1
 Wyoming,2086,1
-Wyoming,2091,1
-Wyoming,2094,2
+Wyoming,2091,2
+Wyoming,2094,3
 Wyoming,2096,1
 p63,2022,3
 p63,2023,4
@@ -519,20 +514,17 @@ p63,2069,2
 p63,2091,2
 Texas,2022,2
 Texas,2023,5
-Texas,2025,4
-Texas,2029,4
+Texas,2025,3
+Texas,2029,3
 Texas,2036,2
-Texas,2037,2
 Texas,2050,2
-Texas,2051,4
-Texas,2054,2
-Texas,2057,1
-Texas,2058,2
+Texas,2051,3
+Texas,2054,1
+Texas,2058,1
 Texas,2062,1
-Texas,2063,3
-Texas,2065,1
-Texas,2069,2
-Texas,2076,2
+Texas,2063,1
+Texas,2069,3
+Texas,2076,1
 Texas,2091,2
 Texas,2098,1
 p74,2022,1
@@ -564,15 +556,15 @@ Delaware,2076,1
 Delaware,2094,1
 Delaware,2098,1
 Minnesota,2022,5
-Minnesota,2023,3
+Minnesota,2023,4
 Minnesota,2024,2
-Minnesota,2029,1
-Minnesota,2034,4
-Minnesota,2036,6
-Minnesota,2049,1
+Minnesota,2034,2
+Minnesota,2036,5
+Minnesota,2049,2
 Minnesota,2059,1
 Minnesota,2062,1
-Minnesota,2063,1
+Minnesota,2063,2
+Minnesota,2074,1
 Minnesota,2076,3
 p64,2022,2
 p64,2023,5
@@ -655,7 +647,7 @@ p5,2063,4
 p5,2069,4
 p5,2070,4
 Mississippi,2022,3
-Mississippi,2023,4
+Mississippi,2023,5
 Mississippi,2024,1
 Mississippi,2025,3
 Mississippi,2026,1
@@ -699,18 +691,22 @@ p54,2050,2
 p54,2062,1
 p54,2063,2
 p54,2069,1
-Oklahoma,2022,3
-Oklahoma,2023,4
+Oklahoma,2022,2
+Oklahoma,2023,5
 Oklahoma,2024,1
 Oklahoma,2025,1
 Oklahoma,2028,1
-Oklahoma,2029,3
-Oklahoma,2036,2
-Oklahoma,2051,3
+Oklahoma,2029,2
+Oklahoma,2036,3
+Oklahoma,2051,4
+Oklahoma,2054,2
+Oklahoma,2062,2
 Oklahoma,2063,3
+Oklahoma,2065,1
+Oklahoma,2068,1
 Oklahoma,2069,2
-Oklahoma,2076,1
-Oklahoma,2091,2
+Oklahoma,2076,2
+Oklahoma,2091,3
 p44,2021,1
 p44,2022,9
 p44,2023,6
@@ -780,14 +776,14 @@ West Virginia,2049,1
 West Virginia,2054,5
 West Virginia,2055,4
 West Virginia,2059,2
-West Virginia,2062,3
+West Virginia,2062,4
 West Virginia,2063,3
 West Virginia,2064,1
 West Virginia,2065,2
-West Virginia,2069,2
+West Virginia,2069,1
 West Virginia,2074,3
 West Virginia,2094,2
-West Virginia,2095,2
+West Virginia,2095,1
 West Virginia,2099,1
 p33,2022,2
 p33,2023,3
@@ -852,22 +848,24 @@ p24,2096,1
 p24,2097,1
 South Carolina,2020,1
 South Carolina,2022,3
-South Carolina,2023,3
+South Carolina,2023,2
 South Carolina,2025,4
 South Carolina,2026,1
-South Carolina,2029,2
+South Carolina,2029,3
+South Carolina,2031,1
 South Carolina,2034,2
 South Carolina,2036,1
 South Carolina,2043,1
 South Carolina,2054,3
 South Carolina,2055,3
 South Carolina,2057,1
-South Carolina,2058,3
+South Carolina,2058,4
 South Carolina,2060,1
 South Carolina,2062,2
 South Carolina,2063,2
-South Carolina,2065,3
+South Carolina,2065,2
 South Carolina,2066,1
+South Carolina,2069,1
 South Carolina,2074,2
 South Carolina,2076,1
 South Carolina,2083,1
@@ -923,37 +921,26 @@ p23,2096,1
 p23,2099,1
 Montana,2020,5
 Montana,2021,1
-Montana,2022,10
-Montana,2023,8
-Montana,2024,1
-Montana,2025,11
-Montana,2029,7
-Montana,2030,8
-Montana,2033,1
-Montana,2034,1
-Montana,2036,6
-Montana,2037,4
-Montana,2038,2
+Montana,2022,3
+Montana,2023,6
+Montana,2025,5
+Montana,2029,6
+Montana,2030,7
+Montana,2036,3
+Montana,2037,1
 Montana,2044,1
-Montana,2045,1
 Montana,2046,1
-Montana,2048,1
-Montana,2051,2
-Montana,2053,3
-Montana,2054,3
+Montana,2048,2
+Montana,2053,2
+Montana,2054,2
 Montana,2056,1
-Montana,2059,2
-Montana,2062,3
+Montana,2059,1
 Montana,2063,5
-Montana,2065,1
-Montana,2069,5
-Montana,2070,6
-Montana,2074,1
-Montana,2076,5
-Montana,2084,1
-Montana,2088,1
+Montana,2069,4
+Montana,2070,7
+Montana,2076,1
 Montana,2093,1
-Montana,2096,1
+Montana,2094,1
 Montana,2099,1
 Georgia,2020,1
 Georgia,2021,1
@@ -992,56 +979,56 @@ p13,2069,2
 p13,2070,5
 p13,2087,2
 p13,2093,1
-usa,2022,5
-usa,2023,6
-usa,2024,3
-usa,2025,5
-usa,2028,2
+usa,2021,1
+usa,2022,4
+usa,2023,3
+usa,2024,2
+usa,2025,3
 usa,2029,3
 usa,2034,2
-usa,2036,4
-usa,2037,3
-usa,2051,1
-usa,2054,4
-usa,2058,1
-usa,2062,3
-usa,2063,2
-usa,2064,1
+usa,2036,3
+usa,2037,1
+usa,2054,1
+usa,2062,2
+usa,2063,1
 usa,2065,1
 usa,2069,2
-usa,2076,2
+usa,2074,1
+usa,2076,1
+usa,2094,1
 Virginia,2020,2
-Virginia,2021,2
-Virginia,2022,5
+Virginia,2021,4
+Virginia,2022,6
 Virginia,2023,3
-Virginia,2024,2
+Virginia,2024,3
 Virginia,2025,3
 Virginia,2026,1
-Virginia,2027,1
-Virginia,2028,1
+Virginia,2027,3
+Virginia,2028,3
 Virginia,2029,3
 Virginia,2033,1
-Virginia,2034,5
+Virginia,2034,3
 Virginia,2035,1
-Virginia,2036,2
-Virginia,2037,2
-Virginia,2044,1
+Virginia,2036,5
+Virginia,2037,3
+Virginia,2040,1
 Virginia,2047,1
 Virginia,2049,2
-Virginia,2054,5
-Virginia,2055,6
+Virginia,2054,6
+Virginia,2055,7
 Virginia,2056,1
+Virginia,2057,2
 Virginia,2058,3
-Virginia,2059,2
+Virginia,2059,1
 Virginia,2061,1
 Virginia,2062,4
-Virginia,2063,3
+Virginia,2063,2
 Virginia,2065,2
-Virginia,2069,1
+Virginia,2067,1
 Virginia,2074,3
-Virginia,2076,2
-Virginia,2094,1
-Virginia,2095,3
+Virginia,2076,4
+Virginia,2094,2
+Virginia,2095,2
 Virginia,2098,3
 Virginia,2099,1
 p14,2020,3
@@ -1451,12 +1438,12 @@ p79,2049,1
 p79,2051,1
 p79,2059,2
 p79,2062,1
-Kentucky,2020,4
-Kentucky,2021,3
-Kentucky,2022,4
+Kentucky,2020,3
+Kentucky,2021,2
+Kentucky,2022,5
 Kentucky,2023,4
 Kentucky,2024,4
-Kentucky,2025,8
+Kentucky,2025,7
 Kentucky,2026,2
 Kentucky,2028,3
 Kentucky,2029,5
@@ -1465,14 +1452,13 @@ Kentucky,2035,1
 Kentucky,2036,3
 Kentucky,2037,5
 Kentucky,2039,1
-Kentucky,2040,2
-Kentucky,2043,1
+Kentucky,2040,1
 Kentucky,2044,2
 Kentucky,2048,1
 Kentucky,2049,1
 Kentucky,2054,7
 Kentucky,2055,6
-Kentucky,2058,4
+Kentucky,2058,3
 Kentucky,2059,2
 Kentucky,2060,1
 Kentucky,2061,1
@@ -1481,45 +1467,43 @@ Kentucky,2063,3
 Kentucky,2064,1
 Kentucky,2065,2
 Kentucky,2069,3
-Kentucky,2074,5
-Kentucky,2076,2
+Kentucky,2074,3
+Kentucky,2076,1
+Kentucky,2080,1
 Kentucky,2089,1
 Kentucky,2094,5
 Kentucky,2095,4
 Kentucky,2098,1
 Illinois,2021,1
 Illinois,2022,6
-Illinois,2023,4
-Illinois,2024,2
+Illinois,2023,3
+Illinois,2024,1
 Illinois,2025,2
-Illinois,2029,2
 Illinois,2034,3
 Illinois,2036,2
 Illinois,2037,1
 Illinois,2039,1
+Illinois,2049,1
 Illinois,2051,2
 Illinois,2054,3
 Illinois,2059,2
 Illinois,2062,2
-Illinois,2063,2
+Illinois,2063,1
 Illinois,2065,1
-Illinois,2069,2
 Illinois,2074,2
 Illinois,2079,1
-Illinois,2094,2
-Illinois,2099,1
+Illinois,2089,1
+Illinois,2099,2
 Nevada,2022,2
 Nevada,2025,1
 Nevada,2027,1
-Nevada,2028,4
+Nevada,2028,3
 Nevada,2029,4
 Nevada,2030,7
-Nevada,2038,3
-Nevada,2047,1
-Nevada,2053,4
-Nevada,2062,1
-Nevada,2068,1
-Nevada,2069,4
+Nevada,2038,1
+Nevada,2047,3
+Nevada,2053,3
+Nevada,2069,2
 Nevada,2070,5
 Nevada,2093,2
 p49,2022,3
@@ -1711,15 +1695,19 @@ p38,2070,1
 p38,2074,1
 p38,2076,6
 p38,2099,2
-California,2027,1
-California,2028,2
-California,2029,4
+California,2025,1
+California,2027,4
+California,2028,4
+California,2029,5
 California,2030,7
-California,2038,2
-California,2047,1
-California,2053,1
+California,2038,3
+California,2047,2
+California,2053,3
+California,2058,1
 California,2069,3
-California,2070,3
+California,2070,4
+California,2087,1
+California,2093,1
 p87,2022,3
 p87,2023,5
 p87,2024,1
@@ -1804,24 +1792,25 @@ p130,2061,1
 p130,2074,1
 p130,2095,1
 Washington,2020,4
-Washington,2022,2
+Washington,2022,1
 Washington,2023,4
-Washington,2025,9
+Washington,2025,8
 Washington,2029,3
-Washington,2030,7
-Washington,2033,1
-Washington,2036,6
-Washington,2044,3
+Washington,2030,8
+Washington,2036,1
+Washington,2038,2
+Washington,2044,2
 Washington,2048,1
 Washington,2050,1
+Washington,2051,1
+Washington,2060,1
 Washington,2062,1
-Washington,2063,2
+Washington,2063,4
 Washington,2065,2
 Washington,2069,3
 Washington,2070,5
 Washington,2076,1
-Washington,2084,1
-Washington,2088,1
+Washington,2090,1
 p28,2025,2
 p28,2027,1
 p28,2028,3
@@ -1917,31 +1906,27 @@ p48,2029,2
 p48,2051,2
 p48,2069,1
 p48,2091,1
-Nebraska,2020,1
 Nebraska,2021,1
-Nebraska,2022,9
+Nebraska,2022,10
 Nebraska,2023,11
 Nebraska,2024,3
-Nebraska,2025,6
-Nebraska,2028,2
-Nebraska,2029,6
+Nebraska,2025,4
+Nebraska,2028,1
+Nebraska,2029,4
 Nebraska,2030,3
 Nebraska,2033,2
-Nebraska,2034,1
+Nebraska,2034,2
 Nebraska,2036,6
 Nebraska,2037,1
-Nebraska,2050,1
-Nebraska,2057,1
+Nebraska,2050,3
 Nebraska,2058,1
-Nebraska,2059,1
-Nebraska,2061,1
 Nebraska,2062,1
-Nebraska,2063,7
+Nebraska,2063,6
 Nebraska,2065,1
-Nebraska,2069,4
-Nebraska,2070,3
-Nebraska,2074,1
+Nebraska,2069,2
+Nebraska,2070,2
 Nebraska,2076,4
+Nebraska,2090,1
 p58,2020,1
 p58,2022,4
 p58,2023,5
@@ -1980,32 +1965,20 @@ p9,2069,3
 p9,2070,5
 Kansas,2020,1
 Kansas,2021,1
-Kansas,2022,5
-Kansas,2023,6
-Kansas,2024,4
-Kansas,2025,6
-Kansas,2028,2
-Kansas,2029,7
-Kansas,2030,3
-Kansas,2033,1
-Kansas,2034,1
-Kansas,2036,5
+Kansas,2022,3
+Kansas,2023,5
+Kansas,2025,4
+Kansas,2029,2
+Kansas,2036,4
 Kansas,2041,1
 Kansas,2050,1
-Kansas,2051,3
-Kansas,2054,2
-Kansas,2056,1
-Kansas,2060,1
-Kansas,2061,1
-Kansas,2062,2
-Kansas,2063,5
-Kansas,2064,1
+Kansas,2051,2
+Kansas,2054,1
+Kansas,2062,1
+Kansas,2063,4
+Kansas,2065,1
 Kansas,2069,2
-Kansas,2070,2
-Kansas,2076,3
-Kansas,2091,2
-Kansas,2094,1
-Kansas,2096,1
+Kansas,2076,1
 p68,2022,6
 p68,2023,5
 p68,2024,1
@@ -2036,32 +2009,27 @@ p78,2076,4
 p78,2089,1
 p78,2099,2
 South Dakota,2021,1
-South Dakota,2022,10
+South Dakota,2022,8
 South Dakota,2023,9
 South Dakota,2024,2
-South Dakota,2025,6
+South Dakota,2025,5
 South Dakota,2028,2
-South Dakota,2029,6
-South Dakota,2030,5
-South Dakota,2033,1
+South Dakota,2029,3
+South Dakota,2030,3
 South Dakota,2034,3
 South Dakota,2036,9
-South Dakota,2037,3
-South Dakota,2050,1
+South Dakota,2037,2
+South Dakota,2049,1
 South Dakota,2051,1
-South Dakota,2054,2
+South Dakota,2054,1
 South Dakota,2056,1
-South Dakota,2057,1
-South Dakota,2059,1
-South Dakota,2062,4
+South Dakota,2059,2
+South Dakota,2062,3
 South Dakota,2063,6
-South Dakota,2065,1
-South Dakota,2069,3
-South Dakota,2070,4
+South Dakota,2069,1
+South Dakota,2070,1
 South Dakota,2074,1
-South Dakota,2076,8
-South Dakota,2096,1
-South Dakota,2097,1
+South Dakota,2076,6
 South Dakota,2099,1
 p102,2020,1
 p102,2021,2
@@ -2132,10 +2100,11 @@ p112,2074,2
 p112,2079,1
 p112,2094,2
 New Mexico,2025,2
-New Mexico,2029,1
+New Mexico,2030,2
 New Mexico,2036,1
 New Mexico,2051,4
-New Mexico,2091,3
+New Mexico,2065,2
+New Mexico,2091,2
 p122,2020,2
 p122,2021,3
 p122,2022,4
@@ -2308,7 +2277,7 @@ p92,2076,2
 p92,2094,2
 p92,2095,2
 p92,2098,1
-Iowa,2022,4
+Iowa,2022,5
 Iowa,2023,5
 Iowa,2024,1
 Iowa,2025,1
@@ -2322,20 +2291,24 @@ Louisiana,2020,1
 Louisiana,2022,4
 Louisiana,2023,5
 Louisiana,2024,1
-Louisiana,2025,4
+Louisiana,2025,5
+Louisiana,2028,1
 Louisiana,2029,4
 Louisiana,2034,1
 Louisiana,2036,5
-Louisiana,2037,2
+Louisiana,2037,1
+Louisiana,2043,1
 Louisiana,2050,3
-Louisiana,2054,3
-Louisiana,2055,2
-Louisiana,2058,5
+Louisiana,2054,4
+Louisiana,2055,1
+Louisiana,2057,1
+Louisiana,2058,4
 Louisiana,2062,2
 Louisiana,2063,4
-Louisiana,2065,3
+Louisiana,2065,2
 Louisiana,2069,3
 Louisiana,2076,3
+Louisiana,2090,1
 Louisiana,2094,2
 Louisiana,2095,1
 Louisiana,2098,3
@@ -2419,40 +2392,48 @@ p134,2055,1
 p134,2061,1
 p134,2062,1
 Pennsylvania,2020,1
-Pennsylvania,2021,1
+Pennsylvania,2021,2
 Pennsylvania,2022,4
 Pennsylvania,2023,2
-Pennsylvania,2024,2
-Pennsylvania,2025,2
-Pennsylvania,2034,6
-Pennsylvania,2054,2
-Pennsylvania,2055,4
+Pennsylvania,2024,3
+Pennsylvania,2025,1
+Pennsylvania,2027,3
+Pennsylvania,2033,1
+Pennsylvania,2034,4
+Pennsylvania,2036,1
+Pennsylvania,2045,1
+Pennsylvania,2049,1
+Pennsylvania,2051,1
+Pennsylvania,2054,1
+Pennsylvania,2055,3
+Pennsylvania,2056,1
+Pennsylvania,2058,1
 Pennsylvania,2059,1
+Pennsylvania,2061,1
 Pennsylvania,2062,3
 Pennsylvania,2065,1
-Pennsylvania,2074,2
+Pennsylvania,2074,3
 Pennsylvania,2094,1
-Pennsylvania,2095,1
-Colorado,2022,2
-Colorado,2023,2
+Colorado,2022,3
+Colorado,2023,3
 Colorado,2024,1
 Colorado,2025,3
 Colorado,2029,5
 Colorado,2030,3
-Colorado,2036,3
+Colorado,2036,2
 Colorado,2037,2
-Colorado,2045,1
+Colorado,2038,1
 Colorado,2049,1
-Colorado,2051,5
+Colorado,2051,3
 Colorado,2054,4
 Colorado,2062,1
 Colorado,2063,1
 Colorado,2064,1
 Colorado,2065,3
-Colorado,2069,3
+Colorado,2069,2
 Colorado,2070,3
-Colorado,2091,2
-Colorado,2094,2
+Colorado,2091,3
+Colorado,2094,4
 p84,2020,1
 p84,2021,1
 p84,2022,4
@@ -2623,31 +2604,33 @@ p113,2074,2
 p113,2084,1
 p113,2094,1
 Maryland,2020,1
-Maryland,2021,1
-Maryland,2022,6
+Maryland,2021,2
+Maryland,2022,5
 Maryland,2023,2
 Maryland,2024,3
-Maryland,2025,3
-Maryland,2027,3
+Maryland,2025,2
+Maryland,2027,4
 Maryland,2028,1
-Maryland,2029,1
+Maryland,2029,2
 Maryland,2033,1
-Maryland,2034,5
-Maryland,2036,3
+Maryland,2034,4
+Maryland,2036,4
 Maryland,2037,1
+Maryland,2045,1
+Maryland,2049,1
 Maryland,2054,2
 Maryland,2055,4
+Maryland,2056,1
 Maryland,2058,1
 Maryland,2059,1
 Maryland,2062,3
-Maryland,2063,1
 Maryland,2065,1
-Maryland,2067,1
+Maryland,2067,2
 Maryland,2074,2
 Maryland,2076,1
 Maryland,2094,1
 Maryland,2095,1
-Maryland,2099,1
+Maryland,2098,1
 Maine,2020,2
 Maine,2021,3
 Maine,2022,2
@@ -2661,24 +2644,27 @@ Maine,2061,1
 Maine,2062,1
 Ohio,2021,1
 Ohio,2022,5
-Ohio,2023,1
 Ohio,2024,1
 Ohio,2025,2
 Ohio,2029,1
 Ohio,2034,2
 Ohio,2039,1
-Ohio,2044,1
-Ohio,2054,4
-Ohio,2055,1
+Ohio,2049,1
+Ohio,2054,5
+Ohio,2055,3
 Ohio,2062,1
+Ohio,2064,1
 Ohio,2074,2
-Ohio,2094,1
-Michigan,2021,1
+Ohio,2094,2
+Ohio,2095,1
 Michigan,2022,1
 Michigan,2024,1
 Michigan,2034,1
-Michigan,2055,1
+Michigan,2049,1
+Michigan,2051,1
+Michigan,2055,2
 Michigan,2062,1
+Michigan,2074,1
 p66,2020,1
 p66,2021,1
 p66,2022,3
@@ -2732,16 +2718,17 @@ p71,2076,2
 p71,2094,2
 New York,2020,2
 New York,2021,5
-New York,2022,5
+New York,2022,6
 New York,2024,2
 New York,2025,1
+New York,2026,1
 New York,2027,3
 New York,2028,1
-New York,2034,6
+New York,2034,7
 New York,2035,2
 New York,2036,2
-New York,2043,1
-New York,2044,3
+New York,2043,2
+New York,2044,2
 New York,2045,2
 New York,2047,1
 New York,2049,1
@@ -2773,29 +2760,29 @@ New Hampshire,2056,1
 New Hampshire,2061,1
 New Hampshire,2074,1
 New Hampshire,2095,1
+Arkansas,2020,1
 Arkansas,2021,1
-Arkansas,2022,3
+Arkansas,2022,4
 Arkansas,2023,5
 Arkansas,2024,2
 Arkansas,2025,6
 Arkansas,2026,1
-Arkansas,2028,2
+Arkansas,2028,4
 Arkansas,2029,4
-Arkansas,2034,1
+Arkansas,2034,2
 Arkansas,2036,3
 Arkansas,2037,4
-Arkansas,2040,2
+Arkansas,2040,3
 Arkansas,2041,1
 Arkansas,2044,1
 Arkansas,2050,2
-Arkansas,2051,2
-Arkansas,2054,3
-Arkansas,2055,1
-Arkansas,2058,3
-Arkansas,2061,1
-Arkansas,2062,2
+Arkansas,2051,1
+Arkansas,2054,5
+Arkansas,2055,2
+Arkansas,2058,4
+Arkansas,2062,3
 Arkansas,2063,4
-Arkansas,2065,2
+Arkansas,2065,3
 Arkansas,2069,2
 Arkansas,2076,3
 Arkansas,2090,1
@@ -2950,23 +2937,20 @@ p129,2061,2
 p129,2062,2
 p129,2074,2
 Oregon,2020,4
-Oregon,2022,2
+Oregon,2022,1
 Oregon,2023,4
-Oregon,2025,1
-Oregon,2029,6
+Oregon,2025,2
+Oregon,2029,4
 Oregon,2030,7
-Oregon,2038,3
+Oregon,2038,2
 Oregon,2051,1
 Oregon,2053,1
-Oregon,2057,1
 Oregon,2060,2
-Oregon,2062,1
-Oregon,2063,2
-Oregon,2069,3
+Oregon,2063,4
+Oregon,2069,4
 Oregon,2070,4
 Oregon,2078,1
 Oregon,2093,1
-Oregon,2097,1
 p89,2020,1
 p89,2021,1
 p89,2022,3
@@ -3042,7 +3026,7 @@ North Carolina,2023,3
 North Carolina,2025,5
 North Carolina,2026,1
 North Carolina,2027,1
-North Carolina,2029,5
+North Carolina,2029,4
 North Carolina,2034,3
 North Carolina,2035,1
 North Carolina,2036,4
@@ -3174,7 +3158,7 @@ p11,2069,2
 p11,2070,3
 p11,2087,2
 p11,2093,1
-Utah,2022,1
+Utah,2022,2
 Utah,2024,1
 Utah,2025,1
 Utah,2029,3
