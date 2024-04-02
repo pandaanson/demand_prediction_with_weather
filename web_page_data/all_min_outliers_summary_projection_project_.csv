@@ -1,39 +1,39 @@
 region,Year,number_of_days
 New York,2095,1
-New York,2096,2
-New York,2097,5
-New York,2098,9
-New York,2099,23
+New York,2096,1
+New York,2097,1
+New York,2098,1
+New York,2099,1
 Wisconsin,2070,3
-Wisconsin,2071,8
-Wisconsin,2072,24
-Wisconsin,2073,27
-Wisconsin,2074,37
-Wisconsin,2075,43
-Wisconsin,2076,45
-Wisconsin,2077,49
-Wisconsin,2078,55
-Wisconsin,2079,59
-Wisconsin,2080,59
-Wisconsin,2081,69
-Wisconsin,2082,69
-Wisconsin,2083,74
-Wisconsin,2084,80
-Wisconsin,2085,83
-Wisconsin,2086,86
-Wisconsin,2087,89
-Wisconsin,2088,91
-Wisconsin,2089,91
-Wisconsin,2090,94
-Wisconsin,2091,96
-Wisconsin,2092,98
-Wisconsin,2093,101
-Wisconsin,2094,103
-Wisconsin,2095,104
-Wisconsin,2096,106
-Wisconsin,2097,110
-Wisconsin,2098,110
-Wisconsin,2099,113
+Wisconsin,2071,3
+Wisconsin,2072,3
+Wisconsin,2073,3
+Wisconsin,2074,3
+Wisconsin,2075,3
+Wisconsin,2076,3
+Wisconsin,2077,3
+Wisconsin,2078,3
+Wisconsin,2079,3
+Wisconsin,2080,3
+Wisconsin,2081,3
+Wisconsin,2082,3
+Wisconsin,2083,3
+Wisconsin,2084,3
+Wisconsin,2085,3
+Wisconsin,2086,3
+Wisconsin,2087,3
+Wisconsin,2088,3
+Wisconsin,2089,3
+Wisconsin,2090,3
+Wisconsin,2091,3
+Wisconsin,2092,3
+Wisconsin,2093,3
+Wisconsin,2094,3
+Wisconsin,2095,3
+Wisconsin,2096,3
+Wisconsin,2097,3
+Wisconsin,2098,3
+Wisconsin,2099,3
 p25,2020,1
 p25,2021,1
 p25,2022,1
@@ -275,51 +275,51 @@ p17,2097,1
 p17,2098,1
 p17,2099,1
 Minnesota,2054,2
-Minnesota,2055,9
-Minnesota,2056,22
-Minnesota,2057,34
-Minnesota,2058,47
-Minnesota,2059,55
-Minnesota,2060,64
-Minnesota,2061,71
-Minnesota,2062,75
-Minnesota,2063,80
-Minnesota,2064,84
-Minnesota,2065,86
-Minnesota,2066,90
-Minnesota,2067,92
-Minnesota,2068,93
-Minnesota,2069,97
-Minnesota,2070,100
-Minnesota,2071,103
-Minnesota,2072,108
-Minnesota,2073,106
-Minnesota,2074,108
-Minnesota,2075,114
-Minnesota,2076,116
-Minnesota,2077,119
-Minnesota,2078,122
-Minnesota,2079,124
-Minnesota,2080,129
-Minnesota,2081,131
-Minnesota,2082,137
-Minnesota,2083,140
-Minnesota,2084,146
-Minnesota,2085,149
-Minnesota,2086,153
-Minnesota,2087,156
-Minnesota,2088,161
-Minnesota,2089,166
-Minnesota,2090,171
-Minnesota,2091,174
-Minnesota,2092,177
-Minnesota,2093,180
-Minnesota,2094,183
-Minnesota,2095,188
-Minnesota,2096,191
-Minnesota,2097,198
-Minnesota,2098,201
-Minnesota,2099,205
+Minnesota,2055,2
+Minnesota,2056,2
+Minnesota,2057,2
+Minnesota,2058,2
+Minnesota,2059,2
+Minnesota,2060,2
+Minnesota,2061,2
+Minnesota,2062,2
+Minnesota,2063,2
+Minnesota,2064,2
+Minnesota,2065,2
+Minnesota,2066,2
+Minnesota,2067,2
+Minnesota,2068,2
+Minnesota,2069,2
+Minnesota,2070,2
+Minnesota,2071,2
+Minnesota,2072,2
+Minnesota,2073,2
+Minnesota,2074,2
+Minnesota,2075,2
+Minnesota,2076,2
+Minnesota,2077,2
+Minnesota,2078,2
+Minnesota,2079,2
+Minnesota,2080,2
+Minnesota,2081,2
+Minnesota,2082,2
+Minnesota,2083,2
+Minnesota,2084,2
+Minnesota,2085,2
+Minnesota,2086,2
+Minnesota,2087,2
+Minnesota,2088,2
+Minnesota,2089,2
+Minnesota,2090,2
+Minnesota,2091,2
+Minnesota,2092,2
+Minnesota,2093,2
+Minnesota,2094,2
+Minnesota,2095,2
+Minnesota,2096,2
+Minnesota,2097,2
+Minnesota,2098,2
+Minnesota,2099,2
 p101,2020,6
 p101,2021,6
 p101,2022,6
@@ -1201,131 +1201,131 @@ p20,2097,2
 p20,2098,2
 p20,2099,2
 Nebraska,2036,2
-Nebraska,2037,18
-Nebraska,2038,40
-Nebraska,2039,63
-Nebraska,2040,70
-Nebraska,2041,78
-Nebraska,2042,87
-Nebraska,2043,90
-Nebraska,2044,98
-Nebraska,2045,100
-Nebraska,2046,106
-Nebraska,2047,111
-Nebraska,2048,115
-Nebraska,2049,119
-Nebraska,2050,126
-Nebraska,2051,129
-Nebraska,2052,138
-Nebraska,2053,141
-Nebraska,2054,152
-Nebraska,2055,165
-Nebraska,2056,178
-Nebraska,2057,181
-Nebraska,2058,188
-Nebraska,2059,195
-Nebraska,2060,199
-Nebraska,2061,206
-Nebraska,2062,215
-Nebraska,2063,222
-Nebraska,2064,227
-Nebraska,2065,236
-Nebraska,2066,240
-Nebraska,2067,250
-Nebraska,2068,256
-Nebraska,2069,265
-Nebraska,2070,269
-Nebraska,2071,278
-Nebraska,2072,293
-Nebraska,2073,315
-Nebraska,2074,327
-Nebraska,2075,354
-Nebraska,2076,365
-Nebraska,2077,365
-Nebraska,2078,365
-Nebraska,2079,365
-Nebraska,2080,366
-Nebraska,2081,365
-Nebraska,2082,365
-Nebraska,2083,365
-Nebraska,2084,366
-Nebraska,2085,365
-Nebraska,2086,365
-Nebraska,2087,365
-Nebraska,2088,366
-Nebraska,2089,365
-Nebraska,2090,365
-Nebraska,2091,365
-Nebraska,2092,366
-Nebraska,2093,365
-Nebraska,2094,365
-Nebraska,2095,365
-Nebraska,2096,366
-Nebraska,2097,365
-Nebraska,2098,365
-Nebraska,2099,365
+Nebraska,2037,2
+Nebraska,2038,2
+Nebraska,2039,2
+Nebraska,2040,2
+Nebraska,2041,2
+Nebraska,2042,2
+Nebraska,2043,2
+Nebraska,2044,2
+Nebraska,2045,2
+Nebraska,2046,2
+Nebraska,2047,2
+Nebraska,2048,2
+Nebraska,2049,2
+Nebraska,2050,2
+Nebraska,2051,2
+Nebraska,2052,2
+Nebraska,2053,2
+Nebraska,2054,2
+Nebraska,2055,2
+Nebraska,2056,2
+Nebraska,2057,2
+Nebraska,2058,2
+Nebraska,2059,2
+Nebraska,2060,2
+Nebraska,2061,2
+Nebraska,2062,2
+Nebraska,2063,2
+Nebraska,2064,2
+Nebraska,2065,2
+Nebraska,2066,2
+Nebraska,2067,2
+Nebraska,2068,2
+Nebraska,2069,2
+Nebraska,2070,2
+Nebraska,2071,2
+Nebraska,2072,2
+Nebraska,2073,2
+Nebraska,2074,2
+Nebraska,2075,2
+Nebraska,2076,2
+Nebraska,2077,2
+Nebraska,2078,2
+Nebraska,2079,2
+Nebraska,2080,2
+Nebraska,2081,2
+Nebraska,2082,2
+Nebraska,2083,2
+Nebraska,2084,2
+Nebraska,2085,2
+Nebraska,2086,2
+Nebraska,2087,2
+Nebraska,2088,2
+Nebraska,2089,2
+Nebraska,2090,2
+Nebraska,2091,2
+Nebraska,2092,2
+Nebraska,2093,2
+Nebraska,2094,2
+Nebraska,2095,2
+Nebraska,2096,2
+Nebraska,2097,2
+Nebraska,2098,2
+Nebraska,2099,2
 North Dakota,2038,44
-North Dakota,2039,65
-North Dakota,2040,71
-North Dakota,2041,79
-North Dakota,2042,84
-North Dakota,2043,89
-North Dakota,2044,93
-North Dakota,2045,99
-North Dakota,2046,101
-North Dakota,2047,107
-North Dakota,2048,111
-North Dakota,2049,113
-North Dakota,2050,120
-North Dakota,2051,126
-North Dakota,2052,132
-North Dakota,2053,138
-North Dakota,2054,145
-North Dakota,2055,152
-North Dakota,2056,157
-North Dakota,2057,163
-North Dakota,2058,167
-North Dakota,2059,171
-North Dakota,2060,179
-North Dakota,2061,184
-North Dakota,2062,189
-North Dakota,2063,194
-North Dakota,2064,202
-North Dakota,2065,206
-North Dakota,2066,213
-North Dakota,2067,216
-North Dakota,2068,225
-North Dakota,2069,230
-North Dakota,2070,238
-North Dakota,2071,245
-North Dakota,2072,253
-North Dakota,2073,259
-North Dakota,2074,267
-North Dakota,2075,281
-North Dakota,2076,292
-North Dakota,2077,301
-North Dakota,2078,311
-North Dakota,2079,336
-North Dakota,2080,364
-North Dakota,2081,365
-North Dakota,2082,365
-North Dakota,2083,365
-North Dakota,2084,366
-North Dakota,2085,365
-North Dakota,2086,365
-North Dakota,2087,365
-North Dakota,2088,366
-North Dakota,2089,365
-North Dakota,2090,365
-North Dakota,2091,365
-North Dakota,2092,366
-North Dakota,2093,365
-North Dakota,2094,365
-North Dakota,2095,365
-North Dakota,2096,366
-North Dakota,2097,365
-North Dakota,2098,365
-North Dakota,2099,365
+North Dakota,2039,44
+North Dakota,2040,44
+North Dakota,2041,44
+North Dakota,2042,44
+North Dakota,2043,44
+North Dakota,2044,44
+North Dakota,2045,44
+North Dakota,2046,44
+North Dakota,2047,44
+North Dakota,2048,44
+North Dakota,2049,44
+North Dakota,2050,44
+North Dakota,2051,44
+North Dakota,2052,44
+North Dakota,2053,44
+North Dakota,2054,44
+North Dakota,2055,44
+North Dakota,2056,44
+North Dakota,2057,44
+North Dakota,2058,44
+North Dakota,2059,44
+North Dakota,2060,44
+North Dakota,2061,44
+North Dakota,2062,44
+North Dakota,2063,44
+North Dakota,2064,44
+North Dakota,2065,44
+North Dakota,2066,44
+North Dakota,2067,44
+North Dakota,2068,44
+North Dakota,2069,44
+North Dakota,2070,44
+North Dakota,2071,44
+North Dakota,2072,44
+North Dakota,2073,44
+North Dakota,2074,44
+North Dakota,2075,44
+North Dakota,2076,44
+North Dakota,2077,44
+North Dakota,2078,44
+North Dakota,2079,44
+North Dakota,2080,44
+North Dakota,2081,44
+North Dakota,2082,44
+North Dakota,2083,44
+North Dakota,2084,44
+North Dakota,2085,44
+North Dakota,2086,44
+North Dakota,2087,44
+North Dakota,2088,44
+North Dakota,2089,44
+North Dakota,2090,44
+North Dakota,2091,44
+North Dakota,2092,44
+North Dakota,2093,44
+North Dakota,2094,44
+North Dakota,2095,44
+North Dakota,2096,44
+North Dakota,2097,44
+North Dakota,2098,44
+North Dakota,2099,44
 p12,2020,3
 p12,2021,3
 p12,2022,3
@@ -1807,73 +1807,73 @@ p109,2097,2
 p109,2098,2
 p109,2099,2
 Wyoming,2032,3
-Wyoming,2033,11
-Wyoming,2034,24
-Wyoming,2035,41
-Wyoming,2036,81
-Wyoming,2037,89
-Wyoming,2038,98
-Wyoming,2039,105
-Wyoming,2040,111
-Wyoming,2041,116
-Wyoming,2042,123
-Wyoming,2043,131
-Wyoming,2044,145
-Wyoming,2045,164
-Wyoming,2046,169
-Wyoming,2047,180
-Wyoming,2048,191
-Wyoming,2049,199
-Wyoming,2050,210
-Wyoming,2051,215
-Wyoming,2052,222
-Wyoming,2053,230
-Wyoming,2054,238
-Wyoming,2055,244
-Wyoming,2056,249
-Wyoming,2057,256
-Wyoming,2058,261
-Wyoming,2059,268
-Wyoming,2060,281
-Wyoming,2061,288
-Wyoming,2062,299
-Wyoming,2063,308
-Wyoming,2064,318
-Wyoming,2065,337
-Wyoming,2066,352
-Wyoming,2067,365
-Wyoming,2068,366
-Wyoming,2069,365
-Wyoming,2070,365
-Wyoming,2071,365
-Wyoming,2072,366
-Wyoming,2073,365
-Wyoming,2074,365
-Wyoming,2075,365
-Wyoming,2076,366
-Wyoming,2077,365
-Wyoming,2078,365
-Wyoming,2079,365
-Wyoming,2080,366
-Wyoming,2081,365
-Wyoming,2082,365
-Wyoming,2083,365
-Wyoming,2084,366
-Wyoming,2085,365
-Wyoming,2086,365
-Wyoming,2087,365
-Wyoming,2088,366
-Wyoming,2089,365
-Wyoming,2090,365
-Wyoming,2091,365
-Wyoming,2092,366
-Wyoming,2093,365
-Wyoming,2094,365
-Wyoming,2095,365
-Wyoming,2096,366
-Wyoming,2097,365
-Wyoming,2098,365
-Wyoming,2099,365
+Wyoming,2033,3
+Wyoming,2034,3
+Wyoming,2035,3
+Wyoming,2036,3
+Wyoming,2037,3
+Wyoming,2038,3
+Wyoming,2039,3
+Wyoming,2040,3
+Wyoming,2041,3
+Wyoming,2042,3
+Wyoming,2043,3
+Wyoming,2044,3
+Wyoming,2045,3
+Wyoming,2046,3
+Wyoming,2047,3
+Wyoming,2048,3
+Wyoming,2049,3
+Wyoming,2050,3
+Wyoming,2051,3
+Wyoming,2052,3
+Wyoming,2053,3
+Wyoming,2054,3
+Wyoming,2055,3
+Wyoming,2056,3
+Wyoming,2057,3
+Wyoming,2058,3
+Wyoming,2059,3
+Wyoming,2060,3
+Wyoming,2061,3
+Wyoming,2062,3
+Wyoming,2063,3
+Wyoming,2064,3
+Wyoming,2065,3
+Wyoming,2066,3
+Wyoming,2067,3
+Wyoming,2068,3
+Wyoming,2069,3
+Wyoming,2070,3
+Wyoming,2071,3
+Wyoming,2072,3
+Wyoming,2073,3
+Wyoming,2074,3
+Wyoming,2075,3
+Wyoming,2076,3
+Wyoming,2077,3
+Wyoming,2078,3
+Wyoming,2079,3
+Wyoming,2080,3
+Wyoming,2081,3
+Wyoming,2082,3
+Wyoming,2083,3
+Wyoming,2084,3
+Wyoming,2085,3
+Wyoming,2086,3
+Wyoming,2087,3
+Wyoming,2088,3
+Wyoming,2089,3
+Wyoming,2090,3
+Wyoming,2091,3
+Wyoming,2092,3
+Wyoming,2093,3
+Wyoming,2094,3
+Wyoming,2095,3
+Wyoming,2096,3
+Wyoming,2097,3
+Wyoming,2098,3
+Wyoming,2099,3
 p63,2020,2
 p63,2021,2
 p63,2022,2
@@ -2115,62 +2115,62 @@ p84,2097,3
 p84,2098,3
 p84,2099,3
 New Mexico,2043,7
-New Mexico,2044,20
-New Mexico,2045,24
-New Mexico,2046,30
-New Mexico,2047,39
-New Mexico,2048,46
-New Mexico,2049,57
-New Mexico,2050,63
-New Mexico,2051,73
-New Mexico,2052,80
-New Mexico,2053,85
-New Mexico,2054,95
-New Mexico,2055,96
-New Mexico,2056,103
-New Mexico,2057,109
-New Mexico,2058,111
-New Mexico,2059,115
-New Mexico,2060,121
-New Mexico,2061,124
-New Mexico,2062,127
-New Mexico,2063,132
-New Mexico,2064,137
-New Mexico,2065,141
-New Mexico,2066,148
-New Mexico,2067,156
-New Mexico,2068,162
-New Mexico,2069,172
-New Mexico,2070,176
-New Mexico,2071,184
-New Mexico,2072,187
-New Mexico,2073,193
-New Mexico,2074,200
-New Mexico,2075,201
-New Mexico,2076,207
-New Mexico,2077,214
-New Mexico,2078,217
-New Mexico,2079,224
-New Mexico,2080,231
-New Mexico,2081,234
-New Mexico,2082,238
-New Mexico,2083,242
-New Mexico,2084,248
-New Mexico,2085,250
-New Mexico,2086,254
-New Mexico,2087,259
-New Mexico,2088,265
-New Mexico,2089,268
-New Mexico,2090,275
-New Mexico,2091,280
-New Mexico,2092,286
-New Mexico,2093,291
-New Mexico,2094,295
-New Mexico,2095,306
-New Mexico,2096,346
-New Mexico,2097,365
-New Mexico,2098,365
-New Mexico,2099,365
+New Mexico,2044,7
+New Mexico,2045,7
+New Mexico,2046,7
+New Mexico,2047,7
+New Mexico,2048,7
+New Mexico,2049,7
+New Mexico,2050,7
+New Mexico,2051,7
+New Mexico,2052,7
+New Mexico,2053,7
+New Mexico,2054,7
+New Mexico,2055,7
+New Mexico,2056,7
+New Mexico,2057,7
+New Mexico,2058,7
+New Mexico,2059,7
+New Mexico,2060,7
+New Mexico,2061,7
+New Mexico,2062,7
+New Mexico,2063,7
+New Mexico,2064,7
+New Mexico,2065,7
+New Mexico,2066,7
+New Mexico,2067,7
+New Mexico,2068,7
+New Mexico,2069,7
+New Mexico,2070,7
+New Mexico,2071,7
+New Mexico,2072,7
+New Mexico,2073,7
+New Mexico,2074,7
+New Mexico,2075,7
+New Mexico,2076,7
+New Mexico,2077,7
+New Mexico,2078,7
+New Mexico,2079,7
+New Mexico,2080,7
+New Mexico,2081,7
+New Mexico,2082,7
+New Mexico,2083,7
+New Mexico,2084,7
+New Mexico,2085,7
+New Mexico,2086,7
+New Mexico,2087,7
+New Mexico,2088,7
+New Mexico,2089,7
+New Mexico,2090,7
+New Mexico,2091,7
+New Mexico,2092,7
+New Mexico,2093,7
+New Mexico,2094,7
+New Mexico,2095,7
+New Mexico,2096,7
+New Mexico,2097,7
+New Mexico,2098,7
+New Mexico,2099,7
 p123,2020,2
 p123,2021,2
 p123,2022,2
@@ -2332,73 +2332,73 @@ p91,2097,5
 p91,2098,5
 p91,2099,5
 California,2032,3
-California,2033,17
-California,2034,25
-California,2035,38
-California,2036,65
-California,2037,93
-California,2038,104
-California,2039,112
-California,2040,122
-California,2041,141
-California,2042,156
-California,2043,163
-California,2044,169
-California,2045,175
-California,2046,183
-California,2047,207
-California,2048,221
-California,2049,233
-California,2050,242
-California,2051,249
-California,2052,257
-California,2053,262
-California,2054,267
-California,2055,278
-California,2056,288
-California,2057,296
-California,2058,326
-California,2059,365
-California,2060,366
-California,2061,365
-California,2062,365
-California,2063,365
-California,2064,366
-California,2065,365
-California,2066,365
-California,2067,365
-California,2068,366
-California,2069,365
-California,2070,365
-California,2071,365
-California,2072,366
-California,2073,365
-California,2074,365
-California,2075,365
-California,2076,366
-California,2077,365
-California,2078,365
-California,2079,365
-California,2080,366
-California,2081,365
-California,2082,365
-California,2083,365
-California,2084,366
-California,2085,365
-California,2086,365
-California,2087,365
-California,2088,366
-California,2089,365
-California,2090,365
-California,2091,365
-California,2092,366
-California,2093,365
-California,2094,365
-California,2095,365
-California,2096,366
-California,2097,365
-California,2098,365
-California,2099,365
+California,2033,3
+California,2034,3
+California,2035,3
+California,2036,3
+California,2037,3
+California,2038,3
+California,2039,3
+California,2040,3
+California,2041,3
+California,2042,3
+California,2043,3
+California,2044,3
+California,2045,3
+California,2046,3
+California,2047,3
+California,2048,3
+California,2049,3
+California,2050,3
+California,2051,3
+California,2052,3
+California,2053,3
+California,2054,3
+California,2055,3
+California,2056,3
+California,2057,3
+California,2058,3
+California,2059,3
+California,2060,3
+California,2061,3
+California,2062,3
+California,2063,3
+California,2064,3
+California,2065,3
+California,2066,3
+California,2067,3
+California,2068,3
+California,2069,3
+California,2070,3
+California,2071,3
+California,2072,3
+California,2073,3
+California,2074,3
+California,2075,3
+California,2076,3
+California,2077,3
+California,2078,3
+California,2079,3
+California,2080,3
+California,2081,3
+California,2082,3
+California,2083,3
+California,2084,3
+California,2085,3
+California,2086,3
+California,2087,3
+California,2088,3
+California,2089,3
+California,2090,3
+California,2091,3
+California,2092,3
+California,2093,3
+California,2094,3
+California,2095,3
+California,2096,3
+California,2097,3
+California,2098,3
+California,2099,3
 p37,2020,1
 p37,2021,1
 p37,2022,1
@@ -2480,53 +2480,53 @@ p37,2097,1
 p37,2098,1
 p37,2099,1
 Kansas,2052,7
-Kansas,2053,19
-Kansas,2054,26
-Kansas,2055,29
-Kansas,2056,45
-Kansas,2057,61
-Kansas,2058,71
-Kansas,2059,75
-Kansas,2060,77
-Kansas,2061,84
-Kansas,2062,85
-Kansas,2063,92
-Kansas,2064,97
-Kansas,2065,97
-Kansas,2066,103
-Kansas,2067,104
-Kansas,2068,106
-Kansas,2069,111
-Kansas,2070,113
-Kansas,2071,120
-Kansas,2072,122
-Kansas,2073,124
-Kansas,2074,129
-Kansas,2075,130
-Kansas,2076,136
-Kansas,2077,140
-Kansas,2078,146
-Kansas,2079,152
-Kansas,2080,161
-Kansas,2081,168
-Kansas,2082,174
-Kansas,2083,176
-Kansas,2084,183
-Kansas,2085,187
-Kansas,2086,192
-Kansas,2087,194
-Kansas,2088,199
-Kansas,2089,204
-Kansas,2090,206
-Kansas,2091,211
-Kansas,2092,217
-Kansas,2093,222
-Kansas,2094,225
-Kansas,2095,231
-Kansas,2096,236
-Kansas,2097,240
-Kansas,2098,242
-Kansas,2099,247
+Kansas,2053,7
+Kansas,2054,7
+Kansas,2055,7
+Kansas,2056,7
+Kansas,2057,7
+Kansas,2058,7
+Kansas,2059,7
+Kansas,2060,7
+Kansas,2061,7
+Kansas,2062,7
+Kansas,2063,7
+Kansas,2064,7
+Kansas,2065,7
+Kansas,2066,7
+Kansas,2067,7
+Kansas,2068,7
+Kansas,2069,7
+Kansas,2070,7
+Kansas,2071,7
+Kansas,2072,7
+Kansas,2073,7
+Kansas,2074,7
+Kansas,2075,7
+Kansas,2076,7
+Kansas,2077,7
+Kansas,2078,7
+Kansas,2079,7
+Kansas,2080,7
+Kansas,2081,7
+Kansas,2082,7
+Kansas,2083,7
+Kansas,2084,7
+Kansas,2085,7
+Kansas,2086,7
+Kansas,2087,7
+Kansas,2088,7
+Kansas,2089,7
+Kansas,2090,7
+Kansas,2091,7
+Kansas,2092,7
+Kansas,2093,7
+Kansas,2094,7
+Kansas,2095,7
+Kansas,2096,7
+Kansas,2097,7
+Kansas,2098,7
+Kansas,2099,7
 p10,2020,2
 p10,2021,2
 p10,2022,2
@@ -2608,54 +2608,54 @@ p10,2097,2
 p10,2098,2
 p10,2099,2
 Iowa,2051,12
-Iowa,2052,28
-Iowa,2053,46
-Iowa,2054,55
-Iowa,2055,60
-Iowa,2056,67
-Iowa,2057,70
-Iowa,2058,79
-Iowa,2059,82
-Iowa,2060,85
-Iowa,2061,91
-Iowa,2062,92
-Iowa,2063,98
-Iowa,2064,103
-Iowa,2065,103
-Iowa,2066,108
-Iowa,2067,110
-Iowa,2068,112
-Iowa,2069,115
-Iowa,2070,118
-Iowa,2071,120
-Iowa,2072,126
-Iowa,2073,130
-Iowa,2074,134
-Iowa,2075,138
-Iowa,2076,146
-Iowa,2077,148
-Iowa,2078,154
-Iowa,2079,163
-Iowa,2080,166
-Iowa,2081,172
-Iowa,2082,178
-Iowa,2083,182
-Iowa,2084,185
-Iowa,2085,190
-Iowa,2086,194
-Iowa,2087,199
-Iowa,2088,202
-Iowa,2089,208
-Iowa,2090,212
-Iowa,2091,216
-Iowa,2092,222
-Iowa,2093,225
-Iowa,2094,233
-Iowa,2095,236
-Iowa,2096,244
-Iowa,2097,251
-Iowa,2098,253
-Iowa,2099,262
+Iowa,2052,12
+Iowa,2053,12
+Iowa,2054,12
+Iowa,2055,12
+Iowa,2056,12
+Iowa,2057,12
+Iowa,2058,12
+Iowa,2059,12
+Iowa,2060,12
+Iowa,2061,12
+Iowa,2062,12
+Iowa,2063,12
+Iowa,2064,12
+Iowa,2065,12
+Iowa,2066,12
+Iowa,2067,12
+Iowa,2068,12
+Iowa,2069,12
+Iowa,2070,12
+Iowa,2071,12
+Iowa,2072,12
+Iowa,2073,12
+Iowa,2074,12
+Iowa,2075,12
+Iowa,2076,12
+Iowa,2077,12
+Iowa,2078,12
+Iowa,2079,12
+Iowa,2080,12
+Iowa,2081,12
+Iowa,2082,12
+Iowa,2083,12
+Iowa,2084,12
+Iowa,2085,12
+Iowa,2086,12
+Iowa,2087,12
+Iowa,2088,12
+Iowa,2089,12
+Iowa,2090,12
+Iowa,2091,12
+Iowa,2092,12
+Iowa,2093,12
+Iowa,2094,12
+Iowa,2095,12
+Iowa,2096,12
+Iowa,2097,12
+Iowa,2098,12
+Iowa,2099,12
 p53,2020,4
 p53,2021,4
 p53,2022,4
@@ -2817,99 +2817,99 @@ p8,2097,3
 p8,2098,3
 p8,2099,3
 Nevada,2029,11
-Nevada,2030,21
-Nevada,2031,38
-Nevada,2032,57
-Nevada,2033,68
-Nevada,2034,94
-Nevada,2035,102
-Nevada,2036,109
-Nevada,2037,116
-Nevada,2038,123
-Nevada,2039,129
-Nevada,2040,140
-Nevada,2041,161
-Nevada,2042,169
-Nevada,2043,179
-Nevada,2044,188
-Nevada,2045,196
-Nevada,2046,209
-Nevada,2047,224
-Nevada,2048,233
-Nevada,2049,238
-Nevada,2050,247
-Nevada,2051,254
-Nevada,2052,259
-Nevada,2053,265
-Nevada,2054,272
-Nevada,2055,280
-Nevada,2056,289
-Nevada,2057,299
-Nevada,2058,314
-Nevada,2059,337
-Nevada,2060,365
-Nevada,2061,365
-Nevada,2062,365
-Nevada,2063,365
-Nevada,2064,366
-Nevada,2065,365
-Nevada,2066,365
-Nevada,2067,365
-Nevada,2068,366
-Nevada,2069,365
-Nevada,2070,365
-Nevada,2071,365
-Nevada,2072,366
-Nevada,2073,365
-Nevada,2074,365
-Nevada,2075,365
-Nevada,2076,366
-Nevada,2077,365
-Nevada,2078,365
-Nevada,2079,365
-Nevada,2080,366
-Nevada,2081,365
-Nevada,2082,365
-Nevada,2083,365
-Nevada,2084,366
-Nevada,2085,365
-Nevada,2086,365
-Nevada,2087,365
-Nevada,2088,366
-Nevada,2089,365
-Nevada,2090,365
-Nevada,2091,365
-Nevada,2092,366
-Nevada,2093,365
-Nevada,2094,365
-Nevada,2095,365
-Nevada,2096,366
-Nevada,2097,365
-Nevada,2098,365
-Nevada,2099,365
+Nevada,2030,11
+Nevada,2031,11
+Nevada,2032,11
+Nevada,2033,11
+Nevada,2034,11
+Nevada,2035,11
+Nevada,2036,11
+Nevada,2037,11
+Nevada,2038,11
+Nevada,2039,11
+Nevada,2040,11
+Nevada,2041,11
+Nevada,2042,11
+Nevada,2043,11
+Nevada,2044,11
+Nevada,2045,11
+Nevada,2046,11
+Nevada,2047,11
+Nevada,2048,11
+Nevada,2049,11
+Nevada,2050,11
+Nevada,2051,11
+Nevada,2052,11
+Nevada,2053,11
+Nevada,2054,11
+Nevada,2055,11
+Nevada,2056,11
+Nevada,2057,11
+Nevada,2058,11
+Nevada,2059,11
+Nevada,2060,11
+Nevada,2061,11
+Nevada,2062,11
+Nevada,2063,11
+Nevada,2064,11
+Nevada,2065,11
+Nevada,2066,11
+Nevada,2067,11
+Nevada,2068,11
+Nevada,2069,11
+Nevada,2070,11
+Nevada,2071,11
+Nevada,2072,11
+Nevada,2073,11
+Nevada,2074,11
+Nevada,2075,11
+Nevada,2076,11
+Nevada,2077,11
+Nevada,2078,11
+Nevada,2079,11
+Nevada,2080,11
+Nevada,2081,11
+Nevada,2082,11
+Nevada,2083,11
+Nevada,2084,11
+Nevada,2085,11
+Nevada,2086,11
+Nevada,2087,11
+Nevada,2088,11
+Nevada,2089,11
+Nevada,2090,11
+Nevada,2091,11
+Nevada,2092,11
+Nevada,2093,11
+Nevada,2094,11
+Nevada,2095,11
+Nevada,2096,11
+Nevada,2097,11
+Nevada,2098,11
+Nevada,2099,11
 Missouri,2077,3
-Missouri,2078,7
-Missouri,2079,10
-Missouri,2080,21
-Missouri,2081,28
-Missouri,2082,40
-Missouri,2083,43
-Missouri,2084,51
-Missouri,2085,52
-Missouri,2086,55
-Missouri,2087,65
-Missouri,2088,70
-Missouri,2089,73
-Missouri,2090,73
-Missouri,2091,80
-Missouri,2092,83
-Missouri,2093,86
-Missouri,2094,87
-Missouri,2095,90
-Missouri,2096,93
-Missouri,2097,96
-Missouri,2098,97
-Missouri,2099,100
+Missouri,2078,3
+Missouri,2079,3
+Missouri,2080,3
+Missouri,2081,3
+Missouri,2082,3
+Missouri,2083,3
+Missouri,2084,3
+Missouri,2085,3
+Missouri,2086,3
+Missouri,2087,3
+Missouri,2088,3
+Missouri,2089,3
+Missouri,2090,3
+Missouri,2091,3
+Missouri,2092,3
+Missouri,2093,3
+Missouri,2094,3
+Missouri,2095,3
+Missouri,2096,3
+Missouri,2097,3
+Missouri,2098,3
+Missouri,2099,3
 p93,2020,3
 p93,2021,3
 p93,2022,3
@@ -3231,65 +3231,65 @@ p121,2097,1
 p121,2098,1
 p121,2099,1
 Montana,2040,14
-Montana,2041,21
-Montana,2042,43
-Montana,2043,76
-Montana,2044,92
-Montana,2045,98
-Montana,2046,104
-Montana,2047,111
-Montana,2048,116
-Montana,2049,119
-Montana,2050,126
-Montana,2051,130
-Montana,2052,138
-Montana,2053,157
-Montana,2054,164
-Montana,2055,169
-Montana,2056,178
-Montana,2057,184
-Montana,2058,194
-Montana,2059,202
-Montana,2060,209
-Montana,2061,215
-Montana,2062,220
-Montana,2063,228
-Montana,2064,235
-Montana,2065,239
-Montana,2066,245
-Montana,2067,253
-Montana,2068,265
-Montana,2069,271
-Montana,2070,280
-Montana,2071,290
-Montana,2072,296
-Montana,2073,303
-Montana,2074,309
-Montana,2075,316
-Montana,2076,321
-Montana,2077,336
-Montana,2078,363
-Montana,2079,365
-Montana,2080,366
-Montana,2081,365
-Montana,2082,365
-Montana,2083,365
-Montana,2084,366
-Montana,2085,365
-Montana,2086,365
-Montana,2087,365
-Montana,2088,366
-Montana,2089,365
-Montana,2090,365
-Montana,2091,365
-Montana,2092,366
-Montana,2093,365
-Montana,2094,365
-Montana,2095,365
-Montana,2096,366
-Montana,2097,365
-Montana,2098,365
-Montana,2099,365
+Montana,2041,14
+Montana,2042,14
+Montana,2043,14
+Montana,2044,14
+Montana,2045,14
+Montana,2046,14
+Montana,2047,14
+Montana,2048,14
+Montana,2049,14
+Montana,2050,14
+Montana,2051,14
+Montana,2052,14
+Montana,2053,14
+Montana,2054,14
+Montana,2055,14
+Montana,2056,14
+Montana,2057,14
+Montana,2058,14
+Montana,2059,14
+Montana,2060,14
+Montana,2061,14
+Montana,2062,14
+Montana,2063,14
+Montana,2064,14
+Montana,2065,14
+Montana,2066,14
+Montana,2067,14
+Montana,2068,14
+Montana,2069,14
+Montana,2070,14
+Montana,2071,14
+Montana,2072,14
+Montana,2073,14
+Montana,2074,14
+Montana,2075,14
+Montana,2076,14
+Montana,2077,14
+Montana,2078,14
+Montana,2079,14
+Montana,2080,14
+Montana,2081,14
+Montana,2082,14
+Montana,2083,14
+Montana,2084,14
+Montana,2085,14
+Montana,2086,14
+Montana,2087,14
+Montana,2088,14
+Montana,2089,14
+Montana,2090,14
+Montana,2091,14
+Montana,2092,14
+Montana,2093,14
+Montana,2094,14
+Montana,2095,14
+Montana,2096,14
+Montana,2097,14
+Montana,2098,14
+Montana,2099,14
 p32,2020,2
 p32,2021,2
 p32,2022,2
@@ -3451,72 +3451,72 @@ p27,2097,1
 p27,2098,1
 p27,2099,1
 Utah,2033,2
-Utah,2034,12
-Utah,2035,31
-Utah,2036,43
-Utah,2037,52
-Utah,2038,64
-Utah,2039,82
-Utah,2040,94
-Utah,2041,99
-Utah,2042,106
-Utah,2043,114
-Utah,2044,119
-Utah,2045,126
-Utah,2046,135
-Utah,2047,152
-Utah,2048,163
-Utah,2049,170
-Utah,2050,176
-Utah,2051,188
-Utah,2052,196
-Utah,2053,204
-Utah,2054,216
-Utah,2055,223
-Utah,2056,233
-Utah,2057,238
-Utah,2058,243
-Utah,2059,251
-Utah,2060,258
-Utah,2061,264
-Utah,2062,268
-Utah,2063,277
-Utah,2064,288
-Utah,2065,293
-Utah,2066,300
-Utah,2067,312
-Utah,2068,327
-Utah,2069,342
-Utah,2070,361
-Utah,2071,365
-Utah,2072,366
-Utah,2073,365
-Utah,2074,365
-Utah,2075,365
-Utah,2076,366
-Utah,2077,365
-Utah,2078,365
-Utah,2079,365
-Utah,2080,366
-Utah,2081,365
-Utah,2082,365
-Utah,2083,365
-Utah,2084,366
-Utah,2085,365
-Utah,2086,365
-Utah,2087,365
-Utah,2088,366
-Utah,2089,365
-Utah,2090,365
-Utah,2091,365
-Utah,2092,366
-Utah,2093,365
-Utah,2094,365
-Utah,2095,365
-Utah,2096,366
-Utah,2097,365
-Utah,2098,365
-Utah,2099,365
+Utah,2034,2
+Utah,2035,2
+Utah,2036,2
+Utah,2037,2
+Utah,2038,2
+Utah,2039,2
+Utah,2040,2
+Utah,2041,2
+Utah,2042,2
+Utah,2043,2
+Utah,2044,2
+Utah,2045,2
+Utah,2046,2
+Utah,2047,2
+Utah,2048,2
+Utah,2049,2
+Utah,2050,2
+Utah,2051,2
+Utah,2052,2
+Utah,2053,2
+Utah,2054,2
+Utah,2055,2
+Utah,2056,2
+Utah,2057,2
+Utah,2058,2
+Utah,2059,2
+Utah,2060,2
+Utah,2061,2
+Utah,2062,2
+Utah,2063,2
+Utah,2064,2
+Utah,2065,2
+Utah,2066,2
+Utah,2067,2
+Utah,2068,2
+Utah,2069,2
+Utah,2070,2
+Utah,2071,2
+Utah,2072,2
+Utah,2073,2
+Utah,2074,2
+Utah,2075,2
+Utah,2076,2
+Utah,2077,2
+Utah,2078,2
+Utah,2079,2
+Utah,2080,2
+Utah,2081,2
+Utah,2082,2
+Utah,2083,2
+Utah,2084,2
+Utah,2085,2
+Utah,2086,2
+Utah,2087,2
+Utah,2088,2
+Utah,2089,2
+Utah,2090,2
+Utah,2091,2
+Utah,2092,2
+Utah,2093,2
+Utah,2094,2
+Utah,2095,2
+Utah,2096,2
+Utah,2097,2
+Utah,2098,2
+Utah,2099,2
 p15,2020,2
 p15,2021,2
 p15,2022,2
@@ -3598,69 +3598,69 @@ p15,2097,2
 p15,2098,2
 p15,2099,2
 Idaho,2036,10
-Idaho,2037,29
-Idaho,2038,40
-Idaho,2039,50
-Idaho,2040,60
-Idaho,2041,71
-Idaho,2042,88
-Idaho,2043,96
-Idaho,2044,103
-Idaho,2045,107
-Idaho,2046,114
-Idaho,2047,117
-Idaho,2048,125
-Idaho,2049,129
-Idaho,2050,133
-Idaho,2051,144
-Idaho,2052,158
-Idaho,2053,164
-Idaho,2054,170
-Idaho,2055,176
-Idaho,2056,187
-Idaho,2057,193
-Idaho,2058,201
-Idaho,2059,206
-Idaho,2060,214
-Idaho,2061,218
-Idaho,2062,224
-Idaho,2063,230
-Idaho,2064,235
-Idaho,2065,241
-Idaho,2066,247
-Idaho,2067,256
-Idaho,2068,266
-Idaho,2069,271
-Idaho,2070,279
-Idaho,2071,284
-Idaho,2072,293
-Idaho,2073,299
-Idaho,2074,302
-Idaho,2075,307
-Idaho,2076,315
-Idaho,2077,321
-Idaho,2078,328
-Idaho,2079,342
-Idaho,2080,366
-Idaho,2081,365
-Idaho,2082,365
-Idaho,2083,365
-Idaho,2084,366
-Idaho,2085,365
-Idaho,2086,365
-Idaho,2087,365
-Idaho,2088,366
-Idaho,2089,365
-Idaho,2090,365
-Idaho,2091,365
-Idaho,2092,366
-Idaho,2093,365
-Idaho,2094,365
-Idaho,2095,365
-Idaho,2096,366
-Idaho,2097,365
-Idaho,2098,365
-Idaho,2099,365
+Idaho,2037,10
+Idaho,2038,10
+Idaho,2039,10
+Idaho,2040,10
+Idaho,2041,10
+Idaho,2042,10
+Idaho,2043,10
+Idaho,2044,10
+Idaho,2045,10
+Idaho,2046,10
+Idaho,2047,10
+Idaho,2048,10
+Idaho,2049,10
+Idaho,2050,10
+Idaho,2051,10
+Idaho,2052,10
+Idaho,2053,10
+Idaho,2054,10
+Idaho,2055,10
+Idaho,2056,10
+Idaho,2057,10
+Idaho,2058,10
+Idaho,2059,10
+Idaho,2060,10
+Idaho,2061,10
+Idaho,2062,10
+Idaho,2063,10
+Idaho,2064,10
+Idaho,2065,10
+Idaho,2066,10
+Idaho,2067,10
+Idaho,2068,10
+Idaho,2069,10
+Idaho,2070,10
+Idaho,2071,10
+Idaho,2072,10
+Idaho,2073,10
+Idaho,2074,10
+Idaho,2075,10
+Idaho,2076,10
+Idaho,2077,10
+Idaho,2078,10
+Idaho,2079,10
+Idaho,2080,10
+Idaho,2081,10
+Idaho,2082,10
+Idaho,2083,10
+Idaho,2084,10
+Idaho,2085,10
+Idaho,2086,10
+Idaho,2087,10
+Idaho,2088,10
+Idaho,2089,10
+Idaho,2090,10
+Idaho,2091,10
+Idaho,2092,10
+Idaho,2093,10
+Idaho,2094,10
+Idaho,2095,10
+Idaho,2096,10
+Idaho,2097,10
+Idaho,2098,10
+Idaho,2099,10
 p43,2020,1
 p43,2021,1
 p43,2022,1
@@ -4542,54 +4542,54 @@ p19,2097,2
 p19,2098,2
 p19,2099,2
 Oregon,2051,3
-Oregon,2052,20
-Oregon,2053,27
-Oregon,2054,38
-Oregon,2055,49
-Oregon,2056,66
-Oregon,2057,82
-Oregon,2058,98
-Oregon,2059,108
-Oregon,2060,111
-Oregon,2061,118
-Oregon,2062,122
-Oregon,2063,135
-Oregon,2064,144
-Oregon,2065,152
-Oregon,2066,158
-Oregon,2067,158
-Oregon,2068,167
-Oregon,2069,168
-Oregon,2070,172
-Oregon,2071,177
-Oregon,2072,185
-Oregon,2073,183
-Oregon,2074,191
-Oregon,2075,200
-Oregon,2076,205
-Oregon,2077,215
-Oregon,2078,222
-Oregon,2079,227
-Oregon,2080,233
-Oregon,2081,239
-Oregon,2082,249
-Oregon,2083,259
-Oregon,2084,265
-Oregon,2085,266
-Oregon,2086,271
-Oregon,2087,274
-Oregon,2088,279
-Oregon,2089,282
-Oregon,2090,286
-Oregon,2091,289
-Oregon,2092,295
-Oregon,2093,300
-Oregon,2094,311
-Oregon,2095,318
-Oregon,2096,337
-Oregon,2097,346
-Oregon,2098,359
-Oregon,2099,365
+Oregon,2052,3
+Oregon,2053,3
+Oregon,2054,3
+Oregon,2055,3
+Oregon,2056,3
+Oregon,2057,3
+Oregon,2058,3
+Oregon,2059,3
+Oregon,2060,3
+Oregon,2061,3
+Oregon,2062,3
+Oregon,2063,3
+Oregon,2064,3
+Oregon,2065,3
+Oregon,2066,3
+Oregon,2067,3
+Oregon,2068,3
+Oregon,2069,3
+Oregon,2070,3
+Oregon,2071,3
+Oregon,2072,3
+Oregon,2073,3
+Oregon,2074,3
+Oregon,2075,3
+Oregon,2076,3
+Oregon,2077,3
+Oregon,2078,3
+Oregon,2079,3
+Oregon,2080,3
+Oregon,2081,3
+Oregon,2082,3
+Oregon,2083,3
+Oregon,2084,3
+Oregon,2085,3
+Oregon,2086,3
+Oregon,2087,3
+Oregon,2088,3
+Oregon,2089,3
+Oregon,2090,3
+Oregon,2091,3
+Oregon,2092,3
+Oregon,2093,3
+Oregon,2094,3
+Oregon,2095,3
+Oregon,2096,3
+Oregon,2097,3
+Oregon,2098,3
+Oregon,2099,3
 p65,2020,2
 p65,2021,2
 p65,2022,2
@@ -5151,64 +5151,64 @@ p102,2097,6
 p102,2098,6
 p102,2099,6
 Colorado,2041,6
-Colorado,2042,12
-Colorado,2043,25
-Colorado,2044,36
-Colorado,2045,46
-Colorado,2046,78
-Colorado,2047,88
-Colorado,2048,95
-Colorado,2049,100
-Colorado,2050,105
-Colorado,2051,108
-Colorado,2052,117
-Colorado,2053,120
-Colorado,2054,124
-Colorado,2055,133
-Colorado,2056,146
-Colorado,2057,159
-Colorado,2058,176
-Colorado,2059,182
-Colorado,2060,187
-Colorado,2061,193
-Colorado,2062,200
-Colorado,2063,206
-Colorado,2064,213
-Colorado,2065,219
-Colorado,2066,227
-Colorado,2067,233
-Colorado,2068,237
-Colorado,2069,240
-Colorado,2070,243
-Colorado,2071,248
-Colorado,2072,257
-Colorado,2073,257
-Colorado,2074,262
-Colorado,2075,270
-Colorado,2076,277
-Colorado,2077,284
-Colorado,2078,296
-Colorado,2079,305
-Colorado,2080,323
-Colorado,2081,338
-Colorado,2082,357
-Colorado,2083,365
-Colorado,2084,366
-Colorado,2085,365
-Colorado,2086,365
-Colorado,2087,365
-Colorado,2088,366
-Colorado,2089,365
-Colorado,2090,365
-Colorado,2091,365
-Colorado,2092,366
-Colorado,2093,365
-Colorado,2094,365
-Colorado,2095,365
-Colorado,2096,366
-Colorado,2097,365
-Colorado,2098,365
-Colorado,2099,365
+Colorado,2042,6
+Colorado,2043,6
+Colorado,2044,6
+Colorado,2045,6
+Colorado,2046,6
+Colorado,2047,6
+Colorado,2048,6
+Colorado,2049,6
+Colorado,2050,6
+Colorado,2051,6
+Colorado,2052,6
+Colorado,2053,6
+Colorado,2054,6
+Colorado,2055,6
+Colorado,2056,6
+Colorado,2057,6
+Colorado,2058,6
+Colorado,2059,6
+Colorado,2060,6
+Colorado,2061,6
+Colorado,2062,6
+Colorado,2063,6
+Colorado,2064,6
+Colorado,2065,6
+Colorado,2066,6
+Colorado,2067,6
+Colorado,2068,6
+Colorado,2069,6
+Colorado,2070,6
+Colorado,2071,6
+Colorado,2072,6
+Colorado,2073,6
+Colorado,2074,6
+Colorado,2075,6
+Colorado,2076,6
+Colorado,2077,6
+Colorado,2078,6
+Colorado,2079,6
+Colorado,2080,6
+Colorado,2081,6
+Colorado,2082,6
+Colorado,2083,6
+Colorado,2084,6
+Colorado,2085,6
+Colorado,2086,6
+Colorado,2087,6
+Colorado,2088,6
+Colorado,2089,6
+Colorado,2090,6
+Colorado,2091,6
+Colorado,2092,6
+Colorado,2093,6
+Colorado,2094,6
+Colorado,2095,6
+Colorado,2096,6
+Colorado,2097,6
+Colorado,2098,6
+Colorado,2099,6
 p68,2020,1
 p68,2021,1
 p68,2022,1
@@ -5292,26 +5292,26 @@ p68,2099,1
 Massachusetts,2077,2
 Massachusetts,2078,2
 Massachusetts,2079,2
-Massachusetts,2080,10
-Massachusetts,2081,18
-Massachusetts,2082,22
-Massachusetts,2083,31
-Massachusetts,2084,35
-Massachusetts,2085,41
-Massachusetts,2086,46
-Massachusetts,2087,50
-Massachusetts,2088,55
-Massachusetts,2089,57
-Massachusetts,2090,59
-Massachusetts,2091,66
-Massachusetts,2092,67
-Massachusetts,2093,71
-Massachusetts,2094,77
-Massachusetts,2095,81
-Massachusetts,2096,83
-Massachusetts,2097,80
-Massachusetts,2098,91
-Massachusetts,2099,91
+Massachusetts,2080,2
+Massachusetts,2081,2
+Massachusetts,2082,2
+Massachusetts,2083,2
+Massachusetts,2084,2
+Massachusetts,2085,2
+Massachusetts,2086,2
+Massachusetts,2087,2
+Massachusetts,2088,2
+Massachusetts,2089,2
+Massachusetts,2090,2
+Massachusetts,2091,2
+Massachusetts,2092,2
+Massachusetts,2093,2
+Massachusetts,2094,2
+Massachusetts,2095,2
+Massachusetts,2096,2
+Massachusetts,2097,2
+Massachusetts,2098,2
+Massachusetts,2099,2
 p11,2020,1
 p11,2021,1
 p11,2022,1
@@ -5793,12 +5793,12 @@ p92,2097,4
 p92,2098,4
 p92,2099,4
 usa,2093,2
-usa,2094,8
-usa,2095,13
-usa,2096,22
-usa,2097,25
-usa,2098,27
-usa,2099,36
+usa,2094,2
+usa,2095,2
+usa,2096,2
+usa,2097,2
+usa,2098,2
+usa,2099,2
 p9,2020,1
 p9,2021,1
 p9,2022,1
@@ -5960,73 +5960,73 @@ p13,2097,1
 p13,2098,1
 p13,2099,1
 South Dakota,2032,4
-South Dakota,2033,39
-South Dakota,2034,71
-South Dakota,2035,79
-South Dakota,2036,86
-South Dakota,2037,95
-South Dakota,2038,99
-South Dakota,2039,106
-South Dakota,2040,111
-South Dakota,2041,117
-South Dakota,2042,123
-South Dakota,2043,129
-South Dakota,2044,139
-South Dakota,2045,148
-South Dakota,2046,161
-South Dakota,2047,171
-South Dakota,2048,183
-South Dakota,2049,189
-South Dakota,2050,197
-South Dakota,2051,203
-South Dakota,2052,212
-South Dakota,2053,222
-South Dakota,2054,230
-South Dakota,2055,238
-South Dakota,2056,246
-South Dakota,2057,254
-South Dakota,2058,263
-South Dakota,2059,274
-South Dakota,2060,292
-South Dakota,2061,311
-South Dakota,2062,336
-South Dakota,2063,359
-South Dakota,2064,366
-South Dakota,2065,365
-South Dakota,2066,365
-South Dakota,2067,365
-South Dakota,2068,366
-South Dakota,2069,365
-South Dakota,2070,365
-South Dakota,2071,365
-South Dakota,2072,366
-South Dakota,2073,365
-South Dakota,2074,365
-South Dakota,2075,365
-South Dakota,2076,366
-South Dakota,2077,365
-South Dakota,2078,365
-South Dakota,2079,365
-South Dakota,2080,366
-South Dakota,2081,365
-South Dakota,2082,365
-South Dakota,2083,365
-South Dakota,2084,366
-South Dakota,2085,365
-South Dakota,2086,365
-South Dakota,2087,365
-South Dakota,2088,366
-South Dakota,2089,365
-South Dakota,2090,365
-South Dakota,2091,365
-South Dakota,2092,366
-South Dakota,2093,365
-South Dakota,2094,365
-South Dakota,2095,365
-South Dakota,2096,366
-South Dakota,2097,365
-South Dakota,2098,365
-South Dakota,2099,365
+South Dakota,2033,4
+South Dakota,2034,4
+South Dakota,2035,4
+South Dakota,2036,4
+South Dakota,2037,4
+South Dakota,2038,4
+South Dakota,2039,4
+South Dakota,2040,4
+South Dakota,2041,4
+South Dakota,2042,4
+South Dakota,2043,4
+South Dakota,2044,4
+South Dakota,2045,4
+South Dakota,2046,4
+South Dakota,2047,4
+South Dakota,2048,4
+South Dakota,2049,4
+South Dakota,2050,4
+South Dakota,2051,4
+South Dakota,2052,4
+South Dakota,2053,4
+South Dakota,2054,4
+South Dakota,2055,4
+South Dakota,2056,4
+South Dakota,2057,4
+South Dakota,2058,4
+South Dakota,2059,4
+South Dakota,2060,4
+South Dakota,2061,4
+South Dakota,2062,4
+South Dakota,2063,4
+South Dakota,2064,4
+South Dakota,2065,4
+South Dakota,2066,4
+South Dakota,2067,4
+South Dakota,2068,4
+South Dakota,2069,4
+South Dakota,2070,4
+South Dakota,2071,4
+South Dakota,2072,4
+South Dakota,2073,4
+South Dakota,2074,4
+South Dakota,2075,4
+South Dakota,2076,4
+South Dakota,2077,4
+South Dakota,2078,4
+South Dakota,2079,4
+South Dakota,2080,4
+South Dakota,2081,4
+South Dakota,2082,4
+South Dakota,2083,4
+South Dakota,2084,4
+South Dakota,2085,4
+South Dakota,2086,4
+South Dakota,2087,4
+South Dakota,2088,4
+South Dakota,2089,4
+South Dakota,2090,4
+South Dakota,2091,4
+South Dakota,2092,4
+South Dakota,2093,4
+South Dakota,2094,4
+South Dakota,2095,4
+South Dakota,2096,4
+South Dakota,2097,4
+South Dakota,2098,4
+South Dakota,2099,4
 p39,2020,3
 p39,2021,3
 p39,2022,3
@@ -6348,53 +6348,53 @@ p90,2097,4
 p90,2098,4
 p90,2099,4
 Maine,2051,2
-Maine,2053,15
-Maine,2054,20
-Maine,2055,22
-Maine,2056,37
-Maine,2057,43
-Maine,2058,50
-Maine,2059,61
-Maine,2060,68
-Maine,2061,73
-Maine,2062,83
-Maine,2063,83
-Maine,2064,92
-Maine,2065,99
-Maine,2066,100
-Maine,2067,106
-Maine,2068,111
-Maine,2069,114
-Maine,2070,116
-Maine,2071,122
-Maine,2072,125
-Maine,2073,127
-Maine,2074,130
-Maine,2075,134
-Maine,2076,138
-Maine,2077,140
-Maine,2078,144
-Maine,2079,150
-Maine,2080,152
-Maine,2081,152
-Maine,2082,160
-Maine,2083,160
-Maine,2084,164
-Maine,2085,168
-Maine,2086,174
-Maine,2087,174
-Maine,2088,177
-Maine,2089,184
-Maine,2090,187
-Maine,2091,191
-Maine,2092,197
-Maine,2093,199
-Maine,2094,203
-Maine,2095,206
-Maine,2096,212
-Maine,2097,214
-Maine,2098,219
-Maine,2099,227
+Maine,2053,2
+Maine,2054,2
+Maine,2055,2
+Maine,2056,2
+Maine,2057,2
+Maine,2058,2
+Maine,2059,2
+Maine,2060,2
+Maine,2061,2
+Maine,2062,2
+Maine,2063,2
+Maine,2064,2
+Maine,2065,2
+Maine,2066,2
+Maine,2067,2
+Maine,2068,2
+Maine,2069,2
+Maine,2070,2
+Maine,2071,2
+Maine,2072,2
+Maine,2073,2
+Maine,2074,2
+Maine,2075,2
+Maine,2076,2
+Maine,2077,2
+Maine,2078,2
+Maine,2079,2
+Maine,2080,2
+Maine,2081,2
+Maine,2082,2
+Maine,2083,2
+Maine,2084,2
+Maine,2085,2
+Maine,2086,2
+Maine,2087,2
+Maine,2088,2
+Maine,2089,2
+Maine,2090,2
+Maine,2091,2
+Maine,2092,2
+Maine,2093,2
+Maine,2094,2
+Maine,2095,2
+Maine,2096,2
+Maine,2097,2
+Maine,2098,2
+Maine,2099,2
 p85,2020,4
 p85,2021,4
 p85,2022,4
@@ -6796,61 +6796,61 @@ p45,2097,1
 p45,2098,1
 p45,2099,1
 Vermont,2060,2
-Vermont,2061,3
-Vermont,2062,11
-Vermont,2063,18
-Vermont,2064,23
-Vermont,2065,34
-Vermont,2066,39
-Vermont,2067,43
-Vermont,2068,53
-Vermont,2069,61
-Vermont,2070,66
-Vermont,2071,73
-Vermont,2072,79
-Vermont,2073,79
-Vermont,2074,83
-Vermont,2075,88
-Vermont,2076,92
-Vermont,2077,93
-Vermont,2078,100
-Vermont,2079,103
-Vermont,2080,107
-Vermont,2081,108
-Vermont,2082,116
-Vermont,2083,116
-Vermont,2084,121
-Vermont,2085,124
-Vermont,2086,126
-Vermont,2087,127
-Vermont,2088,131
-Vermont,2089,134
-Vermont,2090,137
-Vermont,2091,139
-Vermont,2092,142
-Vermont,2093,146
-Vermont,2094,145
-Vermont,2095,147
-Vermont,2096,153
-Vermont,2097,154
-Vermont,2098,156
-Vermont,2099,160
+Vermont,2061,2
+Vermont,2062,2
+Vermont,2063,2
+Vermont,2064,2
+Vermont,2065,2
+Vermont,2066,2
+Vermont,2067,2
+Vermont,2068,2
+Vermont,2069,2
+Vermont,2070,2
+Vermont,2071,2
+Vermont,2072,2
+Vermont,2073,2
+Vermont,2074,2
+Vermont,2075,2
+Vermont,2076,2
+Vermont,2077,2
+Vermont,2078,2
+Vermont,2079,2
+Vermont,2080,2
+Vermont,2081,2
+Vermont,2082,2
+Vermont,2083,2
+Vermont,2084,2
+Vermont,2085,2
+Vermont,2086,2
+Vermont,2087,2
+Vermont,2088,2
+Vermont,2089,2
+Vermont,2090,2
+Vermont,2091,2
+Vermont,2092,2
+Vermont,2093,2
+Vermont,2094,2
+Vermont,2095,2
+Vermont,2096,2
+Vermont,2097,2
+Vermont,2098,2
+Vermont,2099,2
 Rhode Island,2083,2
 Rhode Island,2085,2
-Rhode Island,2086,4
-Rhode Island,2087,4
-Rhode Island,2088,13
-Rhode Island,2089,27
-Rhode Island,2090,31
-Rhode Island,2091,34
-Rhode Island,2092,40
-Rhode Island,2093,39
-Rhode Island,2094,45
-Rhode Island,2095,47
-Rhode Island,2096,54
-Rhode Island,2097,60
-Rhode Island,2098,57
-Rhode Island,2099,58
+Rhode Island,2086,2
+Rhode Island,2087,2
+Rhode Island,2088,2
+Rhode Island,2089,2
+Rhode Island,2090,2
+Rhode Island,2091,2
+Rhode Island,2092,2
+Rhode Island,2093,2
+Rhode Island,2094,2
+Rhode Island,2095,2
+Rhode Island,2096,2
+Rhode Island,2097,2
+Rhode Island,2098,2
+Rhode Island,2099,2
 p110,2020,2
 p110,2021,2
 p110,2022,2
@@ -6932,73 +6932,73 @@ p110,2097,2
 p110,2098,2
 p110,2099,2
 Arizona,2032,10
-Arizona,2033,16
-Arizona,2034,31
-Arizona,2035,44
-Arizona,2036,62
-Arizona,2037,80
-Arizona,2038,92
-Arizona,2039,104
-Arizona,2040,112
-Arizona,2041,118
-Arizona,2042,122
-Arizona,2043,130
-Arizona,2044,140
-Arizona,2045,162
-Arizona,2046,169
-Arizona,2047,178
-Arizona,2048,186
-Arizona,2049,198
-Arizona,2050,213
-Arizona,2051,227
-Arizona,2052,235
-Arizona,2053,241
-Arizona,2054,247
-Arizona,2055,254
-Arizona,2056,258
-Arizona,2057,264
-Arizona,2058,271
-Arizona,2059,279
-Arizona,2060,293
-Arizona,2061,307
-Arizona,2062,356
-Arizona,2063,365
-Arizona,2064,366
-Arizona,2065,365
-Arizona,2066,365
-Arizona,2067,365
-Arizona,2068,366
-Arizona,2069,365
-Arizona,2070,365
-Arizona,2071,365
-Arizona,2072,366
-Arizona,2073,365
-Arizona,2074,365
-Arizona,2075,365
-Arizona,2076,366
-Arizona,2077,365
-Arizona,2078,365
-Arizona,2079,365
-Arizona,2080,366
-Arizona,2081,365
-Arizona,2082,365
-Arizona,2083,365
-Arizona,2084,366
-Arizona,2085,365
-Arizona,2086,365
-Arizona,2087,365
-Arizona,2088,366
-Arizona,2089,365
-Arizona,2090,365
-Arizona,2091,365
-Arizona,2092,366
-Arizona,2093,365
-Arizona,2094,365
-Arizona,2095,365
-Arizona,2096,366
-Arizona,2097,365
-Arizona,2098,365
-Arizona,2099,365
+Arizona,2033,10
+Arizona,2034,10
+Arizona,2035,10
+Arizona,2036,10
+Arizona,2037,10
+Arizona,2038,10
+Arizona,2039,10
+Arizona,2040,10
+Arizona,2041,10
+Arizona,2042,10
+Arizona,2043,10
+Arizona,2044,10
+Arizona,2045,10
+Arizona,2046,10
+Arizona,2047,10
+Arizona,2048,10
+Arizona,2049,10
+Arizona,2050,10
+Arizona,2051,10
+Arizona,2052,10
+Arizona,2053,10
+Arizona,2054,10
+Arizona,2055,10
+Arizona,2056,10
+Arizona,2057,10
+Arizona,2058,10
+Arizona,2059,10
+Arizona,2060,10
+Arizona,2061,10
+Arizona,2062,10
+Arizona,2063,10
+Arizona,2064,10
+Arizona,2065,10
+Arizona,2066,10
+Arizona,2067,10
+Arizona,2068,10
+Arizona,2069,10
+Arizona,2070,10
+Arizona,2071,10
+Arizona,2072,10
+Arizona,2073,10
+Arizona,2074,10
+Arizona,2075,10
+Arizona,2076,10
+Arizona,2077,10
+Arizona,2078,10
+Arizona,2079,10
+Arizona,2080,10
+Arizona,2081,10
+Arizona,2082,10
+Arizona,2083,10
+Arizona,2084,10
+Arizona,2085,10
+Arizona,2086,10
+Arizona,2087,10
+Arizona,2088,10
+Arizona,2089,10
+Arizona,2090,10
+Arizona,2091,10
+Arizona,2092,10
+Arizona,2093,10
+Arizona,2094,10
+Arizona,2095,10
+Arizona,2096,10
+Arizona,2097,10
+Arizona,2098,10
+Arizona,2099,10
 p29,2020,1
 p29,2021,1
 p29,2022,1
@@ -7240,45 +7240,45 @@ p31,2097,1
 p31,2098,1
 p31,2099,1
 Washington,2060,1
-Washington,2061,12
-Washington,2062,17
-Washington,2063,23
-Washington,2064,34
-Washington,2065,42
-Washington,2066,41
-Washington,2067,57
-Washington,2068,74
-Washington,2069,86
-Washington,2070,97
-Washington,2071,101
-Washington,2072,106
-Washington,2073,110
-Washington,2074,110
-Washington,2075,118
-Washington,2076,117
-Washington,2077,120
-Washington,2078,124
-Washington,2079,127
-Washington,2080,132
-Washington,2081,142
-Washington,2082,144
-Washington,2083,148
-Washington,2084,154
-Washington,2085,158
-Washington,2086,159
-Washington,2087,165
-Washington,2088,169
-Washington,2089,168
-Washington,2090,176
-Washington,2091,176
-Washington,2092,180
-Washington,2093,184
-Washington,2094,191
-Washington,2095,197
-Washington,2096,200
-Washington,2097,204
-Washington,2098,206
-Washington,2099,212
+Washington,2061,1
+Washington,2062,1
+Washington,2063,1
+Washington,2064,1
+Washington,2065,1
+Washington,2066,1
+Washington,2067,1
+Washington,2068,1
+Washington,2069,1
+Washington,2070,1
+Washington,2071,1
+Washington,2072,1
+Washington,2073,1
+Washington,2074,1
+Washington,2075,1
+Washington,2076,1
+Washington,2077,1
+Washington,2078,1
+Washington,2079,1
+Washington,2080,1
+Washington,2081,1
+Washington,2082,1
+Washington,2083,1
+Washington,2084,1
+Washington,2085,1
+Washington,2086,1
+Washington,2087,1
+Washington,2088,1
+Washington,2089,1
+Washington,2090,1
+Washington,2091,1
+Washington,2092,1
+Washington,2093,1
+Washington,2094,1
+Washington,2095,1
+Washington,2096,1
+Washington,2097,1
+Washington,2098,1
+Washington,2099,1
 p24,2020,3
 p24,2021,3
 p24,2022,3
@@ -7920,39 +7920,39 @@ p115,2097,1
 p115,2098,1
 p115,2099,1
 New Hampshire,2066,2
-New Hampshire,2067,14
-New Hampshire,2068,17
-New Hampshire,2069,24
-New Hampshire,2070,34
-New Hampshire,2071,37
-New Hampshire,2072,40
-New Hampshire,2073,51
-New Hampshire,2074,58
-New Hampshire,2075,63
-New Hampshire,2076,66
-New Hampshire,2077,69
-New Hampshire,2078,72
-New Hampshire,2079,79
-New Hampshire,2080,86
-New Hampshire,2081,83
-New Hampshire,2082,87
-New Hampshire,2083,96
-New Hampshire,2084,98
-New Hampshire,2085,97
-New Hampshire,2086,104
-New Hampshire,2087,110
-New Hampshire,2088,112
-New Hampshire,2089,115
-New Hampshire,2090,117
-New Hampshire,2091,117
-New Hampshire,2092,123
-New Hampshire,2093,127
-New Hampshire,2094,128
-New Hampshire,2095,129
-New Hampshire,2096,133
-New Hampshire,2097,132
-New Hampshire,2098,137
-New Hampshire,2099,140
+New Hampshire,2067,2
+New Hampshire,2068,2
+New Hampshire,2069,2
+New Hampshire,2070,2
+New Hampshire,2071,2
+New Hampshire,2072,2
+New Hampshire,2073,2
+New Hampshire,2074,2
+New Hampshire,2075,2
+New Hampshire,2076,2
+New Hampshire,2077,2
+New Hampshire,2078,2
+New Hampshire,2079,2
+New Hampshire,2080,2
+New Hampshire,2081,2
+New Hampshire,2082,2
+New Hampshire,2083,2
+New Hampshire,2084,2
+New Hampshire,2085,2
+New Hampshire,2086,2
+New Hampshire,2087,2
+New Hampshire,2088,2
+New Hampshire,2089,2
+New Hampshire,2090,2
+New Hampshire,2091,2
+New Hampshire,2092,2
+New Hampshire,2093,2
+New Hampshire,2094,2
+New Hampshire,2095,2
+New Hampshire,2096,2
+New Hampshire,2097,2
+New Hampshire,2098,2
+New Hampshire,2099,2
 p100,2020,2
 p100,2021,2
 p100,2022,2

@@ -262,7 +262,7 @@ app.layout = html.Div([
                         {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
                         {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
                         {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                        {'label': 'projection','value': 'projection'}
+                        {'label': 'fix-weather on 2010','value': 'projection'}
                     ],
                     value='rcp85hotter',  # Default value
                     style={'padding': 20},
@@ -276,7 +276,7 @@ app.layout = html.Div([
                         {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
                         {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
                         {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                        {'label': 'projection','value': 'projection'}
+                        {'label': 'fix-weather on 2010','value': 'projection'}
                     ],
                     value='rcp85hotter',  # Default value
                     style={'padding': 20},
@@ -745,7 +745,10 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
                 x_data = filtered_df['Year'].values 
                 y_data = filtered_df['hdd'].values if heat_or_cold == 'Heat' else filtered_df['cdd'].values
                 
-                fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+                if scenario_value=='projection':
+                    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name='fix-weather on 2010'))
+                else:
+                    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
             else:
                 print(f"No data for scenario {scenario_value} after filtering by {graph_value} from {start_year} to {end_year}")
             title_text = f"{heat_or_cold} degree days by year for {graph_value}"
@@ -802,8 +805,10 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
         if not filtered_df.empty:
             x_data = filtered_df['Year'].values 
             y_data = filtered_df['number_of_days'].values if weather == 'Num_of_days' else filtered_df['average_total_load'].values
-            
-            fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+            if scenario_value=='projection':
+                fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name='fix-weather on 2010'))
+            else:
+                fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
         else:
             print(f"No data for scenario {scenario_value} after filtering by {graph_value} from {start_year} to {end_year}")
 
