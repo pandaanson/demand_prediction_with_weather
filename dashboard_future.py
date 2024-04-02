@@ -759,6 +759,7 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
 
         # Display the figure
         return fig
+    scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler']
 
             
 
@@ -769,12 +770,14 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
         # Construct the file path based on the scenario and weather type
         if projection_bool:
             if weather == 'Num_of_days':
+                if scenario_value=='projection':continue
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}_project_.csv')
                 else:
                     file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}_project_.csv')
                 title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
             else:  # For the average demand case
+                if scenario_value=='projection':continue
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}_project_.csv')
                 else:
@@ -782,12 +785,14 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
                 title_text = f"Average demand for extreme {heat_or_cold} by year in {graph_value}"
         else:
             if weather == 'Num_of_days':
+                if scenario_value=='projection':continue
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_summary_{scenario_value}.csv')
                 else:
                     file_path = os.path.join(data_path, f'all_min_outliers_summary_{scenario_value}.csv')
                 title_text = f"Number of extreme {heat_or_cold} days by year for {graph_value}"
             else:  # For the average demand case
+                if scenario_value=='projection':continue
                 if heat_or_cold == 'Heat':
                     file_path = os.path.join(data_path, f'all_max_outliers_demand_summary_{scenario_value}.csv')
                 else:
