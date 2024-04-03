@@ -78,18 +78,29 @@ server=app.server
 app.layout = html.Div([
     html.Div([
         html.H1('Climate Scenarios Descriptions'),
-        html.P('''
+        dcc.Markdown('''
+            **Extreme: Based on RCP8.5 Hotter**
+            
             RCP8.5 Hotter: This scenario predicts a significant increase in global temperatures, leading to extreme heatwaves, severe droughts, and a drastic reduction in ice and snow cover. It represents a high greenhouse gas emissions pathway where carbon dioxide levels continue to rise, resulting in severe impacts on ecosystems, human health, and economies.
-        '''),
-        html.P('''
+            
+            **High: Based on RCP8.5 Cooler**
+            
             RCP8.5 Cooler: Under this scenario, the world still follows a high emissions pathway similar to RCP8.5, but with slightly lesser warming. It entails higher temperatures than present but assumes some mitigation efforts that slightly reduce the severity of heatwaves, droughts, and glacial melt. The impacts remain substantial, affecting biodiversity, water resources, and agricultural productivity.
-        '''),
-        html.P('''
+            
+            **Moderate: Based on RCP4.5 Hotter**
+            
             RCP4.5 Hotter: This scenario represents a moderate pathway, where stringent emission reductions are implemented from mid-century, stabilizing atmospheric concentrations of greenhouse gases. The warming is less severe than in RCP8.5 scenarios, with milder impacts on climate systems. However, it still involves significant changes, including increased heatwaves and changing precipitation patterns, with moderate effects on ecosystems and human activities.
-        '''),
-        html.P('''
+            
+            **Low: Based on RCP4.5 Cooler**
+            
             RCP4.5 Cooler: The cooler variant of RCP4.5 anticipates successful early interventions in reducing emissions, leading to lower global warming levels. This scenario suggests a world where climate policies and sustainable technologies have significantly limited the increase in global temperatures, resulting in minor adjustments to ecosystems and human livelihoods compared to the hotter scenarios. It implies a balanced approach to energy use, efficiency, and rapid adoption of renewable resources.
-        '''),
+            
+            **Reference**
+            
+            Copy and paste of 2010 data
+            
+            A more formal definition, RCP4.5 represent case SSP245, and RCP8.5 represent case SSP585, hotter does not represent the actual temperature, it represents the effect of greenhouse gas, hotter implies greenhouse gas will absorb more heat.
+        ''', dangerously_allow_html=True),
     ]),
     html.H2("Demand Prediction model:", style={'marginBottom': 0, 'marginTop': 0}),
     html.P('The following map part can be customise by selecting paramter on your right, add it will sum all the demand for that period for each region', style={'textAlign': 'justify'}),
@@ -116,11 +127,11 @@ app.layout = html.Div([
             dcc.RadioItems(
                 id='scenario-toggle',
                 options=[
-                    {'label': 'rcp85hotter', 'value': 'rcp85hotter'},
-                    {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
-                    {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
-                    {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                    {'label': 'projection','value': 'projection'}
+                    {'label': 'Extreme', 'value': 'rcp85hotter'},
+                    {'label': 'High', 'value': 'rcp85cooler'},
+                    {'label': 'Moderate', 'value': 'rcp45hotter'},
+                    {'label': 'Low', 'value': 'rcp45cooler'},
+                    {'label': 'reference','value': 'projection'}
                 ],
                 value='rcp85hotter',  # Default value
                 style={'padding': 20},
@@ -258,11 +269,11 @@ app.layout = html.Div([
                 dcc.RadioItems(
                     id='scenario-toggle-left',
                     options=[
-                        {'label': 'rcp85hotter', 'value': 'rcp85hotter'},
-                        {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
-                        {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
-                        {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                        {'label': 'fix-weather on 2010','value': 'projection'}
+                        {'label': 'Extreme', 'value': 'rcp85hotter'},
+                        {'label': 'High', 'value': 'rcp85cooler'},
+                        {'label': 'Moderate', 'value': 'rcp45hotter'},
+                        {'label': 'Low', 'value': 'rcp45cooler'},
+                        {'label': 'reference','value': 'projection'}
                     ],
                     value='rcp85hotter',  # Default value
                     style={'padding': 20},
@@ -272,11 +283,11 @@ app.layout = html.Div([
                 dcc.RadioItems(
                     id='scenario-toggle-right',
                     options=[
-                        {'label': 'rcp85hotter', 'value': 'rcp85hotter'},
-                        {'label': 'rcp85cooler', 'value': 'rcp85cooler'},
-                        {'label': 'rcp45hotter', 'value': 'rcp45hotter'},
-                        {'label': 'rcp45cooler', 'value': 'rcp45cooler'},
-                        {'label': 'fix-weather on 2010','value': 'projection'}
+                        {'label': 'Extreme', 'value': 'rcp85hotter'},
+                        {'label': 'High', 'value': 'rcp85cooler'},
+                        {'label': 'Moderate', 'value': 'rcp45hotter'},
+                        {'label': 'Low', 'value': 'rcp45cooler'},
+                        {'label': 'reference','value': 'projection'}
                     ],
                     value='rcp85hotter',  # Default value
                     style={'padding': 20},
