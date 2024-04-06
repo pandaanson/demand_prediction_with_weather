@@ -204,6 +204,7 @@ app.layout = html.Div([
                     {'label': 'False', 'value': False}],value=True,  multi=False)]),
         html.P('Here , the plot show yearly/month sum/max of demand projection for different scenario', style={'textAlign': 'justify'}),
         dcc.Graph(id='line-graph'),  # Placeholder for the line graph
+        dcc.Graph(id='line-graph-with-CI'), 
     ], style={'width': '100%','display': 'inline-block'}),  # Adjust width to 50% to share space equally
     html.Div([
         html.H4("Reference for extreme weather:", style={'marginBottom': 0, 'marginTop': 0}), 
@@ -722,6 +723,72 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 
     # Display the figure
     return fig
+
+@app.callback(
+    Output('line-graph-with-CI', 'figure'),
+    [
+        Input('graph-toggle', 'value'),
+        Input('start-month-dropdown', 'value'),
+        Input('start-year-dropdown', 'value'),
+        Input('end-month-dropdown', 'value'),
+        Input('end-year-dropdown', 'value'),
+        Input('projection-toggle', 'value'),
+    ]
+)
+def update_line_graph(graph_value, start_month, start_year, end_month, end_year, projection_bool):
+    data_path = os.path.join(current_directory, 'web_page_data')
+    file_path = os.path.join(data_path, f'monthly_CI_Data_data.csv')
+
+    # Create a list of columns to read, based on the input value
+    columns_to_read = ['Time_UTC', f'upper_{graph_value}', f'lower_{graph_value}', f'average_{graph_value}']
+
+    # Read the dataframe, specifying the columns to read to optimize memory usage
+    df = pd.read_csv(file_path, usecols=columns_to_read, parse_dates=['Time_UTC'], index_col='Time_UTC')
+
+    # Create start and end date Timestamps
+    start_date = pd.Timestamp(year=start_year, month=start_month, day=1)
+    end_date = pd.Timestamp(year=end_year, month=end_month, day=1)
+
+    # Filter the dataframe based on the selected date range
+    filtered_df = df.loc[start_date:end_date]
+
+    # Create the figure
+    fig = go.Figure()
+
+    # Add the average line
+    fig.add_trace(go.Scatter(
+        x=filtered_df.index,
+        y=filtered_df[f'average_{graph_value}'],
+        mode='lines',
+        name='Average',
+        line=dict(color='royalblue')
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=filtered_df.index,
+        y=filtered_df[f'upper_{graph_value}'],
+        line=dict(width=0),
+        mode='lines',
+        name='Upper Bound',
+        showlegend=False
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=filtered_df.index,
+        y=filtered_df[f'lower_{graph_value}'],
+        fill='tonexty',  # Fill area between trace0 and trace1
+        mode='lines',
+        line=dict(width=0),
+        name='Lower Bound',
+        fillcolor='rgba(0,100,80,0.2)',
+        showlegend=False
+    ))
+    # Dynamically set the title and axis labels
+    title_text = f"Comparison for {graph_value} with Confidence Interval"
+    fig.update_layout(title=title_text, xaxis_title='Time', yaxis_title=graph_value)
+
+    return fig
+
 
 @app.callback(
     Output('line-graph-for-weather', 'figure'),
