@@ -74,7 +74,12 @@ weekday_map = {
 # Initialize the Dash app
 app = dash.Dash(__name__)
 server=app.server
+"""
+====================================================================================================================
+THe folloowing is the html commponet,
 
+====================================================================================================================
+"""
 app.layout = html.Div([
     html.Div([
         html.H1('Climate Scenarios Descriptions'),
@@ -314,6 +319,12 @@ app.layout = html.Div([
 
 ])
 
+"""
+====================================================================================================================
+Code for updating the map graph
+====================================================================================================================
+"""
+
 @app.callback(
     Output('usa-map', 'figure'),
     [
@@ -372,7 +383,6 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
     start_date = pd.Timestamp(year=start_year, month=start_month, day=1)
     end_date = pd.Timestamp(year=end_year, month=end_month, day=30)
 
-    print(df.columns)
     
     # Create a mask for the date range
     mask = (df['Year'] > start_year) | \
@@ -416,6 +426,12 @@ def update_map(scenario_value,toggle_value,start_month,start_year,end_month,end_
 
     return fig
 
+"""
+====================================================================================================================
+Code for updating toggle, so it depends on how you want to sepearation the region, it will deplay all the option possible
+====================================================================================================================
+"""
+
 @app.callback(
     [Output('graph-toggle', 'options'),
      Output('graph-toggle', 'value')],
@@ -441,6 +457,11 @@ def set_graph_toggle_options(selected_map_view):
         value='p1'
 
     return options,value
+"""
+====================================================================================================================
+Code for updating comparison toggle, so it depends on how you want to sepearation the region, it will deplay all the option possible
+====================================================================================================================
+"""
 @app.callback(
     [
         Output('region-left', 'options'),
@@ -470,6 +491,11 @@ def set_region_options(selected_map_view):
         options = [{'label': f'p{i}', 'value': f'p{i}'} for i in range(1, 135)]
         value='p1'
     return options, options ,value , value
+"""
+====================================================================================================================
+Graph for daily comparison
+====================================================================================================================
+"""
 @app.callback(
     Output('compare-graph', 'figure'),
     [
@@ -556,8 +582,11 @@ def update_daily_compare_graph(year_left, daytype_left, scenario_left, region_le
     fig.update_layout(title=f'{daytype_left} of {region_left} in {year_left} base on {scenario_left} <br>vs {daytype_right} of {region_right} in {year_right} base on {scenario_right}', xaxis_title='Hour of Day', yaxis_title='Hourly Demand(Mwh)', xaxis=dict(range=[0, 23]))
 
     return fig
-
-
+"""
+====================================================================================================================
+Graph for weekly comparison
+====================================================================================================================
+"""
 @app.callback(
     Output('compare-graph-week', 'figure'),
     [
@@ -647,6 +676,11 @@ def update_weekly_compare_graph(year_left, daytype_left, scenario_left, region_l
 
     return fig
 
+"""
+====================================================================================================================
+Graph for comparing scenario
+====================================================================================================================
+"""
 @app.callback(
     Output('line-graph', 'figure'),
     [
@@ -723,6 +757,11 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 
     # Display the figure
     return fig
+"""
+====================================================================================================================
+Graph ploting average and prediction error
+====================================================================================================================
+"""
 
 @app.callback(
     Output('line-graph-with-CI', 'figure'),
@@ -733,11 +772,22 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
         Input('end-month-dropdown', 'value'),
         Input('end-year-dropdown', 'value'),
         Input('projection-toggle', 'value'),
+        Input('group-by-year-toggle', 'value'),
     ]
 )
-def update_line_graph(graph_value, start_month, start_year, end_month, end_year, projection_bool):
+def update_line_graph(graph_value, start_month, start_year, end_month, end_year, projection_bool,yearly_bool):
     data_path = os.path.join(current_directory, 'web_page_data')
-    file_path = os.path.join(data_path, f'monthly_CI_Data_data.csv')
+    if yearly_bool:
+        if projection_bool:
+            file_path = os.path.join(data_path, f'monthly_CI_yearly_Data_data_project.csv')
+        else:
+            file_path = os.path.join(data_path, f'monthly_CI_yearly_Data_data.csv')
+        
+    else:
+        if projection_bool:
+            file_path = os.path.join(data_path, f'monthly_CI_Data_data_project.csv')
+        else:
+            file_path = os.path.join(data_path, f'monthly_CI_Data_data.csv')
 
     # Create a list of columns to read, based on the input value
     columns_to_read = ['Time_UTC', f'upper_{graph_value}', f'lower_{graph_value}', f'average_{graph_value}']
@@ -784,7 +834,7 @@ def update_line_graph(graph_value, start_month, start_year, end_month, end_year,
         showlegend=False
     ))
     # Dynamically set the title and axis labels
-    title_text = f"Comparison for {graph_value} with Confidence Interval"
+    title_text = f"{graph_value} future predcition with Confidence Interval 95% convidence interval"
     fig.update_layout(title=title_text, xaxis_title='Time', yaxis_title=graph_value)
 
     return fig
@@ -837,9 +887,6 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
 
         # Display the figure
         return fig
-    scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler']
-
-            
 
 
     # Create the figure outside of the loop, so all lines are on the same graph
