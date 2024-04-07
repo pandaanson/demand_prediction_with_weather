@@ -27,7 +27,9 @@ gdf_country_path = os.path.join(data_path, 'gdf_country.gpkg')
 gdf_state_path = os.path.join(data_path, 'gdf_state.gpkg')
 gdf_subregion_path = os.path.join(data_path, 'gdf_subregion.gpkg')
 
-
+std_monthly_path = os.path.join(data_path, 'std_dev_monthly_aggregated_errors.csv')
+std_monthly_df=pd.read_csv(std_monthly_path )
+std_monthly_df.columns = ['region', 'sd']
 
 
 # Function to read GeoJSON from a file
@@ -57,7 +59,20 @@ def df_to_gdf(df):
     geometry = [Point(xy) for xy in zip(df.lon, df.lat)]
     gdf = gpd.GeoDataFrame(df, geometry=geometry, crs="EPSG:4326")
     return gdf
+def hex_to_rgba(hex_color, opacity):
+    """
+    Convert a hex color to an RGBA string with the specified opacity.
 
+    Parameters:
+    - hex_color: A string representing the hex color code (e.g., "#RRGGBB").
+    - opacity: A float representing the opacity level (0 to 1).
+
+    Returns:
+    - A string representing the color in RGBA format (e.g., "rgba(R, G, B, opacity)").
+    """
+    hex_color = hex_color.lstrip('#')
+    r, g, b = [int(hex_color[i:i+2], 16) for i in (0, 2, 4)]
+    return f'rgba({r}, {g}, {b}, {opacity})'
 
 
 #include weekday date
@@ -70,9 +85,25 @@ weekday_map = {
     5: 'Saturday',
     6: 'Sunday'
 }
+scenario_labels = {
+    'rcp85hotter': 'Extreme',
+    'rcp85cooler': 'High',
+    'rcp45hotter': 'Moderate',
+    'rcp45cooler': 'Low',
+    'projection': 'Reference',
+}
+color_map = {
+        'rcp85hotter': '#d62728',  # Example color
+        'rcp85cooler': '#2ca02c',  # Example color
+        'rcp45hotter': '#1f77b4',  # Example color
+        'rcp45cooler': '#ff7f0e',  # Example color
+        'projection': '#9467bd',   # Example color
+    }
+weather_condition_mapping={}
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
+#Define seriver
 server=app.server
 """
 ====================================================================================================================
@@ -82,7 +113,7 @@ THe folloowing is the html commponet,
 """
 app.layout = html.Div([
     html.Div([
-        html.H1('Climate Scenarios Descriptions'),
+        html.H1('Climate Scenarios Descriptions'),#Explaination for the classification of the Different weather model
         dcc.Markdown('''
             **Extreme: Based on RCP8.5 Hotter**
             
@@ -128,7 +159,7 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
-            html.H4("Select Scenario:", style={'marginBottom': -20, 'marginTop': 0}),
+            html.H4("Select Weather Scenario:", style={'marginBottom': -20, 'marginTop': 0}),
             dcc.RadioItems(
                 id='scenario-toggle',
                 options=[
@@ -142,7 +173,7 @@ app.layout = html.Div([
                 style={'padding': 20},
                 inline=True
             ),
-            html.H4("Show the maxium hourly of each period:", style={'marginBottom': 0, 'marginTop': 0}),
+            html.H4("Show the maxium hourly of each period(First two graph only):", style={'marginBottom': 0, 'marginTop': 0}),
             dcc.RadioItems(
                 id='max-toggle',
                 options=[
@@ -699,9 +730,15 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
 
     scenarios = ['rcp85hotter', 'rcp45hotter', 'rcp85cooler', 'rcp45cooler','projection']#, 'rcp45hotter']
     data_path = os.path.join(current_directory, 'web_page_data')
+    
 
     # Create the figure outside of the loop, so all lines are on the same graph
     fig = go.Figure()
+    if group_by_year:
+        std_dev = (((std_monthly_df.loc[std_monthly_df['region'].str.lower()  == f'error_{graph_value}'.lower() , 'sd'].values[0])**2)*12)**(0.5)
+    else:
+        std_dev = std_monthly_df.loc[std_monthly_df['region'].str.lower()  == f'error_{graph_value}'.lower() , 'sd'].values[0]
+
 
     for scenario_value in scenarios:
         # Construct the file path for the current scenario
@@ -749,7 +786,28 @@ def update_line_graph(scenario_value, graph_value, start_month, start_year, end_
         y_data = filtered_df[graph_value]
 
         # Add the line trace for the current scenario
-        fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+        label = scenario_labels[scenario_value]
+
+        color = color_map[scenario_value]
+        rgba_color = hex_to_rgba(color, 0.2)  # Convert to RGBA with 20% opacity
+
+
+        fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=label,line=dict(color=color)))
+        if not max_bool:
+            # Calculate the upper and lower bounds for 2 std_dev
+            y_upper = y_data + (2 * std_dev)
+            y_lower = y_data - (2 * std_dev)
+            
+            # Add area trace for the upper bound
+            fig.add_trace(go.Scatter(
+            x=x_data.tolist() + x_data.tolist()[::-1], # x, then x reversed
+            y=y_upper.tolist() + y_lower.tolist()[::-1], # upper, then lower reversed
+            fill='toself',
+            fillcolor=rgba_color,
+            line=dict(color='rgba(255,255,255,0)'),
+            hoverinfo="skip",
+            showlegend=False
+        ))
 
     # Dynamically set the title to indicate a comparison
     title_text = f"Comparison of Scenarios for {graph_value}"
@@ -838,7 +896,11 @@ def update_line_graph(graph_value, start_month, start_year, end_month, end_year,
     fig.update_layout(title=title_text, xaxis_title='Time', yaxis_title=graph_value)
 
     return fig
-
+"""
+====================================================================================================================
+Graph ploting hot date and cold date
+====================================================================================================================
+"""
 
 @app.callback(
     Output('line-graph-for-weather', 'figure'),
@@ -938,15 +1000,12 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
             if scenario_value=='projection':
                 fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name='fix-weather on 2010'))
             else:
-                fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+                label = scenario_labels[scenario_value]
+                fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=label))
         else:
             print(f"No data for scenario {scenario_value} after filtering by {graph_value} from {start_year} to {end_year}")
 
             
-
-
-
-
 
 
 
@@ -955,6 +1014,12 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
 
     # Display the figure
     return fig
+
+"""
+====================================================================================================================
+the main code for the run
+====================================================================================================================
+"""
 
 
 if __name__ == '__main__':
