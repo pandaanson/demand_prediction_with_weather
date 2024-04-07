@@ -27,6 +27,7 @@ gdf_country_path = os.path.join(data_path, 'gdf_country.gpkg')
 gdf_state_path = os.path.join(data_path, 'gdf_state.gpkg')
 gdf_subregion_path = os.path.join(data_path, 'gdf_subregion.gpkg')
 
+
 std_monthly_path = os.path.join(data_path, 'std_dev_monthly_aggregated_errors.csv')
 std_monthly_df=pd.read_csv(std_monthly_path )
 std_monthly_df.columns = ['region', 'sd']
@@ -728,7 +729,7 @@ Graph for comparing scenario
 )
 def update_line_graph(scenario_value, graph_value, start_month, start_year, end_month, end_year,group_by_year,max_bool,projection_bool):
 
-    scenarios = ['rcp85hotter', 'rcp45hotter', 'rcp85cooler', 'rcp45cooler','projection']#, 'rcp45hotter']
+    scenarios = ['rcp85hotter', 'rcp85cooler','rcp45hotter','rcp45cooler', 'projection']
     data_path = os.path.join(current_directory, 'web_page_data')
     
 
@@ -915,7 +916,7 @@ Graph ploting hot date and cold date
 )
 def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,projection_bool):
 
-    scenarios = ['rcp45cooler', 'rcp45hotter','rcp85hotter', 'rcp85cooler','projection']
+    scenarios = ['rcp85hotter', 'rcp85cooler','rcp45hotter','rcp45cooler', 'projection']
     data_path = os.path.join(current_directory, 'web_page_data')
     fig = go.Figure()
     if weather =='degree_day':
@@ -938,7 +939,9 @@ def update_line_graph( graph_value, start_year,  end_year, weather,heat_or_cold,
                 if scenario_value=='projection':
                     fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name='fix-weather on 2010'))
                 else:
-                    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=scenario_value))
+                    # Here we use the dictionary to get the label for the legend
+                    label = scenario_labels[scenario_value]
+                    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='lines', name=label))
             else:
                 print(f"No data for scenario {scenario_value} after filtering by {graph_value} from {start_year} to {end_year}")
             title_text = f"{heat_or_cold} degree days by year for {graph_value}"
